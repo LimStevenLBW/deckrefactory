@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/ygo-draft-simulator/static/css/main.34de6062.chunk.css",
+    "main.js": "/ygo-draft-simulator/static/js/main.79d561b7.chunk.js",
+    "main.js.map": "/ygo-draft-simulator/static/js/main.79d561b7.chunk.js.map",
+    "runtime-main.js": "/ygo-draft-simulator/static/js/runtime-main.280c4b6e.js",
+    "runtime-main.js.map": "/ygo-draft-simulator/static/js/runtime-main.280c4b6e.js.map",
+    "static/js/2.5628898e.chunk.js": "/ygo-draft-simulator/static/js/2.5628898e.chunk.js",
+    "static/js/2.5628898e.chunk.js.map": "/ygo-draft-simulator/static/js/2.5628898e.chunk.js.map",
+    "index.html": "/ygo-draft-simulator/index.html",
+    "precache-manifest.f13bda3fefc0f049d54106263e4ca563.js": "/ygo-draft-simulator/precache-manifest.f13bda3fefc0f049d54106263e4ca563.js",
+    "service-worker.js": "/ygo-draft-simulator/service-worker.js",
+    "static/css/main.34de6062.chunk.css.map": "/ygo-draft-simulator/static/css/main.34de6062.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.280c4b6e.js",
+    "static/js/2.5628898e.chunk.js",
+    "static/css/main.34de6062.chunk.css",
+    "static/js/main.79d561b7.chunk.js"
+  ]
+}
