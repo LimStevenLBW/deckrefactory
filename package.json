@@ -1,5 +1,6 @@
 {
-  "name": "website-practice",
+  "homepage": "https://limstevenlbw.github.io/ygo-draft-simulator/",
+  "name": "ygo-draft-simulator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,6 +9,8 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -29,6 +32,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.1.1",
     "gulp": "^4.0.2",
     "gulp-changed": "^4.0.2",
     "gulp-clean-css": "^4.2.0",
