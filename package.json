@@ -1,7 +1,17 @@
 {
-  "homepage": "https://limstevenlbw.github.io/ygo-draft-simulator/",
   "name": "ygo-draft-simulator",
-  "version": "0.1.0",
+  "version": "0.0.1",
+  "description": "A description for your project.",
+  "author": {
+    "name": "Steven Lim",
+    "url": "http://link-to-your-website.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://link-to-your-git-repo.com"
+  },
+  "homepage": "https://limstevenlbw.github.io/ygo-draft-simulator/",
   "private": true,
   "dependencies": {
     "react": "^16.11.0",
@@ -37,6 +47,21 @@
     "gulp-changed": "^4.0.2",
     "gulp-clean-css": "^4.2.0",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "^4.0.2",
+    "gulp-flatmap": "1.0.2",
+    "del": "3.0.0",
+    "lazypipe": "1.0.1",
+    "jshint": "2.9.6",
+    "gulp-jshint": "2.1.0",
+    "jshint-stylish": "2.2.1",
+    "gulp-concat": "2.6.1",
+    "gulp-terser": "1.1.7",
+    "gulp-optimize-js": "1.1.0",
+    "gulp-postcss": "8.0.0",
+    "cssnano": "4.1.10",
+    "autoprefixer": "9.6.1",
+    "gulp-svgmin": "2.1.0",
+    "browser-sync": "2.26.7",
+    "gulp-header": "2.0.5"
   }
 }
