@@ -25,7 +25,7 @@ const Navbar = () => {
                         <NavLink
                             className="nav-link"
                             to="/">
-                            Home 
+                            Home <span className="sr-only">(current)</span>
                         </NavLink>
                     </li>
 
@@ -33,7 +33,7 @@ const Navbar = () => {
                         <NavLink
                             className="nav-link"
                             to="/builder">
-                            Deckbuilder <span className="sr-only">(current)</span>
+                            Deckbuilder 
                         </NavLink>
                     </li>
 
