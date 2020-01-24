@@ -13,7 +13,7 @@ var settings = {
 	styles: true,
 	svgs: false,
 	copy: false,
-	reload: false
+	reload: true
 };
 
 
@@ -293,6 +293,6 @@ exports.default = series(
 // gulp watch
 exports.watch = series(
 	exports.default,
-	//startServer,
+	startServer,
 	watchSource
 );

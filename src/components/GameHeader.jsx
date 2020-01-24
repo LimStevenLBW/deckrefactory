@@ -1,10 +1,11 @@
 import React from 'react';
 import Filters from './Filters';
+import DeckStats from './DeckStats';
 
 const GameHeader = () => {
     return (  
         <React.Fragment>
-            <div class="container-fluid">
+            <div className = "container-fluid">
                 <Filters />
                 <DeckStats />
             </div>
