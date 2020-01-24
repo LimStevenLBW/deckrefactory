@@ -21,17 +21,30 @@ class DeckBuilder extends Component {
         const { selectedGame, queriedCards } = this.state;
 
         return ( 
-            <React.Fragment>
-                <GameHeader />
-                <Searchbar />
+            <div className = "container">
+                <div class="row">
+                    <div class="col-sm">
+                        <GameHeader />
+                    </div>
 
-                <CardBrowser 
-                    selectedGame = { selectedGame }
-                    queriedCards = { queriedCards } 
-                />
+                    <div class="col-sm">
+                        <Searchbar />
+                    </div>
+                </div>
 
-                <DeckList />
-            </React.Fragment>
+                <div class="row">
+                    <div class="col-3"> 
+                        <DeckList />
+                    </div>
+
+                    <div class="col-9">
+                        <CardBrowser 
+                            selectedGame = { selectedGame }
+                            queriedCards = { queriedCards } 
+                        />
+                    </div>
+                </div>
+            </div>       
         );
     }
 }

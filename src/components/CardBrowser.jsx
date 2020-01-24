@@ -34,13 +34,13 @@ class CardBrowser extends Component {
             let items = [];
             //Iterate through columns of a row
             for(let j = i; (j < (i + colPerRow)); j++) {
-                console.log(queriedCards);
                 let column;
-                const data = "";
+
                 if(j >= dataLength) {
-                    column = this.getCard(data,`${i},${j}`)
+                    column = this.getCard(null,`${i},${j}`)
                 }
                 else{
+                    const data = this.mapToViewData(queriedCards, i+j);
                     column = this.getCard(data,`${i},${j}`);
                 }
                 
@@ -65,9 +65,15 @@ class CardBrowser extends Component {
         if(selectedGame === 'mtg') return <MagicCard data = {data} key = {key} />
     }
 
+    //Maps the data from the list of retrieved cards into a more specific, understandable object
+    mapToViewData(queriedCards, index){
+        const cardInfo = queriedCards[0];
+        return cardInfo;
+    }
+
     render() { 
         const { rows } = this.state;
-        console.log(rows.length)
+
         if(rows){
             return ( 
                 <div className = "container">
