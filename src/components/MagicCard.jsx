@@ -15,7 +15,6 @@ class MagicCard extends Card {
     }
 
     componentDidMount(){
-        console.log("trigger")
         if(this.props.data){
             const {imageUrl} = this.props.data;
             this.setState({imageUrl: image})
@@ -24,6 +23,7 @@ class MagicCard extends Card {
     
     }
 
+    //Note, onMouseOver propagates unlike onMouseEnter, it'll catch fast mouse movements
     onMouseOverHandler = () => {
         this.setState({isTooltipVisible: true})
     }
@@ -33,13 +33,15 @@ class MagicCard extends Card {
     }
 
     render() { 
-        
+        const { onMouseClickHandler, data } = this.props;
+
         return ( 
             <div className = "col-sm">
                 <img 
                     className = "cardArt"
                     src = {this.state.imageUrl} 
                     alt = "ERROR"
+                    onClick = {() => onMouseClickHandler(data)}
                     onMouseOver = {this.onMouseOverHandler}
                     onMouseOut = {this.onMouseOutHandler}>
                 </img>

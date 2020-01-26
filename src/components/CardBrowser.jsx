@@ -55,14 +55,24 @@ class CardBrowser extends Component {
     }
 
     getNewRow(items, key){
-        return <CardRow key = {key} items = {items}/>
+        return(
+            <CardRow
+                key = {key} 
+                items = {items}
+            />);
     }
 
     
     getCard(data, key){
-        const { selectedGame } = this.props;
+        const { selectedGame, addNewCard } = this.props;
         //Set to magic
-        if(selectedGame === 'mtg') return <MagicCard data = {data} key = {key} />
+        if(selectedGame === 'mtg') 
+            return (
+            <MagicCard 
+                onMouseClickHandler = {addNewCard}
+                data = {data} 
+                key = {key} 
+            />);
     }
 
     //Maps the data from the list of retrieved cards into a more specific, understandable object

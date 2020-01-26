@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import GameHeader from './GameHeader';
 import Searchbar from './common/SearchBar';
 import CardBrowser from './CardBrowser';
-import DeckList from './DeckList';
-import { getCards } from '../services/falseApi'
+import DeckList from './DeckSideBar';
+import { getCards } from '../services/falseApi';
 
 class DeckBuilder extends Component {
     state = { 
         selectedGame: "",
+        deckList: [],
         queriedCards: {},
     }
 
@@ -17,30 +18,42 @@ class DeckBuilder extends Component {
         this.setState({selectedGame: "mtg", queriedCards: queriedCards})
     }
 
+    setDeckList = (deckList) => {
+
+    }
+
+    addNewCard = (newCard) => {
+        const { deckList } = this.state;
+        deckList.push(newCard);
+        this.setState({ deckList });
+        console.log(this.state)
+    }
+
     render() { 
         const { selectedGame, queriedCards } = this.state;
 
         return ( 
             <div className = "container">
-                <div class="row">
-                    <div class="col-sm">
+                <div className = "row">
+                    <div className = "col-sm">
                         <GameHeader />
                     </div>
 
-                    <div class="col-sm">
+                    <div className = "col-sm">
                         <Searchbar />
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-3"> 
+                <div className = "row">
+                    <div className = "col-3"> 
                         <DeckList />
                     </div>
 
-                    <div class="col-9">
+                    <div className = "col-9">
                         <CardBrowser 
                             selectedGame = { selectedGame }
                             queriedCards = { queriedCards } 
+                            addNewCard = { this.addNewCard }
                         />
                     </div>
                 </div>
