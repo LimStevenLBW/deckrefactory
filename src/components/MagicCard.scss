@@ -1,3 +1,22 @@
-.cardArt{
+.cardArt {
     width: 100%;
+    cursor: pointer;
+}
+
+.cardArtEnlarged {
+    width: 125%;
+}
+
+/* Tooltip text */
+.tooltipImage {
+    cursor: pointer;
+    visibility: hidden;
+    position: absolute;
+    right: 50%;
+    z-index: 1;
+}
+  
+/* Show the tooltip text when you mouse over the tooltip container */
+div:hover .tooltipImage{
+    visibility: visible;
 }

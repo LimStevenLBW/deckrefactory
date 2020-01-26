@@ -1,7 +1,7 @@
 import React from 'react';
 
 //BootStrap ListGroup component
-const DeckStats = (props) => {
+const DeckList = (props) => {
     //Decoupled to use any json list
     const { items, textProperty, valueProperty, onItemSelect, selectedItem } = props;
 
@@ -21,5 +21,5 @@ const DeckStats = (props) => {
     return <React.Fragment></React.Fragment>
 }
 
-export default DeckStats;
+export default DeckList;
  
