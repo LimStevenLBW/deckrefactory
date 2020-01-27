@@ -14,7 +14,7 @@ class MagicCard extends Card {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         if(this.props.data){
             const { imageUrl } = this.props.data;
             this.setState({imageUrl: image})
@@ -36,7 +36,7 @@ class MagicCard extends Card {
         const { onMouseClickHandler, data } = this.props;
 
         return ( 
-            <div className = "col-sm">
+            <div className = "col-sm pl-1 pr-1">
                 <img 
                     className = "cardArt"
                     src = {this.state.imageUrl} 

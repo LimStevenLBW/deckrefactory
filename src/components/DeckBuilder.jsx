@@ -56,7 +56,7 @@ class DeckBuilder extends Component {
         const { selectedGame, queriedCards, deckList } = this.state;
 
         return ( 
-            <div className = "container">
+            <div className = "container-fluid">
                 <div className = "row">
                     <div className = "col-sm">
                         <GameHeader />
