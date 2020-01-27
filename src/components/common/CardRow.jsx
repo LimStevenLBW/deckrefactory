@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardRow = ({items}) => {
+const CardRow = ({ items }) => {
 
     return (  
         <div className = "row">

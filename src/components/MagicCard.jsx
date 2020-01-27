@@ -16,7 +16,7 @@ class MagicCard extends Card {
 
     componentDidMount(){
         if(this.props.data){
-            const {imageUrl} = this.props.data;
+            const { imageUrl } = this.props.data;
             this.setState({imageUrl: image})
             //this.setState({imageUrl}) disabled temporarily so the api doesn't get pissed
         }

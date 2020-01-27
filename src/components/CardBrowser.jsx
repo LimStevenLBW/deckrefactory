@@ -26,7 +26,7 @@ class CardBrowser extends Component {
         const colPerRow = 4;
         const rows = []; //Reset the list
         const { queriedCards } = this.props;
-        const dataLength = Object.keys(queriedCards).length + 10
+        const dataLength = Object.keys(queriedCards).length + 120
 
         //Iterate through data
         for(let i = 0; i < dataLength; i += colPerRow) {
@@ -37,18 +37,18 @@ class CardBrowser extends Component {
                 let column;
 
                 if(j >= dataLength) {
-                    column = this.getCard(null,`${i},${j}`)
+                    column = this.getCard(null,`${i},${j}`);
                 }
                 else{
                     const data = this.mapToViewData(queriedCards, i+j);
                     column = this.getCard(data,`${i},${j}`);
                 }
                 
-                items.push(column);
+               items.push(column);
             }
             
             const newRow = this.getNewRow(items);
-            rows.push(newRow, i);
+            rows.push(newRow);
         }
         
         this.setState({rows});
@@ -68,11 +68,12 @@ class CardBrowser extends Component {
         //Set to magic
         if(selectedGame === 'mtg') 
             return (
-            <MagicCard 
-                onMouseClickHandler = {addNewCard}
-                data = {data} 
-                key = {key} 
-            />);
+                <MagicCard 
+                    onMouseClickHandler = {addNewCard}
+                    data = {data} 
+                    key = {key} 
+                />
+            );
     }
 
     //Maps the data from the list of retrieved cards into a more specific, understandable object
@@ -89,7 +90,7 @@ class CardBrowser extends Component {
                 <div className = "container">
                     {rows.map(element => {
                         return (element)
-                    })}
+                    })} 
                 </div>
             );
         }
