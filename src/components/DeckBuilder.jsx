@@ -41,6 +41,23 @@ class DeckBuilder extends Component {
         this.setState({ deckList });
     }
 
+    removeCard = (event, selectedCard) => {
+        event.preventDefault();
+        const { deckList } = this.state;
+
+        //Check if more than one copy exists, if so, just decrement the counter
+        const duplicate = this.checkForDuplicate(selectedCard);
+        if(duplicate !== false){
+            const duplicateAmount = deckList[duplicate].quantity;
+
+            if(duplicateAmount > 1) deckList[duplicate].quantity--;
+            else if(duplicateAmount === 1) deckList.splice(deckList.indexOf(selectedCard), 1);
+            else console.log("an error has occurred with removeCard")
+        }
+        
+        this.setState({ deckList });
+    }
+
     /**
      * Examine each card in the decklist and return the index of the duplicate if it exists
      * Currently only examines based on name
@@ -79,6 +96,8 @@ class DeckBuilder extends Component {
                         <DeckSideBar 
                             items = {deckList} 
                             textProperty = "name"
+                            onLeftSelect = { this.addNewCard }
+                            onRightSelect = { this.removeCard }
                         />
                     </div>
 

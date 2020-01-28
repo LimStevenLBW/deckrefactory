@@ -7,7 +7,7 @@ import './DeckSideBar.scss';
  * The DeckSideBar lists the current state of the user's deck, its data is passed from Deckbuilder
  */
 
-const DeckSideBar = ({items, textProperty, onItemSelect, selectedItem}) => {
+const DeckSideBar = ({items, textProperty, onLeftSelect, onRightSelect, selectedItem}) => {
     //Stacking Duplicate Cards
 
     if(items)
@@ -18,7 +18,13 @@ const DeckSideBar = ({items, textProperty, onItemSelect, selectedItem}) => {
                     <li 
                         key = { index }
                         className = "list-group-item justify-content-between d-flex align-items-center"
-                        onClick = {() => { console.log(item.quantity) }} >
+                        onClick = {() => { 
+                            onLeftSelect(item);
+                        }}
+                        onContextMenu = {(e) => {
+                            onRightSelect(e, item);
+                        }}
+                    >
                         {item[textProperty]}
                         <span class = "badge badge-primary badge-pill">{item.quantity}</span>
                     </li>
