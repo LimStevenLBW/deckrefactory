@@ -16,7 +16,9 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
     "node-sass": "^4.13.1",
+    "popper": "^1.0.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",

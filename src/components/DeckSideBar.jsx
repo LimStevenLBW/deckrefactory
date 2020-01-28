@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/js/dist/collapse';
 import './DeckSideBar.scss';
 
 /**
@@ -8,29 +9,38 @@ import './DeckSideBar.scss';
  */
 
 const DeckSideBar = ({items, textProperty, onLeftSelect, onRightSelect, selectedItem}) => {
-    //Stacking Duplicate Cards
 
     if(items)
         return ( //Note: The index is used as the key property for now, this may introduce bugs
-        <div className = "decksidebar border border-primary rounded">
-            <ul className = "mh-100 list-group clickable">
-                {items.map((item, index) => (
-                    <li 
-                        key = { index }
-                        className = "list-group-item justify-content-between d-flex align-items-center"
-                        onClick = {() => { 
-                            onLeftSelect(item);
-                        }}
-                        onContextMenu = {(e) => {
-                            onRightSelect(e, item);
-                        }}
-                    >
-                        {item[textProperty]}
-                        <span class = "badge badge-primary badge-pill">{item.quantity}</span>
-                    </li>
-                )) 
-                }
-            </ul >
+        <div className = "mh-100 decksidebar border border-primary rounded">
+            <a 
+                class="btn btn-primary w-100" 
+                data-toggle="collapse" href="#mainCollapseTarget" 
+                role="button" aria-expanded="false" aria-controls="collapseExample">
+                Main Deck: 0 Cards
+            </a>
+
+            <div class="collapse collapse-show" id="mainCollapseTarget">
+                <ul className = "list-group clickable">    
+                    {items.map((item, index) => (
+                        <li 
+                            key = { index }
+                            className = "list-group-item justify-content-between d-flex align-items-center pt-1 pb-1"
+                            onClick = {() => { 
+                                onLeftSelect(item);
+                            }}
+                            onContextMenu = {(e) => {
+                                onRightSelect(e, item);
+                            }}
+                        >
+                            {item[textProperty]}
+                            <span class = "badge badge-primary badge-pill">{item.quantity}</span>
+                        </li>
+                    )) 
+                    }
+                </ul >
+            </div>
+
         </div>
     );
 
