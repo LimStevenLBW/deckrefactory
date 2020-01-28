@@ -6,6 +6,11 @@
  @mixin swamp_theme_fg {
     background-color: #cbd5e9;
 }
+@mixin swamp_theme_fg2 {
+    background-color: #e3e7f0;
+}
+
+
 
 .decksidebar {
     @include swamp_theme_fg;

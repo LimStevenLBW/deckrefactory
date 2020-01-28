@@ -4,6 +4,7 @@ import Searchbar from './common/SearchBar';
 import DeckStats from './DeckStats';
 import CardBrowser from './CardBrowser';
 import DeckSideBar from './DeckSideBar';
+import Footer from './Footer';
 import { getCards } from '../services/falseApi';
 
 import './DeckBuilder.scss';
@@ -78,7 +79,7 @@ class DeckBuilder extends Component {
         return ( 
             <React.Fragment>
                 <div className = "container-fluid">
-                    <header className = "row game-header mb-2">
+                    <header className = "row game-header mb-3">
                         <div className="col-sm">
                             <Filters />
                             <DeckStats />
@@ -110,6 +111,11 @@ class DeckBuilder extends Component {
                     </div>
                 </div>
             </div>
+
+            <div className = "container-fluid">
+              <Footer />
+            </div>
+
          </React.Fragment>     
         );
     }

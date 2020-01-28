@@ -24,7 +24,11 @@ const DeckSideBar = ({items, textProperty, onLeftSelect, onRightSelect, selected
         return ( //Note: The index is used as the key property for now, this may introduce bugs
         <div className = "mh-100 decksidebar border border-primary rounded">
 
-            <CollapsableLink textProperty = "Main Deck" valueProperty = {sum} target = {main}/>
+            <CollapsableLink 
+                textProperty = "Main Deck" 
+                valueProperty = {sum} 
+                classModifier = "btn-primary"
+                target = {main}/>
 
             <div class="collapse collapse-show" id = {main}>
                 <ul className = "list-group clickable">    
@@ -49,11 +53,13 @@ const DeckSideBar = ({items, textProperty, onLeftSelect, onRightSelect, selected
             <CollapsableLink 
                 textProperty = "Side Deck" 
                 valueProperty = {0}
+                classModifier = "btn-secondary"
                 target = {side}
             />
             <CollapsableLink 
                 textProperty = "Maybe Deck" 
                 valueProperty = {0}
+                classModifier = "btn-secondary"
                 target = {maybe}
             />
 

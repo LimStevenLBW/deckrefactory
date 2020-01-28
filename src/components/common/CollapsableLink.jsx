@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CollapsableLink = ({ textProperty, valueProperty }) => {
+const CollapsableLink = ({ textProperty, valueProperty, classModifier }) => {
     return (
         <a
-            class="btn btn-primary w-100"
-            data-toggle="collapse" href="#mainCollapseTarget"
-            role="button" aria-expanded="false" aria-controls="collapseExample">
+            class = {"btn w-100 " + classModifier}
+            data-toggle="collapse" href = "#mainCollapseTarget"
+            role = "button" aria-expanded = "false" aria-controls = "collapseExample">
             {textProperty}: {valueProperty} Cards
         </a>
     );
