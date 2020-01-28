@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/js/dist/collapse';
+import CollapsableLink from './common/CollapsableLink';
 import './DeckSideBar.scss';
 
 /**
@@ -8,19 +9,24 @@ import './DeckSideBar.scss';
  * The DeckSideBar lists the current state of the user's deck, its data is passed from Deckbuilder
  */
 
+const main = "mainCollapseTarget";
+const side = "sideCollapseTarget";
+const maybe = "maybeCollapseTarget";
+
 const DeckSideBar = ({items, textProperty, onLeftSelect, onRightSelect, selectedItem}) => {
+    //Calculate Deck Count property
+    let sum = 0;
+    items.forEach(card => {
+        sum += card.quantity;
+    })
 
     if(items)
         return ( //Note: The index is used as the key property for now, this may introduce bugs
         <div className = "mh-100 decksidebar border border-primary rounded">
-            <a 
-                class="btn btn-primary w-100" 
-                data-toggle="collapse" href="#mainCollapseTarget" 
-                role="button" aria-expanded="false" aria-controls="collapseExample">
-                Main Deck: 0 Cards
-            </a>
 
-            <div class="collapse collapse-show" id="mainCollapseTarget">
+            <CollapsableLink textProperty = "Main Deck" valueProperty = {sum} target = {main}/>
+
+            <div class="collapse collapse-show" id = {main}>
                 <ul className = "list-group clickable">    
                     {items.map((item, index) => (
                         <li 
@@ -40,6 +46,16 @@ const DeckSideBar = ({items, textProperty, onLeftSelect, onRightSelect, selected
                     }
                 </ul >
             </div>
+            <CollapsableLink 
+                textProperty = "Side Deck" 
+                valueProperty = {0}
+                target = {side}
+            />
+            <CollapsableLink 
+                textProperty = "Maybe Deck" 
+                valueProperty = {0}
+                target = {maybe}
+            />
 
         </div>
     );
