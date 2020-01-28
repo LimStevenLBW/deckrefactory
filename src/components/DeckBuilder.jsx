@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import GameHeader from './GameHeader';
+import Filters from './Filters';
 import Searchbar from './common/SearchBar';
+import DeckStats from './DeckStats';
 import CardBrowser from './CardBrowser';
 import DeckSideBar from './DeckSideBar';
 import { getCards } from '../services/falseApi';
+
+import './DeckBuilder.scss';
 
 class DeckBuilder extends Component {
     state = { 
@@ -56,17 +59,21 @@ class DeckBuilder extends Component {
         const { selectedGame, queriedCards, deckList } = this.state;
 
         return ( 
-            <div className = "container-fluid">
-                <div className = "row">
-                    <div className = "col-sm">
-                        <GameHeader />
-                    </div>
+            <React.Fragment>
+                <div className = "container-fluid">
+                    <header className = "row game-header mb-2">
+                        <div className="col-sm">
+                            <Filters />
+                            <DeckStats />
+                        </div>
 
-                    <div className = "col-sm">
-                        <Searchbar />
-                    </div>
+                        <div className="col-sm">
+                            <Searchbar />
+                        </div>
+                    </header>
                 </div>
-                
+
+            <div className = "container pl-0 pr-0">
                 <div className = "row">
                     <div className = "col-3"> 
                         <DeckSideBar 
@@ -83,7 +90,8 @@ class DeckBuilder extends Component {
                         />
                     </div>
                 </div>
-            </div>       
+            </div>
+         </React.Fragment>     
         );
     }
 }

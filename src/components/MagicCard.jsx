@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Card from './common/Card';
-import image from '../images/lotus.jpg';
+import image from '../images/lotus.png';
 import noImage from '../images/mtgback.jpg';
 import './MagicCard.scss';
 

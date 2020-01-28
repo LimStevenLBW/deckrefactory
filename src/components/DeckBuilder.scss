@@ -1,0 +1,8 @@
+@mixin swamp_theme_fg2 {
+    background-color: #e3e7f0;
+}
+
+.game-header {
+    @include swamp_theme_fg2;
+    min-height: 100px;
+}

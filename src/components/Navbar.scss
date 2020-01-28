@@ -1,0 +1,7 @@
+@mixin swamp_theme_fg {
+    background-color: #cbd5e9;
+}
+
+.navbar-bg{
+    @include swamp_theme_fg;
+}

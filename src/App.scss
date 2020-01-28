@@ -1,0 +1,9 @@
+//@import 'styles/Colors.scss';
+@mixin swamp_theme_bg {
+    background-color: #52527a;
+ }
+
+
+.app-background {
+    @include swamp-theme-bg; 
+}

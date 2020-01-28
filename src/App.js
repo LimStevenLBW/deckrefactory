@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import DeckBuilder from './components/DeckBuilder';
 import NotFound from './components/NotFound';
+import './App.scss';
 
 /**
  * Establishes application routes
@@ -10,7 +11,7 @@ import NotFound from './components/NotFound';
  */
 function App() {
   return (
-    <div className="App">
+    <div className = "app app-background">
       <Navbar />
 
       <Switch>

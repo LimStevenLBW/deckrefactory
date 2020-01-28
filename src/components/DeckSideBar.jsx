@@ -1,4 +1,5 @@
 import React from 'react';
+import './DeckSideBar.scss';
 
 /**
  * Expanded on a reusable wrapper for the Bootstrap Listgroup, 
@@ -11,7 +12,8 @@ const DeckSideBar = ({items, textProperty, onItemSelect, selectedItem}) => {
 
     if(items)
         return ( //Note: The index is used as the key property for now, this may introduce bugs
-            <ul className = "list-group clickable">
+        <div className = "decksidebar border border-primary rounded">
+            <ul className = "mh-100 list-group clickable">
                 {items.map((item, index) => (
                     <li 
                         key = { index }
@@ -23,7 +25,9 @@ const DeckSideBar = ({items, textProperty, onItemSelect, selectedItem}) => {
                 )) 
                 }
             </ul >
+        </div>
     );
+
     return <React.Fragment></React.Fragment>
 }
 

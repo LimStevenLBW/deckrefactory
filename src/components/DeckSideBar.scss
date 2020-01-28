@@ -1,1 +1,13 @@
+ //@import 'Colors.scss';
  
+ @mixin swamp_theme_bg {
+    background-color: #52527a;
+ }
+ @mixin swamp_theme_fg {
+    background-color: #cbd5e9;
+}
+
+.decksidebar {
+    @include swamp_theme_fg;
+    min-height: 500px;
+}

@@ -86,11 +86,11 @@ class CardBrowser extends Component {
 
         if(rows){
             return ( 
-                <div className = "container">
+                <React.Fragment>
                     {rows.map(element => {
                         return (element)
                     })} 
-                </div>
+                </React.Fragment>
             );
         }
         
