@@ -1,10 +1,10 @@
 import React from 'react';
 
-const SideBarItem = ( {item, key, textProperty, onLeftSelect, onRightSelect} ) => {
+const SideBarItem = ({ item, key, textProperty, onLeftSelect, onRightSelect }) => {
     return (
         <li
-            key = {key}
-            className="list-group-item justify-content-between d-flex align-items-center pt-1 pb-1"
+            key={key}
+            className="list-group-item d-flex justify-content-between align-items-center p-1"
             onClick={() => {
                 onLeftSelect(item);
             }}
@@ -12,8 +12,17 @@ const SideBarItem = ( {item, key, textProperty, onLeftSelect, onRightSelect} ) =
                 onRightSelect(e, item);
             }}
         >
-            {item[textProperty]}
-            <span class="badge badge-primary badge-pill">{item.quantity}</span>
+            <div className = "text-truncate">
+                {item[textProperty]}
+            </div>
+
+            <div className = "flex-grow-1 text-right">
+                CMCCMCCMCCMC
+            </div>
+
+            <span class = "badge badge-primary badge-pill">{item.quantity}</span>
+
+    
         </li>
     );
 }
