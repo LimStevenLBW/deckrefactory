@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/js/dist/collapse';
+import SideBarItem from './common/SideBarItem';
 import CollapsableLink from './common/CollapsableLink';
 import './DeckSideBar.scss';
 
@@ -13,7 +14,7 @@ const main = "mainCollapseTarget";
 const side = "sideCollapseTarget";
 const maybe = "maybeCollapseTarget";
 
-const DeckSideBar = ({items, textProperty, onLeftSelect, onRightSelect, selectedItem}) => {
+const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selectedItem }) => {
     //Calculate Deck Count property
     let sum = 0;
     items.forEach(card => {
@@ -33,23 +34,17 @@ const DeckSideBar = ({items, textProperty, onLeftSelect, onRightSelect, selected
             <div class="collapse collapse-show" id = {main}>
                 <ul className = "list-group clickable">    
                     {items.map((item, index) => (
-                        <li 
+                        <SideBarItem 
+                            item = { item } 
                             key = { index }
-                            className = "list-group-item justify-content-between d-flex align-items-center pt-1 pb-1"
-                            onClick = {() => { 
-                                onLeftSelect(item);
-                            }}
-                            onContextMenu = {(e) => {
-                                onRightSelect(e, item);
-                            }}
-                        >
-                            {item[textProperty]}
-                            <span class = "badge badge-primary badge-pill">{item.quantity}</span>
-                        </li>
-                    )) 
-                    }
+                            textProperty = { textProperty }
+                            onLeftSelect = { onLeftSelect }
+                            onRightSelect = { onRightSelect }
+                        />
+                    ))}
                 </ul >
             </div>
+
             <CollapsableLink 
                 textProperty = "Side Deck" 
                 valueProperty = {0}
