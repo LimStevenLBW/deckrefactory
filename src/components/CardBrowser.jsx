@@ -23,7 +23,7 @@ class CardBrowser extends Component {
 
     //Generate the table based on the selected game and available images
     generateTable = () => {
-        const colPerRow = 5; //Controls how many columns are allowed
+        const colPerRow = 4; //Controls how many columns are allowed
         const rows = []; //Reset the list
         const { queriedCards } = this.props;
         const dataLength = Object.keys(queriedCards).length + 12

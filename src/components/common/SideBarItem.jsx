@@ -1,4 +1,5 @@
 import React from 'react';
+import ManaIcons from './ManaIcons';
 
 const SideBarItem = ({ item, key, textProperty, onLeftSelect, onRightSelect }) => {
     return (
@@ -17,7 +18,7 @@ const SideBarItem = ({ item, key, textProperty, onLeftSelect, onRightSelect }) =
             </div>
 
             <div className = "flex-grow-1 text-right">
-                CMCCMCCMCCMC
+                <ManaIcons mana = {item.manaCost} />
             </div>
 
             <span class = "badge badge-primary badge-pill">{item.quantity}</span>

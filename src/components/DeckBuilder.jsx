@@ -93,7 +93,7 @@ class DeckBuilder extends Component {
 
             <div className = "container pl-0 pr-0">
                 <div className = "row">
-                    <div className = "col-3"> 
+                    <div className = "col-4"> 
                         <DeckSideBar 
                             items = {deckList} 
                             textProperty = "name"
@@ -102,7 +102,7 @@ class DeckBuilder extends Component {
                         />
                     </div>
 
-                    <div className = "col-9">
+                    <div className = "col-8">
                         <CardBrowser 
                             selectedGame = { selectedGame }
                             queriedCards = { queriedCards } 
