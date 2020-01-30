@@ -5,11 +5,11 @@ const SideBarItem = ({ item, key, textProperty, onLeftSelect, onRightSelect }) =
     return (
         <li
             key={key}
-            className="list-group-item d-flex justify-content-between align-items-center p-1"
-            onClick={() => {
+            className = "list-group-item d-flex justify-content-between align-items-center p-1"
+            onClick = {() => {
                 onLeftSelect(item);
             }}
-            onContextMenu={(e) => {
+            onContextMenu = {(e) => {
                 onRightSelect(e, item);
             }}
         >
@@ -22,7 +22,6 @@ const SideBarItem = ({ item, key, textProperty, onLeftSelect, onRightSelect }) =
             </div>
 
             <span class = "badge badge-primary badge-pill">{item.quantity}</span>
-
     
         </li>
     );

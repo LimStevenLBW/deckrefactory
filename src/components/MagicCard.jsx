@@ -20,7 +20,6 @@ class MagicCard extends Card {
             this.setState({imageUrl: image})
             //this.setState({imageUrl}) disabled temporarily so the api doesn't get pissed
         }
-    
     }
 
     //Note, onMouseOver propagates unlike onMouseEnter, it'll catch fast mouse movements

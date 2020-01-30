@@ -22,20 +22,22 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
     })
 
     if(items)
-        return ( //Note: The index is used as the key property for now, this may introduce bugs
+        return ( 
+        //Note: The index is used as the key property for now, this may introduce bugs
         <div className = "mh-100 decksidebar border border-primary rounded">
 
             <CollapsableLink 
                 textProperty = "Main Deck" 
                 valueProperty = {sum} 
                 classModifier = "btn-primary"
-                target = {main}/>
+                target = {main}
+            />
 
-            <div class="collapse collapse-show" id = {main}>
+            <div class = "collapse collapse-show" id = {main}>
                 <ul className = "list-group clickable">    
                     {items.map((item, index) => (
                         <SideBarItem 
-                            item = { item } 
+                            item = { item }
                             key = { index }
                             textProperty = { textProperty }
                             onLeftSelect = { onLeftSelect }
