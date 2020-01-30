@@ -7,7 +7,7 @@ class CardBrowser extends Component {
         super(props);
 
         this.state = {
-            rows: [],
+            table: [],
         }
     }
 
@@ -24,34 +24,34 @@ class CardBrowser extends Component {
     //Generate the table based on the selected game and available images
     generateTable = () => {
         const colPerRow = 4; //Controls how many columns are allowed
-        const rows = []; //Reset the list
+        const table = []; //Reset the list
         const { queriedCards } = this.props;
-        const dataLength = Object.keys(queriedCards).length + 12
+        const dataLength = Object.keys(queriedCards).length;
 
         //Iterate through data
         for(let i = 0; i < dataLength; i += colPerRow) {
 
             let items = [];
-            //Iterate through columns of a row
-            for(let j = i; (j < (i + colPerRow)); j++) { //Calculates when to add a card to a different row
+            //Iterate through columns of a row, each column is assigned a card until the row is filled
+            for(let j = i; (j < (i + colPerRow)); j++) {
                 let column;
 
-                if(j >= dataLength) {
-                    column = this.getCard(null,`${i},${j}`); //No card available
+                if(j >= dataLength) { //No data/card available
+                    column = this.mapToViewData(null,`${i},${j}`); 
                 }
-                else{
-                    const data = this.mapToViewData(queriedCards, i+j);
-                    column = this.getCard(data,`${i},${j}`); //Card available
+                else{ //Acquire data and map to card model
+                    const data = this.getCard(queriedCards, j);
+                    column = this.mapToViewData(data,`${i},${j}`); 
                 }
                 
-               items.push(column); //Add the generated card to the column
+               items.push(column); //Add the renderable column to the row's items
             }
             
             const newRow = this.getNewRow(items);
-            rows.push(newRow); //Add each assembled-row to the list of rows
+            table.push(newRow); //Add each assembled row to the final table
         }
         
-        this.setState({rows});
+        this.setState({table});
     }
 
     getNewRow(items, key){
@@ -62,7 +62,8 @@ class CardBrowser extends Component {
             />);
     }
     
-    getCard(data, key){
+    //Maps data into a viewable object
+    mapToViewData(data, key){
         const { selectedGame, addNewCard } = this.props;
         //Set to magic
         if(selectedGame === 'mtg') 
@@ -75,19 +76,19 @@ class CardBrowser extends Component {
             );
     }
 
-    //Maps the data from the list of retrieved cards into a more specific, understandable object
-    mapToViewData(queriedCards, index){
-        const cardInfo = queriedCards[0];
+    //Retrieves data from a specific card in the list of queried cards
+    getCard(queriedCards, index){
+        const cardInfo = queriedCards[index];
         return cardInfo;
     }
 
     render() { 
-        const { rows } = this.state;
+        const { table } = this.state;
 
-        if(rows){
+        if(table){
             return ( 
                 <React.Fragment>
-                    {rows.map(element => {
+                    {table.map(element => {
                         return (element)
                     })} 
                 </React.Fragment>

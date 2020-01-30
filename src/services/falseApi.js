@@ -109,6 +109,55 @@ const cards = {
         "originalType":"Legendary Creature — Angel",
         "id":"02ea5ddc89d7847abc77a0fbcbf2bc74e6456559"
         },
+
+        {  
+            "name":"Nicol Bolas, Dragon God",
+            "names":[  
+                "Archangel Avacyn",
+                "Avacyn, the Purifier"
+            ],
+            "manaCost":"{4}{U}{B}{R}",
+            "cmc":5,
+            "colors":[  
+                "Blue"
+            ],
+        },
+        {  
+            "name":"Arbor Colossus",
+            "names":[  
+                "Archangel Avacyn",
+                "Avacyn, the Purifier"
+            ],
+            "manaCost":"{1}{G}{G}",
+            "cmc":5,
+            "colors":[  
+                "Blue"
+            ],
+        },
+        {  
+            "name":"Exodia the Forbidden One",
+            "names":[  
+                "Archangel Avacyn",
+                "Avacyn, the Purifier"
+            ],
+            "manaCost":"{1}{RP}{WB}{WU}",
+            "cmc":5,
+            "colors":[  
+                "Blue"
+            ],
+        },
+        {  
+            "name":"Frosty",
+            "names":[  
+                "Archangel Avacyn",
+                "Avacyn, the Purifier"
+            ],
+            "manaCost":"{W}",
+            "cmc":5,
+            "colors":[  
+                "White"
+            ],
+        },
      ]
 }
 
