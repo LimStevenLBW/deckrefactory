@@ -35,7 +35,8 @@ const cards = {
         "toughness":"4",
         "layout":"double-faced",
         "multiverseid":409741,
-        "imageUrl":"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=409741&type=card",
+        "imageUrl":"images/artwork/avacyn.png",
+        "imageUrlOld":"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=409741&type=card",
         "rulings":[  
             {  
             "date":"2016-04-08",
@@ -112,51 +113,93 @@ const cards = {
 
         {  
             "name":"Nicol Bolas, Dragon God",
-            "names":[  
-                "Archangel Avacyn",
-                "Avacyn, the Purifier"
-            ],
-            "manaCost":"{4}{U}{B}{R}",
+            "manaCost":"{U}{B}{B}{B}{R}",
             "cmc":5,
             "colors":[  
                 "Blue"
             ],
+            "imageUrl": "images/artwork/nicol.png",
         },
         {  
-            "name":"Arbor Colossus",
-            "names":[  
-                "Archangel Avacyn",
-                "Avacyn, the Purifier"
+            "name":"Cultivate",
+            "manaCost":"{2}{G}",
+            "cmc":3,
+            "colors":[  
+                "Green"
             ],
-            "manaCost":"{1}{G}{G}",
-            "cmc":5,
+            "imageUrl": "images/artwork/cultivate.jpg",
+        },
+        {  
+            "name":"Arcum's Astrolabe",
+            "manaCost":"{S}",
+            "cmc":1,
+            "colors":[  
+                ""
+            ],
+            "imageUrl": "images/artwork/arcum.jpg",
+        },
+        {  
+            "name":"Rakdos Cackler",
+            "manaCost":"{BR}",
+            "cmc":1,
+            "colors":[  
+                "Red", "Black"
+            ],
+            "imageUrl": "images/artwork/cackler.jpg",
+        },
+        {  
+            "name":"Progenitus",
+            "manaCost":"{W}{W}{U}{U}{B}{B}{R}{R}{G}{G}",
+            "cmc":8,
+            "colors":[  
+                "Red", "Black", "Green", "Blue", "White"
+            ],
+            "imageUrl": "images/artwork/progenitus.jpg",
+        },
+        {  
+            "name":"Esper Stormblade",
+            "manaCost":"{WB}{U}",
+            "cmc":2,
+            "colors":[  
+                "Blue", "White", "Black"
+            ],
+            "imageUrl": "images/artwork/esper.jpg",
+        },
+        {  
+            "name":"Mu Yanling, Sky Dancer",
+            "manaCost":"{1}{U}{U}",
+            "cmc":3,
             "colors":[  
                 "Blue"
             ],
+            "imageUrl": "images/artwork/mu.jpg",
         },
         {  
-            "name":"Exodia the Forbidden One",
-            "names":[  
-                "Archangel Avacyn",
-                "Avacyn, the Purifier"
+            "name":"Ghalta, Primal Hunger",
+            "manaCost":"{10}{G}{G}",
+            "cmc": 12,
+            "colors":[  
+                "Green"
             ],
-            "manaCost":"{1}{RP}{WB}{WU}",
-            "cmc":5,
+            "imageUrl": "images/artwork/ghalta.jpg",
+        },
+        {  
+            "name":"Rakdos, Lord of Riots",
+            "manaCost":"{B}{B}{R}{R}",
+            "cmc": 4,
+            "colors":[  
+                "Black", "Red"
+            ],
+            "imageUrl": "images/artwork/rakdos.png",
+        },
+        {  
+            "name":"Thassa, God of the Sea",
+            "manaCost":"{2}{U}",
+            "cmc": 3,
             "colors":[  
                 "Blue"
             ],
-        },
-        {  
-            "name":"Frosty",
-            "names":[  
-                "Archangel Avacyn",
-                "Avacyn, the Purifier"
-            ],
-            "manaCost":"{W}",
-            "cmc":5,
-            "colors":[  
-                "White"
-            ],
+            "imageUrl": "images/artwork/thassa.jpg",
         },
      ]
 }
