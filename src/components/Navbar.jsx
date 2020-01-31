@@ -8,7 +8,7 @@ const Navbar = () => {
             <Link
                 className="navbar-brand"
                 to="/">
-                Pending Name
+                DeckRefactory
             </Link>
 
             <button

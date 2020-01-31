@@ -48,13 +48,13 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
             </div>
 
             <CollapsableLink 
-                textProperty = "Side Deck" 
+                textProperty = "Sideboard" 
                 valueProperty = {0}
                 classModifier = "btn-secondary"
                 target = {side}
             />
             <CollapsableLink 
-                textProperty = "Maybe Deck" 
+                textProperty = "Miscellaneous" 
                 valueProperty = {0}
                 classModifier = "btn-secondary"
                 target = {maybe}
