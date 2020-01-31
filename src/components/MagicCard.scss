@@ -4,7 +4,10 @@
 }
 
 .cardArtEnlarged {
-    width: 125%;
+    width: 130%;
+    -webkit-box-shadow: 0px 0px 40px 0px rgba(212,254,255,1);
+    -moz-box-shadow: 0px 0px 40px 0px rgba(212,254,255,1);
+    box-shadow: 0px 0px 40px 0px rgba(212,254,255,1);
 }
 
 /* Tooltip text */
@@ -12,11 +15,36 @@
     cursor: pointer;
     visibility: hidden;
     position: absolute;
-    right: 50%;
+    left: -15%;
+    bottom: -20%;
     z-index: 1;
+    pointer-events: none; //Causes the mouse to *phase through*
 }
   
 /* Show the tooltip text when you mouse over the tooltip container */
 div:hover .tooltipImage{
     visibility: visible;
+}
+
+//Animations
+
+.flash-anim{
+    -webkit-animation-name: flash;
+    -webkit-animation-duration: 0.25s;
+    animation-name: flash;
+    animation-duration: 0.25s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes flash {
+ 0% {opacity: 100% }
+ 70% {opacity: 30%}
+ 100% {opacity: 100%}
+}
+
+/* Standard syntax */
+@keyframes flash {
+ 0% {opacity: 0}
+ 70% {opacity: 30%}
+ 100% {opacity: 100%}
 }

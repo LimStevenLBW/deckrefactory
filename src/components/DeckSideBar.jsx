@@ -33,7 +33,7 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
                 target = {main}
             />
 
-            <div class = "collapse collapse-show" id = {main}>
+            <div class = "collapse collapse-show show" id = {main}>
                 <ul className = "list-group clickable">    
                     {items.map((item, index) => (
                         <SideBarItem 
