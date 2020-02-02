@@ -17,53 +17,50 @@ const maybe = "maybeCollapseTarget";
 const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selectedItem }) => {
     //Calculate Deck Count property
     let sum = 0;
-    items.forEach(card => {
+    if(items) {
+        items.forEach(card => {
         sum += card.quantity;
-    })
+    })}
 
-    if(items)
-        return ( 
-        //Note: The index is used as the key property for now, this may introduce bugs
-        <div className = "mh-100 decksidebar border border-primary rounded">
+    return ( 
+    //Note: The index is used as the key property for now, this may introduce bugs
+    <div className = "mh-100 decksidebar border border-primary rounded">
 
-            <CollapsableLink 
-                textProperty = "Main Deck" 
-                valueProperty = {sum} 
-                classModifier = "btn-primary"
-                target = {main}
-            />
+        <CollapsableLink 
+            textProperty = "Main Deck" 
+            valueProperty = {sum} 
+            classModifier = "btn-primary"
+            target = {main}
+        />
 
-            <div class = "collapse collapse-show show" id = {main}>
-                <ul className = "list-group clickable">    
-                    {items.map((item, index) => (
-                        <SideBarItem 
-                            item = { item }
-                            key = { index }
-                            textProperty = { textProperty }
-                            onLeftSelect = { onLeftSelect }
-                            onRightSelect = { onRightSelect }
-                        />
-                    ))}
-                </ul >
-            </div>
-
-            <CollapsableLink 
-                textProperty = "Sideboard" 
-                valueProperty = {0}
-                classModifier = "btn-secondary"
-                target = {side}
-            />
-            <CollapsableLink 
-                textProperty = "Miscellaneous" 
-                valueProperty = {0}
-                classModifier = "btn-secondary"
-                target = {maybe}
-            />
-
+        <div class = "collapse collapse-show show" id = {main}>
+            <ul className = "list-group clickable">    
+                {items.map((item, index) => (
+                    <SideBarItem 
+                        item = { item }
+                        key = { index }
+                        textProperty = { textProperty }
+                        onLeftSelect = { onLeftSelect }
+                        onRightSelect = { onRightSelect }
+                    />
+                ))}
+            </ul >
         </div>
-    );
 
-    return <React.Fragment></React.Fragment>
+        <CollapsableLink 
+            textProperty = "Sideboard" 
+            valueProperty = {0}
+            classModifier = "btn-secondary"
+            target = {side}
+        />
+        <CollapsableLink 
+            textProperty = "Miscellaneous" 
+            valueProperty = {0}
+            classModifier = "btn-secondary"
+            target = {maybe}
+        />
+    </div>
+    );
 }
 
 export default DeckSideBar;

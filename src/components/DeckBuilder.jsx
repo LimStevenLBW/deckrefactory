@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as compare from '../utils/compare';
+
 import Filters from './Filters';
 import Tabs from './common/Tabs';
 import Searchbar from './common/SearchBar';
@@ -10,6 +12,7 @@ import Footer from './Footer';
 import { getCards } from '../services/falseApi';
 
 import './DeckBuilder.scss';
+import SortContainer from './SortContainer';
 
 class DeckBuilder extends Component {
     state = { 
@@ -63,6 +66,24 @@ class DeckBuilder extends Component {
     }
 
     /**
+     * Sort the current decklist based on the listed names
+     */
+    onSortAZ = () => {
+        const { deckList } = this.state;
+        deckList.sort(compare.alpha);
+        this.setState({ deckList });
+    }
+
+    /**
+     * Sort the current decklist based on the converted mana costs
+     */
+    onSortMana = () => {
+        const { deckList } = this.state;
+        deckList.sort(compare.cmc);
+        this.setState({ deckList });
+    }
+
+    /**
      * Examine each card in the decklist and return the index of the duplicate if it exists
      * Currently only examines based on name
      */
@@ -82,27 +103,29 @@ class DeckBuilder extends Component {
         return ( 
             <React.Fragment>
                 <div className = "container-fluid">
-                    <header className = "row game-header mb-3">
-                        <div className="col-sm">
+                    <header className = "row game-header mb-2">
+                        <div className="col">
                             <Filters />
-                            <DeckStats />
                         </div>
 
-                        <div className="col-sm">
+                        <div className="col">
                             <Searchbar />
                         </div>
                     </header>
                 </div>
 
             <div className = "container pl-0 pr-0">
-                <div className = "row">
+                <div className = "row mb-2">
                     <div className = "col-4"> 
-
+                        <SortContainer 
+                            onSortAZ = { this.onSortAZ }
+                            onSortMana = { this.onSortMana }
+                        />
                     </div>
 
                     <div className = "col-8"> 
                         <Tabs 
-                            onSelectedView = {this.onSelectedView}    
+                            onSelectedView = { this.onSelectedView }    
                         />
                     </div>
                 </div>
