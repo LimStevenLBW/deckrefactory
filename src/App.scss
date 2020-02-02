@@ -6,4 +6,7 @@
 
 .app-background {
     @include swamp-theme-bg; 
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
 }

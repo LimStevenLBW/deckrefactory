@@ -88,9 +88,12 @@ class CardBrowser extends Component {
         if(table){
             return ( 
                 <React.Fragment>
-                    {table.map(element => {
-                        return (element)
-                    })} 
+                    <div className = "row">
+                        {table.map(element => {
+                            return (element)
+                        })} 
+                    </div>
+
                 </React.Fragment>
             );
         }

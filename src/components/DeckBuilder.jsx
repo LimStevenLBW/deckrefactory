@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Filters from './Filters';
+import Tabs from './common/Tabs';
 import Searchbar from './common/SearchBar';
 import DeckStats from './DeckStats';
 import CardBrowser from './CardBrowser';
+import ChartBrowser from './ChartBrowser';
 import DeckSideBar from './DeckSideBar';
 import Footer from './Footer';
 import { getCards } from '../services/falseApi';
@@ -14,6 +16,7 @@ class DeckBuilder extends Component {
         selectedGame: "",
         deckList: [],
         queriedCards: {},
+        displayCards: true,
     }
 
     componentDidMount() {
@@ -94,6 +97,18 @@ class DeckBuilder extends Component {
             <div className = "container pl-0 pr-0">
                 <div className = "row">
                     <div className = "col-4"> 
+
+                    </div>
+
+                    <div className = "col-8"> 
+                        <Tabs 
+                            onSelectedView = {this.onSelectedView}    
+                        />
+                    </div>
+                </div>
+
+                <div className = "row">
+                    <div className = "col-4"> 
                         <DeckSideBar 
                             items = {deckList} 
                             textProperty = "name"
@@ -103,11 +118,18 @@ class DeckBuilder extends Component {
                     </div>
 
                     <div className = "col-8">
+                        
+                        {this.state.displayCards ? 
                         <CardBrowser 
                             selectedGame = { selectedGame }
                             queriedCards = { queriedCards } 
                             addNewCard = { this.addNewCard }
-                        />
+                        /> : 
+
+                        <ChartBrowser
+
+                        />}
+                         
                     </div>
                 </div>
             </div>
