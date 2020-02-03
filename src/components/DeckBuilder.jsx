@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as compare from '../utils/compare';
 
-import Filters from './Filters';
+import SearchFormContainer from './SearchFormContainer';
 import Tabs from './common/Tabs';
 import Searchbar from './common/SearchBar';
 import DeckStats from './DeckStats';
@@ -12,7 +12,7 @@ import Footer from './Footer';
 import { getCards } from '../services/falseApi';
 
 import './DeckBuilder.scss';
-import SortContainer from './SortContainer';
+import SortButtons from './SortButtons';
 
 class DeckBuilder extends Component {
     state = { 
@@ -102,22 +102,14 @@ class DeckBuilder extends Component {
 
         return ( 
             <React.Fragment>
-                <div className = "container-fluid">
-                    <header className = "row game-header mb-2">
-                        <div className="col">
-                            <Filters />
-                        </div>
-
-                        <div className="col">
-                            <Searchbar />
-                        </div>
-                    </header>
+                <div className = "container-fluid game-header">
+                    <SearchFormContainer />
                 </div>
 
             <div className = "container pl-0 pr-0">
                 <div className = "row mb-2">
                     <div className = "col-4"> 
-                        <SortContainer 
+                        <SortButtons 
                             onSortAZ = { this.onSortAZ }
                             onSortMana = { this.onSortMana }
                         />
@@ -133,7 +125,7 @@ class DeckBuilder extends Component {
                 <div className = "row">
                     <div className = "col-4"> 
                         <DeckSideBar 
-                            items = {deckList} 
+                            items = { deckList } 
                             textProperty = "name"
                             onLeftSelect = { this.addNewCard }
                             onRightSelect = { this.removeCard }

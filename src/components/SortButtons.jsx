@@ -1,6 +1,9 @@
 import React from 'react';
 
-const SortContainer = ({ onSortAZ, onSortMana }) => {
+/**
+ * 
+ */
+const SortButtons = ({ onSortAZ, onSortMana }) => {
     return (  
         <div className = "row text-center">
             <div className = "col-6"> 
@@ -24,4 +27,4 @@ const SortContainer = ({ onSortAZ, onSortMana }) => {
     );
 }
  
-export default SortContainer;
+export default SortButtons;
