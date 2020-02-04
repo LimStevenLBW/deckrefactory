@@ -8,19 +8,85 @@ import manaW from '../../images/mana/W.svg';
 import './FormColors.scss'
 
 class FormColors extends Component {
-    srcList = [ manaC, manaW, manaB, manaG, manaR, manaU ];
-    state = {  }
+
+    state = { 
+        colorless: {
+            queryName: 'colorless',
+            image: manaC,
+            active: true
+        },
+        white: {
+            queryName: 'white',
+            image: manaW,
+            active: true
+        },
+        black: {
+            queryName: 'black',
+            image: manaB,
+            active: true
+        },
+        green: {
+            queryName: 'green',
+            image: manaG,
+            active: true
+        },
+        red: {
+            queryName: 'red',
+            image: manaR,
+            active: true
+        },
+        blue: {
+            queryName: 'blue',
+            image: manaU,
+            active: true
+        }
+    }
+
+    srcList = [];
+
+    componentDidMount(){
+        this.srcList = [];
+        for(let key of Object.keys(this.state)){
+            this.srcList.push(this.state[key])
+        }
+    }
+
+    /**
+     * Disables or Enables a color, 
+     * Updates the state and returns a colorlist to SearchFormContainer
+     */
+    toggleColor = (e) => {
+        e.preventDefault();
+        const name = (e.currentTarget.name);
+        let color = this.state[name];
+        color.active = !color.active; //Toggle color active state
+     
+        let colorList = [];
+        this.srcList.forEach((element) => { //Fills an array with colors from the srcList
+            if(element.active) colorList.push(element.queryName);
+        });
+
+        this.setState({ [name]: color }, () => {
+            this.props.handleColors(colorList); //Callback to handleColors
+        });
+    }
 
     render() { 
         return (  
             <React.Fragment>
-                {this.srcList.map(icon => {
+                {this.srcList.map(color => {
                     return (
-                        <img
-                            className = "mana-color-select"
-                            src = {icon}
-                            alt = "test">
-                        </img>
+                        <button 
+                            key = {color.queryName}
+                            name = {color.queryName}
+                            onClick = {(e) => this.toggleColor(e)}>
+
+                            <img
+                                className = {color.active ? "mana-color-select" : "mana-color-select disabled"}
+                                src = {color.image}
+                                alt = "test">
+                            </img>    
+                        </button>    
                     );
                 })}
             </React.Fragment>

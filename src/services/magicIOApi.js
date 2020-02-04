@@ -19,13 +19,14 @@ axios.interceptors.response.use(null, error => {
 /**
  * Completes a get request to magic.io using provided query data
  */
-function url({ format, colors, type, cmc, pageSize, page }) {
+function buildEndpoint({ format, type, cmc , query, colors }, pageSize, page ) {
     let endpoint = this.endpoint;
     console.log("base endpoint:" + endpoint)
  //   endpoint = ``
 }
 
 export default {
+    buildEndpoint,
     get: axios.get,
     post: axios.post,
     put: axios.put,

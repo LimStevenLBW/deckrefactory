@@ -27,8 +27,18 @@ class DeckBuilder extends Component {
         this.setState({selectedGame: "mtg", queriedCards: queriedCards})
     }
 
-    setDeckList = (deckList) => {
+    /**
+     * Updates the current card browser list
+     */
+    updateQueriedCards({ queriedCards }){
+        this.setState({selectedGame: "mtg", queriedCards: queriedCards})
+    }
 
+    /**
+     * Updates the deck list
+     */
+    setDeckList = (deckList) => {
+        this.setState({ deckList });
     }
 
     addNewCard = (newCard) => {
@@ -101,8 +111,10 @@ class DeckBuilder extends Component {
 
         return ( 
             <React.Fragment>
-                <div className = "container-fluid game-header">
-                    <SearchFormContainer />
+                <div className = "container-fluid game-header mb-2">
+                    <SearchFormContainer 
+                        updateQueriedCards = {this.updateQueriedCards}
+                    />
                 </div>
 
             <div className = "container pl-0 pr-0">

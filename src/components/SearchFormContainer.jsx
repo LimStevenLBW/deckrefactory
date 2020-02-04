@@ -3,7 +3,7 @@ import FormContainer from './common/FormContainer';
 import FormSearchBar from './common/FormSearchBar';
 import FormSelect from './common/FormSelect';
 import FormColors from './common/FormColors';
-import Api from '../services/magicIOApi';
+import api from '../services/magicIOApi';
 
 /**
  * Extends Form Container, renders forms for initiating an advanced search
@@ -17,6 +17,7 @@ import Api from '../services/magicIOApi';
                 type: "",
                 cmc: "",
                 query: "",
+                colors: []
             },
         }
      }
@@ -32,18 +33,33 @@ import Api from '../services/magicIOApi';
     }
 
     /**
+     * Similar to handleChange, exclusive for color selection
+     */
+    handleColors = (colors) => {
+        const data = { ...this.state.data }
+        data.colors = colors;
+        this.setState({ data });
+        console.log(this.state.data)
+    }
+
+    /**
      * @Override Submits the query with filter options from props
      */
-    doSubmit = (e) => {
+    doSubmit = async (e) => {
         e.preventDefault();
+
         //console.log(this.state.data.query)
-        console.log("test")
+        const endpoint = api.buildEndpoint(this.state.data, 16, 1);
+
+        //const promise = await Api.get();
+        //console.log("test")
+       // this.props.updateQueriedCards(queriedCards);
     }
 
 
     render() { 
         const { data } = this.state;
-        console.log(this.state.data)
+
         return (  
             <React.Fragment>
                 <div className = "form-row justify-content-center">
@@ -94,7 +110,9 @@ import Api from '../services/magicIOApi';
             
             <div className = "form-row text-center">
                 <div className = "col-8">
-                    <FormColors />
+                    <FormColors 
+                        handleColors = {this.handleColors}
+                    />
                 </div>
                 <div className = "col-4">
                     PLACEHOLDER
