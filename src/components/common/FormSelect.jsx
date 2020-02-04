@@ -7,23 +7,21 @@ const FormSelect = ({ name, label, handler, value, options, error }) => {
         <div className = "form-group">
             <select 
                 name = {name}
-                id = {name}
                 value = {value}
                 label = {label}
-                onChange = {handler}
-                className = "form-control"
-            >
-            
-            <option 
-                value = {null}>
-                {label}
-            </option>
-            
-            {options.map(option => (
-                <option key = {option} value = {option}>
-                    {option}
+                onChange = {(e) => handler(e)}
+                className = "form-control">
+ 
+                <option 
+                    value = {null}>
+                    {label}
                 </option>
-            ))}
+                
+                {options.map(option => (
+                    <option key = {option} value = {option}>
+                        {option}
+                    </option>
+                ))}
 
             </select>
 

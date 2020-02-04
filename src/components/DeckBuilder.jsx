@@ -3,7 +3,6 @@ import * as compare from '../utils/compare';
 
 import SearchFormContainer from './SearchFormContainer';
 import Tabs from './common/Tabs';
-import Searchbar from './common/SearchBar';
 import DeckStats from './DeckStats';
 import CardBrowser from './CardBrowser';
 import ChartBrowser from './ChartBrowser';
