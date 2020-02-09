@@ -5,6 +5,32 @@
     box-shadow: 0px 0px 40px 0px rgba(212,254,255,1);
 }
 
+.sb-item {
+    cursor: pointer;
+}
+
+.sb-item-info {
+    color: rgb(170, 173, 173);
+    padding: 5px;
+}
+
+.tooltip{
+    border-radius: 6px;
+    width: 220px;
+    background-color: black;
+    cursor: pointer;
+    opacity: 100% !important; //For some reason, something is setting it to zero
+    position: absolute;
+    right: -62%;
+    z-index: 1;
+    pointer-events: none; //Causes the mouse to *phase through*
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+li:hover .tooltip{
+    visibility: visible;
+}
+
 .glow-anim{
     -webkit-animation-name: glow;
     -webkit-animation-duration: 0.75s;

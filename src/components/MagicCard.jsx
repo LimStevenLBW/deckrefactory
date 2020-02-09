@@ -25,8 +25,6 @@ class MagicCard extends Card {
     
     /**
      * Adds an additional conditional to check for updated image props and re-render if so
-     * @param {*} prevProps 
-     * @param {*} prevState 
      */
     shouldComponentUpdate(prevProps, prevState) {
         let url = "notSet"
@@ -40,7 +38,7 @@ class MagicCard extends Card {
         }
         else if(prevState !== this.state) return true; //Default state update conditional
       
-        return false; //Do not render if falseyar
+        return false; //Do not render if false
     }
 
     onClick = () => {
@@ -67,7 +65,10 @@ class MagicCard extends Card {
     }
 
     onAnimationEndHandler = () => {
-        this.setState({isPlayingAnim: false, classList: "tooltipImage cardArtEnlarged"});
+        this.setState({
+            isPlayingAnim: false, 
+            classList: "tooltipImage cardArtEnlarged"
+        });
     }
 
     render() { 
@@ -78,7 +79,6 @@ class MagicCard extends Card {
                 key = {keyName} 
                 className = "col-sm pl-1 pr-1"
             >
-
                 <img 
                     className = "cardArt"
                     src = {this.state.imageUrl} 
