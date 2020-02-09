@@ -125,9 +125,10 @@ const ManaIcons = ({ mana }) => {
 
     return (  
         <React.Fragment>
-            {srcList.map(icon => {
+            {srcList.map((icon, index) => {
                 return(
                      <img 
+                        key = {index}
                         className = "mana-icon pb-1 pr-1" 
                         src = {icon}
                         alt = "test">

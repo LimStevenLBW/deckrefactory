@@ -152,7 +152,6 @@ class DeckBuilder extends Component {
                             queriedCards = { queriedCards } 
                             addNewCard = { this.addNewCard }
                         /> : 
-
                         <ChartBrowser
 
                         />}

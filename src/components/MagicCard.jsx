@@ -23,6 +23,11 @@ class MagicCard extends Card {
     }
 
     
+    /**
+     * Adds an additional conditional to check for updated image props and re-render if so
+     * @param {*} prevProps 
+     * @param {*} prevState 
+     */
     shouldComponentUpdate(prevProps, prevState) {
         let url = "notSet"
         if(prevProps.data){
@@ -33,15 +38,14 @@ class MagicCard extends Card {
             this.setState({imageUrl: url});
             return true;
         }
-        else if(prevState !== this.state) return true;
+        else if(prevState !== this.state) return true; //Default state update conditional
       
-        return false;
+        return false; //Do not render if falseyar
     }
-    
 
     onClick = () => {
         const classList = [(this.state.classList)]; 
-        console.log(classList)
+        //console.log(classList)
         if(this.state.isPlayingAnim){
             //Reset the animation
             this.setState({ classList });
@@ -51,7 +55,6 @@ class MagicCard extends Card {
         this.setState({classList: classList.join(' '), isPlayingAnim: true});  
 
         this.props.onMouseClickHandler(this.props.data); //Call parent handler
-
     }
 
     //Note, onMouseOver propagates unlike onMouseEnter, it'll catch fast mouse movements
