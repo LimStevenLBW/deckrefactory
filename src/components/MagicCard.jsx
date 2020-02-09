@@ -22,14 +22,23 @@ class MagicCard extends Card {
         }
     }
 
-    /*
-    componentDidUpdate(prevProps) {
-        if (prevProps.data["imageUrl"] !== this.state.imageUrl) {
-            const imageUrl = prevProps.data["imageUrl"];
-            this.setState({ imageUrl });
+    
+    shouldComponentUpdate(prevProps, prevState) {
+        let url = "notSet"
+        if(prevProps.data){
+            if(prevProps.data.imageUrl) url = prevProps.data.imageUrl;
         }
+
+        if (url !== this.state.imageUrl && url !== "notSet") {
+            this.setState({imageUrl: url});
+            return true;
+        }
+        else if(prevState !== this.state) return true;
+      
+        return false;
     }
-*/
+    
+
     onClick = () => {
         const classList = [(this.state.classList)]; 
         console.log(classList)

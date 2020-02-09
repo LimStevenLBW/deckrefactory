@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CardRow from './common/CardRow';
-import Card from './common/Card';
 
 class CardBrowser extends Component {
     constructor(props){
