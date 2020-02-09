@@ -39,7 +39,6 @@ import api from '../services/magicIOApi';
         const data = { ...this.state.data }
         data.colors = colors;
         this.setState({ data });
-        console.log(this.state.data)
     }
 
     /**
@@ -50,12 +49,28 @@ import api from '../services/magicIOApi';
 
         //console.log(this.state.data.query)
         const endpoint = api.buildEndpoint(this.state.data, 16, 1);
-
-        //const promise = await Api.get();
-        //console.log("test")
-       // this.props.updateQueriedCards(queriedCards);
+        try{
+            const res = await api.get(endpoint);
+        
+            const { data } = await res;
+            //consol
+            
+            console.log(res);
+            console.log("promise:-- " , data);
+            console.log("cards:--" , data.cards)
+            this.props.updateQueriedCards(data.cards);
+         
+        }
+        catch(ex){
+            console.log(ex);
+            console.log("error occurred")
+        }
+        
+       
+      //  console.log(Object.keys(promise.data));
+        //console.log(JSON.stringify(promise.data));
+       
     }
-
 
     render() { 
         const { data } = this.state;

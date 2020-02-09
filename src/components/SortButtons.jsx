@@ -9,7 +9,7 @@ const SortButtons = ({ onSortAZ, onSortMana }) => {
             <div className = "col-6"> 
                 <button 
                     type = "button" 
-                    class = "btn btn-primary w-75"
+                    className = "btn btn-primary w-75"
                     onClick = {onSortAZ}>
                         Sort A-Z
                 </button>
@@ -18,7 +18,7 @@ const SortButtons = ({ onSortAZ, onSortMana }) => {
             <div className = "col-6"> 
                 <button 
                     type = "button" 
-                    class = "btn btn-primary w-75"
+                    className = "btn btn-primary w-75"
                     onClick = {onSortMana}>
                         Sort Mana
                 </button>

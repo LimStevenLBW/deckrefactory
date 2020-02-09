@@ -2,10 +2,10 @@ import React from 'react';
 import ManaIcons from './ManaIcons';
 import './SideBarItem.scss';
 
-const SideBarItem = ({ item, key, textProperty, onLeftSelect, onRightSelect }) => {
+const SideBarItem = ({ item, keyName, textProperty, onLeftSelect, onRightSelect }) => {
     return (
         <li
-            key={key}
+            key = {keyName}
             className = "glow-anim list-group-item d-flex justify-content-between align-items-center p-1"
             onClick = {() => {
                 onLeftSelect(item);
@@ -15,7 +15,7 @@ const SideBarItem = ({ item, key, textProperty, onLeftSelect, onRightSelect }) =
             }}
         >
 
-            <span class = "badge badge-primary badge-pill mr-1">{item.quantity}</span>
+            <span className = "badge badge-primary badge-pill mr-1">{item.quantity}</span>
             <div className = "text-truncate">
                 {item[textProperty]}
             </div>

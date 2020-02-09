@@ -13,32 +13,32 @@ class FormColors extends Component {
         colorless: {
             queryName: 'colorless',
             image: manaC,
-            active: true
+            active: false
         },
         white: {
             queryName: 'white',
             image: manaW,
-            active: true
+            active: false
         },
         black: {
             queryName: 'black',
             image: manaB,
-            active: true
+            active: false
         },
         green: {
             queryName: 'green',
             image: manaG,
-            active: true
+            active: false
         },
         red: {
             queryName: 'red',
             image: manaR,
-            active: true
+            active: false
         },
         blue: {
             queryName: 'blue',
             image: manaU,
-            active: true
+            active: false
         }
     }
 

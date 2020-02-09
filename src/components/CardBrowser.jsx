@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardRow from './common/CardRow';
-import MagicCard from './MagicCard';
+import Card from './common/Card';
 
 class CardBrowser extends Component {
     constructor(props){
@@ -17,7 +17,7 @@ class CardBrowser extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
-            this.generateTable()
+            this.generateTable();
         }
     }
 
@@ -34,45 +34,42 @@ class CardBrowser extends Component {
             let items = [];
             //Iterate through columns of a row, each column is assigned a card until the row is filled
             for(let j = i; (j < (i + colPerRow)); j++) {
-                let column;
+                let columnItem;
 
                 if(j >= dataLength) { //No data/card available
-                    column = this.mapToViewData(null,`${i},${j}`); 
+                    columnItem = this.mapToViewData(null,`${i},${j}`); 
                 }
                 else{ //Acquire data and map to card model
                     const data = this.getCard(queriedCards, j);
-                    column = this.mapToViewData(data,`${i},${j}`); 
+                    columnItem = this.mapToViewData(data,`${i},${j}` || data.id); 
                 }
                 
-               items.push(column); //Add the renderable column to the row's items
+               items.push(columnItem); //Add the renderable column to the row's items
             }
             
-            const newRow = this.getNewRow(items);
+            //Returns an object representing a row
+            const newRow = {
+                items: items,
+            }
+            
             table.push(newRow); //Add each assembled row to the final table
         }
         
-        this.setState({table});
+        this.setState({ table });
     }
 
-    getNewRow(items, key){
-        return(
-            <CardRow
-                key = {key} 
-                items = {items}
-            />);
-    }
-    
     //Maps data into a viewable object
-    mapToViewData(data, key){
+    mapToViewData(data, keyName){
         const { selectedGame, addNewCard } = this.props;
+
         //Set to magic
         if(selectedGame === 'mtg') 
             return (
-                <MagicCard 
-                    onMouseClickHandler = {addNewCard}
-                    data = {data} 
-                    key = {key} 
-                />
+                {
+                    onMouseClickHandler: addNewCard,
+                    data: data,
+                    key: keyName
+                }
             );
     }
 
@@ -85,20 +82,23 @@ class CardBrowser extends Component {
     render() { 
         const { table } = this.state;
 
-        if(table){
+        if(table.length > 0){
             return ( 
                 <React.Fragment>
                     <div className = "row">
-                        {table.map(element => {
-                            return (element)
+                        {table.map((row, key) => {
+                            return(
+                            <CardRow 
+                                key = {key}
+                                rowData = {row}
+                            />);
                         })} 
                     </div>
-
                 </React.Fragment>
             );
         }
         
-       return <React.Fragment>still null</React.Fragment>;
+        return <React.Fragment>loading new table</React.Fragment>;
     }
 }
  

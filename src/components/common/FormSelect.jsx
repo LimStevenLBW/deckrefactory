@@ -13,7 +13,7 @@ const FormSelect = ({ name, label, handler, value, options, error }) => {
                 className = "form-control">
  
                 <option 
-                    value = {null}>
+                    value = "">
                     {label}
                 </option>
                 

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from './common/Card';
-import image from '../images/lotus.png';
 import noImage from '../images/mtgback.jpg';
 import './MagicCard.scss';
 
@@ -17,13 +16,20 @@ class MagicCard extends Card {
     }
 
     componentDidMount() {
-        if(this.props.data){
+        if(this.props.data) {
             const { imageUrl } = this.props.data;
-            //this.setState({imageUrl: image})
             this.setState({imageUrl});
         }
     }
 
+    /*
+    componentDidUpdate(prevProps) {
+        if (prevProps.data["imageUrl"] !== this.state.imageUrl) {
+            const imageUrl = prevProps.data["imageUrl"];
+            this.setState({ imageUrl });
+        }
+    }
+*/
     onClick = () => {
         const classList = [(this.state.classList)]; 
         console.log(classList)
@@ -53,10 +59,14 @@ class MagicCard extends Card {
     }
 
     render() { 
-        const { onMouseClickHandler, data } = this.props;
+        const { keyName } = this.props;
 
         return ( 
-            <div className = "col-sm pl-1 pr-1">
+            <div 
+                key = {keyName} 
+                className = "col-sm pl-1 pr-1"
+            >
+
                 <img 
                     className = "cardArt"
                     src = {this.state.imageUrl} 

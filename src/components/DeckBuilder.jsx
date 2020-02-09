@@ -23,14 +23,15 @@ class DeckBuilder extends Component {
 
     componentDidMount() {
         const {cards: queriedCards} = getCards();
-
+        console.log(queriedCards)
         this.setState({selectedGame: "mtg", queriedCards: queriedCards})
     }
 
     /**
      * Updates the current card browser list
      */
-    updateQueriedCards({ queriedCards }){
+    updateQueriedCards = (queriedCards) => {
+        console.log(queriedCards)
         this.setState({selectedGame: "mtg", queriedCards: queriedCards})
     }
 

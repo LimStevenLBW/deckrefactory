@@ -8,7 +8,7 @@ const Tabs = (props) => {
             <div className = "col-6"> 
                 <button 
                     type = "button" 
-                    class = "btn btn-primary w-100"
+                    className = "btn btn-primary w-100"
                     onClick = {() => onViewSelect("analysis")}>View Deck Analysis
                 </button>
             </div>    
@@ -16,7 +16,7 @@ const Tabs = (props) => {
             <div className = "col-6"> 
                 <button 
                     type = "button" 
-                    class = "btn btn-primary w-100"
+                    className = "btn btn-primary w-100"
                     onClick = {() => onViewSelect("cards")}>Explore New Cards
                 </button>
             </div>      
