@@ -22,6 +22,20 @@ import api from '../services/magicIOApi';
         }
      }
 
+    getSearchDescription = () => {
+        const { format, type, cmc, colors} = this.state.data;
+        let description = "Filters: ";
+
+        if(format) description = `${description}${format},`;
+        if(type) description = `${description}${type},`;
+        if(cmc) description = `${description} Cost: ${cmc},`;
+        if(colors) description = `${description}${colors}`;
+
+        if(description === "Filters: ") description += "None selected"
+        return description;
+
+    }
+
     /**
      * @Override Used to switch control from the element to React
      * Joi is not needed for this form, only valid options are presented
@@ -123,14 +137,14 @@ import api from '../services/magicIOApi';
                 </div>
             </div>
             
-            <div className = "form-row text-center">
-                <div className = "col-8">
+            <div className = "form-row">
+                <div className = "col-6 text-right">
                     <FormColors 
                         handleColors = {this.handleColors}
                     />
                 </div>
-                <div className = "col-4">
-                    PLACEHOLDER
+                <div className = "col-6">
+                    {this.getSearchDescription()}
                 </div>
             </div>
                             

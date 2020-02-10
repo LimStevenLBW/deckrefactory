@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 /**
  * Generic Form Component, contains generic functionality for form management
@@ -7,17 +7,25 @@ import Joi from '@hapi/joi';
  */
 class FormContainer extends Component {
     state = { 
-        dataObj: {},
-        errorsObj: {}, //When errors object is empty, the forms are fine
+        data: {},
+        errors: {}, //When errors object is empty, the forms are fine
     }
 
     /**
      * Utilizes Joi to validate only one form field 
      */
     validateProperty = ({ name, value }) => {
-        const obj = { [name]: value } //ES6 Computed Properties, using what name is at runtime to be a key
+        let obj = { [name]: value } //ES6 Computed Properties, using what name is at runtime to be a key
+        let schema;
 
-        const schema = { [name]: this.schema[name] } //Create a sub-schema, validate with Joi schema
+        if(name === 'confirmation'){ //Somewhat hardcoded solution, needed additional password field for confirmation check
+            obj['password'] = this.state.data['password']
+            schema = Joi.object({['password']:this.schema['password'], [name]: this.schema[name] });
+        }
+        else{
+            schema = Joi.object({ [name]: this.schema[name] }) //Create a sub-schema, validate with Joi schema
+        }
+
         const { error } = Joi.validate(obj, schema)
 
         return error ? error.details[0].message : null; //Return error if it exists
@@ -26,9 +34,9 @@ class FormContainer extends Component {
     /**
      * Utilizes Joi to validate all component form data
      */
-    validate = () => {
+    validateAll = () => {
         const joiOptions = { abortEarly: false }; //Set to avoid ending at the first error
-        const { error } = Joi.validate(this.state.dataObj, this.schema, joiOptions);
+        const { error } = Joi.validate(this.state.data, this.schema, joiOptions);
 
         if(!error) return null; //No errors found
 
@@ -36,8 +44,8 @@ class FormContainer extends Component {
         for (let i of error.details) {
             errors[i.path[0]] = i.message;
         }
-
-        console.error(errors);
+        
+        //console.log(errors)
 
         return errors;
     }
@@ -48,7 +56,7 @@ class FormContainer extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        const errors = this.validate();
+        const errors = this.validate(); //Get errors object from validate()
         this.setState({ errors: errors || {} });
         if (errors) return;
 
@@ -60,11 +68,12 @@ class FormContainer extends Component {
      * Repeated calls to evaluate a form on value change, updates data & error states
      */
     handleChange = ({ currentTarget: input }) => {
-        const errors = { ...this.state.errors }
+        const errors = { ...this.state.errors } //Get current error state
         const errorMessage = this.validateProperty(input);
         if (errorMessage) errors[input.name] = errorMessage;
-        else delete errors[input.name];
-        this.setState({ errors: errors || {} })
+            else delete errors[input.name];
+
+        this.setState({ errors: errors || {} });
 
         const data = { ...this.state.data }
         data[input.name] = input.value;

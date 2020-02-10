@@ -14,11 +14,11 @@
   "homepage": "https://limstevenlbw.github.io/ygo-draft-simulator/",
   "private": true,
   "dependencies": {
-    "@hapi/joi": "^17.1.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootstrap-select": "^1.13.12",
     "font-awesome": "^4.7.0",
+    "joi": "^14.3.1",
     "jquery": "^3.4.1",
     "node-sass": "^4.13.1",
     "popper": "^1.0.1",

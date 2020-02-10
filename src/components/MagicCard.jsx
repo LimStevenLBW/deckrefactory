@@ -22,7 +22,6 @@ class MagicCard extends Card {
         }
     }
 
-    
     /**
      * Adds an additional conditional to check for updated image props and re-render if so
      */
@@ -75,20 +74,24 @@ class MagicCard extends Card {
         const { keyName } = this.props;
 
         return ( 
-            <div 
-                key = {keyName} 
-                className = "col-sm pl-1 pr-1"
-            >
-                <img 
+            <div key = {keyName} className = "col-sm pl-1 pr-1">
+                {this.state.imageUrl !== noImage ?
+                    <img 
                     className = "cardArt"
                     src = {this.state.imageUrl} 
                     alt = "ERROR"
                     onClick = {this.onClick}
                     onMouseOver = {this.onMouseOverHandler}
                     onMouseOut = {this.onMouseOutHandler}
-                >
-                </img>
-
+                    ></img>
+                    :
+                    <img 
+                        className = "cardArt unclickable"
+                        src = {this.state.imageUrl} 
+                        alt = "ERROR"
+                    ></img>
+                }
+                
                 {this.state.isTooltipVisible ? 
                     <img 
                         className = {this.state.classList}
