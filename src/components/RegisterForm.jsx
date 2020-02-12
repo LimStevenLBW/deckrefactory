@@ -45,8 +45,10 @@ class RegisterForm extends Form {
     };
     
 
+    /**
+     * @override Submit the registration form
+     */
     doSubmit = async () => {
-        //alert("Test Server Call")
         const endpoint = ("http://localhost:3001/api/users");
         const body = {
             email: this.state.data.email,
@@ -54,16 +56,20 @@ class RegisterForm extends Form {
             password: this.state.data.password,
         }
         
-        try{
-            const res = await api.post(endpoint, body);
-            const { data } = await res;
-            console.log(data);
-            console.log("request ok");
-        }
-        catch(ex){
-            console.log(ex);
-            console.log("error occurred")
-        }
+        await api.post(endpoint, body)
+            .catch((ex) => {
+                console.error("An error occurred while attempting to register user")
+                console.error("Status: " + ex.response.status);
+                if(ex.response && ex.response.status === 400){
+                    const { errors } = this.state;
+                    errors.email = ex.response.data;
+                    this.setState({ errors });
+                }
+            });
+            //const { data } = await res;
+            //console.log(data);
+            //console.log("request ok");
+
     }
 
     render() {
