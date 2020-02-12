@@ -28,7 +28,6 @@ class LoginForm extends FormContainer {
             .required()
             .label("Password"),
     };
-    
 
     render() { 
         return (  

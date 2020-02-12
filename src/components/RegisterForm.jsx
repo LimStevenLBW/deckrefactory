@@ -3,11 +3,14 @@ import Form from './common/FormContainer';
 import FormInput from './common/FormInput';
 import Joi from 'joi';
 import FormButton from './common/FormButton';
+import api from '../services/magicIOApi';
+import './RegisterForm.scss';
 
 class RegisterForm extends Form {
     state = {
         data: {
             email: "",
+            username: "",
             password: "",
             confirmation: "",
         },
@@ -22,6 +25,12 @@ class RegisterForm extends Form {
             .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
             .required()
             .label("Email"),
+        username: Joi
+            .string()
+            .min(3)
+            .max(20)
+            .required()
+            .label("Nickname"),
         password: Joi
             .string()
             .min(6)
@@ -36,13 +45,30 @@ class RegisterForm extends Form {
     };
     
 
-    doSubmit = () => {
-        console.log("Test Server Call")
+    doSubmit = async () => {
+        //alert("Test Server Call")
+        const endpoint = ("http://localhost:3001/api/users");
+        const body = {
+            email: this.state.data.email,
+            username: this.state.data.username,
+            password: this.state.data.password,
+        }
+        
+        try{
+            const res = await api.post(endpoint, body);
+            const { data } = await res;
+            console.log(data);
+            console.log("request ok");
+        }
+        catch(ex){
+            console.log(ex);
+            console.log("error occurred")
+        }
     }
 
     render() {
         return (
-            <div className = "container w-50">
+            <div className = "container w-50 mt-3 light">
                 <h1>Register</h1>
 
                 <form onSubmit = {this.handleSubmit}>
@@ -52,6 +78,14 @@ class RegisterForm extends Form {
                         handler = {this.handleChange}
                         label = "Email Address"
                         error = {this.state.errors['email']}
+                    />
+
+                    <FormInput 
+                        name = 'username'
+                        type = 'text'
+                        handler = {this.handleChange}
+                        label = "Nickname"
+                        error = {this.state.errors['username']}
                     />
 
                     <FormInput 
@@ -74,6 +108,7 @@ class RegisterForm extends Form {
                         classList = ""
                         checkValidity = {this.validateAll}
                         label = {"Submit"}
+                        onSubmit = {this.handleSubmit}
                     />
                 </form>
                 

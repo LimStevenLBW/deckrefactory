@@ -19,16 +19,17 @@ class FormContainer extends Component {
         let schema;
 
         if(name === 'confirmation'){ //Somewhat hardcoded solution, needed additional password field for confirmation check
-            obj['password'] = this.state.data['password']
-            schema = Joi.object({['password']:this.schema['password'], [name]: this.schema[name] });
+            //obj['password'] = this.state.data['password']
+            //schema = Joi.object({['password']:this.schema['password'], [name]: this.schema[name] });
+            if(this.state.data['password'] !== value) return "Passwords must match";
+            return null;
         }
         else{
-            schema = Joi.object({ [name]: this.schema[name] }) //Create a sub-schema, validate with Joi schema
+            schema = Joi.object({ [name]: this.schema[name] }) //Create a sub-schema, validate with Joi 
+            const { error } = Joi.validate(obj, schema)
+            return error ? error.details[0].message : null; //Return error if it exists
         }
-
-        const { error } = Joi.validate(obj, schema)
-
-        return error ? error.details[0].message : null; //Return error if it exists
+      
     }
 
     /**
@@ -51,12 +52,12 @@ class FormContainer extends Component {
     }
 
     /**
-     * Handles submission of a form set, triggers validation
+     * Handles submission of a form set, triggers validation one more time for all fields
      */
     handleSubmit = (e) => {
         e.preventDefault();
 
-        const errors = this.validate(); //Get errors object from validate()
+        const errors = this.validateAll(); //Get errors object from full validation
         this.setState({ errors: errors || {} });
         if (errors) return;
 

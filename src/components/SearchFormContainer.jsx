@@ -22,6 +22,9 @@ import api from '../services/magicIOApi';
         }
      }
 
+    /**
+     * Assembles a string to explain what filters are active
+     */
     getSearchDescription = () => {
         const { format, type, cmc, colors} = this.state.data;
         let description = "Filters: ";
