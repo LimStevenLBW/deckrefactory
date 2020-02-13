@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.scss'
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
     return (
         <nav className = "navbar-bg navbar navbar-expand-lg navbar-light">
             <Link
@@ -46,23 +46,29 @@ const Navbar = () => {
                         </NavLink>
                     </li>
 
-                    <li className="nav-item">
-                        <NavLink
-                            className="nav-link"
-                            to="/register">
-                            Register
-                        </NavLink>
-                    </li>
+                    {user ? 
+                    (<React.Fragment>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/logout">
+                                Sign Out
+                            </NavLink>
+                        </li> 
+                    </React.Fragment>)
+                    : 
+                    (<React.Fragment>
+                     <li className="nav-item">
+                         <NavLink className="nav-link" to="/register">
+                             Register
+                         </NavLink>
+                     </li>
 
-                    <li className="nav-item">
-                        <NavLink
-                            className="nav-link"
-                            to="/login">
-                            Login
-                        </NavLink>
-                    </li>
-
-
+                     <li className="nav-item">
+                         <NavLink className="nav-link" to="/login">
+                             Login
+                         </NavLink>
+                     </li> 
+                    </React.Fragment>)
+                    }
                 </ul>
             </div>
         </nav>

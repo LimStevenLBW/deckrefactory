@@ -37,6 +37,7 @@ class LoginForm extends FormContainer {
         try{
             const { data } = await login(this.state.data);
             localStorage.setItem("tok", data);
+            this.props.updateAuth();
             this.props.history.push("/"); //Redirect
         }
         catch(ex){

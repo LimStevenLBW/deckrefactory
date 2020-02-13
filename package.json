@@ -20,6 +20,7 @@
     "font-awesome": "^4.7.0",
     "joi": "^14.3.1",
     "jquery": "^3.4.1",
+    "jwt-decode": "^2.2.0",
     "node-sass": "^4.13.1",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
