@@ -29,9 +29,16 @@ class LoginForm extends FormContainer {
             .label("Password"),
     };
 
+      /**
+     * @override Submit the registration form
+     */
+    doSubmit = async () => {
+        alert("test")
+    }
+
     render() { 
         return (  
-            <React.Fragment>
+            <div className = "container w-50 mt-3 light">
                  <form onSubmit = {this.handleSubmit}>
                      <h1>Login</h1>
 
@@ -55,13 +62,14 @@ class LoginForm extends FormContainer {
                         classList = ""
                         checkValidity = {this.validateAll}
                         label = {"Submit"}
+                        onSubmit = {this.handleSubmit}
                     />
                 </form>
 
                 <p className = "text-center">
                     Forgot your password? Click here to reset
                 </p>
-            </React.Fragment>
+            </div>
         );
     }
 }

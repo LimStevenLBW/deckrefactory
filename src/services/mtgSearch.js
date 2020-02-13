@@ -1,31 +1,22 @@
-import axios from 'axios';
 import status from './statusCodes';
+import http from './axios';
+import { mtgIO } from '../config.js';
 
 //Example Consumption https://api.magicthegathering.io/v1/cards?colors=red,blue&cmc=3&pageSize=1&page=1
 
 /**
- * Global Response Intercepter, behaves as a checkpoint for api calls
- * Params, General Response handler is null, error handler is set
+ * Returns search response
  */
-axios.interceptors.response.use(null, error => {
-    const expectedError = 
-        error.response &&
-        (error.response.status >= 400 && error.response.status < 500) // codes 400->500 for now
-
-        //An unexpected and unhandled error occurred
-        if(!expectedError) {
-            console.log("Logging an unknown error" + error);
-            alert("An Unexpected Error Occurred");
-        }
-
-        return Promise.reject(error);
-});
+export function search(dataObj, pageSize, page){
+    const endpoint = buildEndpoint(dataObj, pageSize, page);
+    return http.get(endpoint);
+}
 
 /**
- * Completes a get request to magic.io using provided query data
+ * Helps completes a get request to magic.io using provided query data
  */
 function buildEndpoint({ format, type, cmc , query, colors }, pageSize, page ) {
-    let url = "https://api.magicthegathering.io/v1/cards?";
+    let url = mtgIO;
 
     if(query) url = `${url}name=${query}&`;
     if(format) url = `${url}format=${format}&`;
@@ -33,7 +24,6 @@ function buildEndpoint({ format, type, cmc , query, colors }, pageSize, page ) {
     if(cmc) url = `${url}cmc=${cmc}&`;
 
     if(colors.length > 0) { //If colors list is empty, it's considered the same as if all were checked
-        console.log(colors)
         let colorQuery = "colors=";
         colors.forEach(c => {
             colorQuery = `${colorQuery}${c},`
@@ -48,11 +38,3 @@ function buildEndpoint({ format, type, cmc , query, colors }, pageSize, page ) {
     
     return url;
 }
-
-export default {
-    buildEndpoint,
-    get: axios.get,
-    post: axios.post,
-    put: axios.put,
-    delete: axios.delete
-};

@@ -3,7 +3,7 @@ import Form from './common/FormContainer';
 import FormInput from './common/FormInput';
 import Joi from 'joi';
 import FormButton from './common/FormButton';
-import api from '../services/magicIOApi';
+import { register } from '../services/register';
 import './RegisterForm.scss';
 
 class RegisterForm extends Form {
@@ -44,32 +44,32 @@ class RegisterForm extends Form {
             .label("Confirmation")
     };
     
-
     /**
      * @override Submit the registration form
      */
     doSubmit = async () => {
-        const endpoint = ("http://localhost:3001/api/users");
         const body = {
             email: this.state.data.email,
             username: this.state.data.username,
             password: this.state.data.password,
         }
-        
-        await api.post(endpoint, body)
-            .catch((ex) => {
-                console.error("An error occurred while attempting to register user")
-                console.error("Status: " + ex.response.status);
-                if(ex.response && ex.response.status === 400){
-                    const { errors } = this.state;
-                    errors.email = ex.response.data;
-                    this.setState({ errors });
-                }
-            });
-            //const { data } = await res;
-            //console.log(data);
-            //console.log("request ok");
 
+        try{
+            await register(body);
+        }
+        catch(ex){
+            console.error("An error occurred while attempting to register user")
+            console.error("Status: " + ex.response.status);
+            if(ex.response && ex.response.status === 400){
+                const { errors } = this.state;
+                errors.email = ex.response.data;
+                this.setState({ errors });
+            }
+        }
+        
+        //const { data } = await res;
+        //console.log(data);
+        //console.log("request ok");
     }
 
     render() {
@@ -119,7 +119,6 @@ class RegisterForm extends Form {
                 </form>
                 
             </div>
-
         );
     }
 }

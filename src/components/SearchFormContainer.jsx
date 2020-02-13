@@ -3,7 +3,7 @@ import FormContainer from './common/FormContainer';
 import FormSearchBar from './common/FormSearchBar';
 import FormSelect from './common/FormSelect';
 import FormColors from './common/FormColors';
-import api from '../services/magicIOApi';
+import { search } from '../services/mtgSearch';
 
 /**
  * Extends Form Container, renders forms for initiating an advanced search
@@ -63,18 +63,15 @@ import api from '../services/magicIOApi';
      */
     doSubmit = async (e) => {
         e.preventDefault();
-
-        //console.log(this.state.data.query)
-        const endpoint = api.buildEndpoint(this.state.data, 16, 1);
+        
         try{
-            const res = await api.get(endpoint);
+            const res = await search(this.state.data, 16, 1)
         
             const { data } = await res;
-            //consol
             
             console.log(res);
             console.log("promise:-- " , data);
-            console.log("cards:--" , data.cards)
+            console.log("cards:--" , data.cards);
             this.props.updateQueriedCards(data.cards);
          
         }
