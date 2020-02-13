@@ -3,6 +3,7 @@ import FormContainer from './common/FormContainer';
 import FormInput from './common/FormInput';
 import Joi from 'joi';
 import FormButton from './common/FormButton';
+import { login } from '../services/auth';
 
 class LoginForm extends FormContainer {
     state = {
@@ -32,8 +33,19 @@ class LoginForm extends FormContainer {
       /**
      * @override Submit the registration form
      */
-    doSubmit = async () => {
-        alert("test")
+    doSubmit = async () => { 
+        try{
+            const { data } = await login(this.state.data);
+            localStorage.setItem("tok", data);
+            this.props.history.push("/"); //Redirect
+        }
+        catch(ex){
+            if(ex.response && ex.response.status === 400){
+                const { errors } = this.state;
+                errors.email = ex.response.data;
+                this.setState({ errors });
+            }
+        }
     }
 
     render() { 

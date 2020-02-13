@@ -55,7 +55,9 @@ class RegisterForm extends Form {
         }
 
         try{
-            await register(body);
+            const res = await register(body);
+            localStorage.setItem("tok", res.headers['x-auth-token']); //Retrieve from custom header
+            this.props.history.push('/')
         }
         catch(ex){
             console.error("An error occurred while attempting to register user")
