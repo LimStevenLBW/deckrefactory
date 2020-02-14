@@ -3,6 +3,7 @@ import FormContainer from './common/FormContainer';
 import FormSearchBar from './common/FormSearchBar';
 import FormSelect from './common/FormSelect';
 import FormColors from './common/FormColors';
+import ButtonDropDown from './common/ButtonDropDown';
 import { search } from '../services/mtgSearch';
 
 /**
@@ -27,14 +28,14 @@ import { search } from '../services/mtgSearch';
      */
     getSearchDescription = () => {
         const { format, type, cmc, colors} = this.state.data;
-        let description = "Filters: ";
+        let description = "";
 
         if(format) description = `${description}${format},`;
         if(type) description = `${description}${type},`;
         if(cmc) description = `${description} Cost: ${cmc},`;
         if(colors) description = `${description}${colors}`;
 
-        if(description === "Filters: ") description += "None selected"
+        if(description === "") description += "None selected"
         return description;
 
     }
@@ -79,8 +80,7 @@ import { search } from '../services/mtgSearch';
             console.log(ex);
             console.log("error occurred")
         }
-        
-       
+    
       //  console.log(Object.keys(promise.data));
         //console.log(JSON.stringify(promise.data));
        
@@ -137,13 +137,20 @@ import { search } from '../services/mtgSearch';
                 </div>
             </div>
             
-            <div className = "form-row">
-                <div className = "col-6 text-right">
+            <div className = "form-row justify-content-center">
+                <div className = "col-4 text-right">
+                    <ButtonDropDown 
+                        buttonlabel = "Basic Lands"
+                        labels = {["Mountain", "Forest", "Island", "Plains", "Swamp"]}
+                        onClickHandler = {this.props.addBasicLand}
+                    />
+                </div>
+                <div className = "col-4  text-center">
                     <FormColors 
                         handleColors = {this.handleColors}
                     />
                 </div>
-                <div className = "col-6">
+                <div className = "col-4 text-left">
                     {this.getSearchDescription()}
                 </div>
             </div>

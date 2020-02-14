@@ -55,70 +55,71 @@ const ManaIcons = ({ mana }) => {
     let char;
     let src;
     let srcList = [];
-    for(let i = 0; i < mana.length; i++){
-        char = mana[i];
-        if(char === '{' || char === '}') continue;
-        
-        if(i < mana.length-1){ //Check for multichar mana codes
-            const nextChar = mana[i + 1];
-            if(nextChar !== '}' && nextChar !== ' ') char = char + nextChar; //Combine the two
-            i++; //Skip the next iteration
-        }
+    if(mana) 
+        for(let i = 0; i < mana.length; i++){
+            char = mana[i];
+            if(char === '{' || char === '}') continue;
+            
+            if(i < mana.length-1){ //Check for multichar mana codes
+                const nextChar = mana[i + 1];
+                if(nextChar !== '}' && nextChar !== ' ') char = char + nextChar; //Combine the two
+                i++; //Skip the next iteration
+            }
 
-        switch(char){
-            case '0': src = mana0; break;
-            case '1': src = mana1; break;
-            case '2': src = mana2; break;
-            case '2B': src = mana2B; break;
-            case '2G': src = mana2G; break;
-            case '2R': src = mana2R; break;
-            case '2U': src = mana2U; break;
-            case '2W': src = mana2W; break;
-            case '3': src = mana3; break;
-            case '4': src = mana4; break;
-            case '5': src = mana5; break;
-            case '6': src = mana6; break;
-            case '7': src = mana7; break;
-            case '8': src = mana8; break;
-            case '9': src = mana9; break;
-            case '10': src = mana10; break;
-            case '11': src = mana11; break;
-            case '12': src = mana12; break;
-            case '13': src = mana13; break;
-            case '14': src = mana14; break;
-            case '15': src = mana15; break;
-            case '16': src = mana16; break;
-            case '17': src = mana17; break;
-            case '18': src = mana18; break;
-            case '19': src = mana19; break;
-            case '20': src = mana20; break;
-            case 'BG': src = manaBG; break;
-            case 'BP': src = manaBP; break;
-            case 'BR': src = manaBR; break;
-            case 'B': src = manaB; break; //Black
-            case 'C': src = manaC; break;
-            case 'GP': src = manaGP; break;
-            case 'GU': src = manaGU; break;
-            case 'GW': src = manaGW; break;
-            case 'G': src = manaG; break; //Green
-            case 'RG': src = manaRG; break 
-            case 'RP': src = manaRP; break 
-            case 'RW': src = manaRW; break 
-            case 'R': src = manaR; break //Red
-            case 'S': src = manaS; break 
-            case 'UB': src = manaUB; break
-            case 'UP': src = manaUP; break 
-            case 'UR': src = manaUR; break
-            case 'U': src = manaU; break //Blue
-            case 'WB': src = manaWB; break;
-            case 'WP': src = manaWP; break;
-            case 'WU': src = manaWU; break;
-            case 'W': src = manaW; break; //White
-            case 'X': src = manaX; break; //X
-            default:
-                src = null;
-                console.log('ERROR SRC');
-        }
+            switch(char){
+                case '0': src = mana0; break;
+                case '1': src = mana1; break;
+                case '2': src = mana2; break;
+                case '2B': src = mana2B; break;
+                case '2G': src = mana2G; break;
+                case '2R': src = mana2R; break;
+                case '2U': src = mana2U; break;
+                case '2W': src = mana2W; break;
+                case '3': src = mana3; break;
+                case '4': src = mana4; break;
+                case '5': src = mana5; break;
+                case '6': src = mana6; break;
+                case '7': src = mana7; break;
+                case '8': src = mana8; break;
+                case '9': src = mana9; break;
+                case '10': src = mana10; break;
+                case '11': src = mana11; break;
+                case '12': src = mana12; break;
+                case '13': src = mana13; break;
+                case '14': src = mana14; break;
+                case '15': src = mana15; break;
+                case '16': src = mana16; break;
+                case '17': src = mana17; break;
+                case '18': src = mana18; break;
+                case '19': src = mana19; break;
+                case '20': src = mana20; break;
+                case 'BG': src = manaBG; break;
+                case 'BP': src = manaBP; break;
+                case 'BR': src = manaBR; break;
+                case 'B': src = manaB; break; //Black
+                case 'C': src = manaC; break;
+                case 'GP': src = manaGP; break;
+                case 'GU': src = manaGU; break;
+                case 'GW': src = manaGW; break;
+                case 'G': src = manaG; break; //Green
+                case 'RG': src = manaRG; break 
+                case 'RP': src = manaRP; break 
+                case 'RW': src = manaRW; break 
+                case 'R': src = manaR; break //Red
+                case 'S': src = manaS; break 
+                case 'UB': src = manaUB; break
+                case 'UP': src = manaUP; break 
+                case 'UR': src = manaUR; break
+                case 'U': src = manaU; break //Blue
+                case 'WB': src = manaWB; break;
+                case 'WP': src = manaWP; break;
+                case 'WU': src = manaWU; break;
+                case 'W': src = manaW; break; //White
+                case 'X': src = manaX; break; //X
+                default:
+                    src = null;
+                    console.log('ERROR SRC');
+            }
 
         if(src) srcList.push(src);
     }

@@ -10,7 +10,7 @@ import ChartBrowser from './ChartBrowser';
 import DeckSideBar from './DeckSideBar';
 import Footer from './Footer';
 import { getCards } from '../services/falseApi';
-
+import { getLands } from '../services/basicLands';
 import './DeckBuilder.scss';
 import SortButtons from './SortButtons';
 
@@ -124,6 +124,25 @@ class DeckBuilder extends Component {
         return false;
     }
 
+    addBasicLand = (land) => {
+        const { deckList } = this.state;
+        const lands = getLands().cards;
+
+        const newCard = lands.filter(cardObj => cardObj.name === land)[0];
+
+        //Check if the card already exists
+        const duplicate = this.checkForDuplicate(newCard)
+        if(duplicate !== false){
+            deckList[duplicate].quantity++;
+        }
+        else{
+            newCard["quantity"] = 1;
+            deckList.push(newCard);
+        }
+        
+        this.setState({ deckList });
+    }
+
     /**
      * Temporarily persist search results, settings, etc for convenience
      */
@@ -139,6 +158,7 @@ class DeckBuilder extends Component {
                 <div className = "container-fluid game-header mb-2">
                     <SearchFormContainer 
                         updateQueriedCards = {this.updateQueriedCards}
+                        addBasicLand = {this.addBasicLand}
                     />
                 </div>
 

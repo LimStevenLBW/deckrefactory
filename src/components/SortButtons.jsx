@@ -9,7 +9,7 @@ const SortButtons = ({ onSaveDeck, onSortAZ, onSortMana }) => {
             <div className = "col-4"> 
                 <button 
                     type = "button" 
-                    className = "btn btn-primary w-100"
+                    className = "btn btn-primary w-75"
                     onClick = {onSaveDeck}>
                         Save
                 </button>
@@ -18,7 +18,7 @@ const SortButtons = ({ onSaveDeck, onSortAZ, onSortMana }) => {
             <div className = "col-4"> 
                 <button 
                     type = "button" 
-                    className = "btn btn-primary w-100"
+                    className = "btn btn-primary w-75"
                     onClick = {onSortAZ}>
                         A-Z
                 </button>
@@ -27,7 +27,7 @@ const SortButtons = ({ onSaveDeck, onSortAZ, onSortMana }) => {
             <div className = "col-4"> 
                 <button 
                     type = "button" 
-                    className = "btn btn-primary w-100"
+                    className = "btn btn-primary w-75"
                     onClick = {onSortMana}>
                         Mana
                 </button>
