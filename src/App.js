@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
+
 import Navbar from './components/Navbar';
 import DeckBuilder from './components/DeckBuilder';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import NotFound from './components/NotFound';
-import './App.scss';
 import Logout from './components/Logout';
+
+import auth from './services/auth';
+import './App.scss';
 
 /**
  * Establishes application routes
@@ -22,20 +24,20 @@ class App extends Component {
     this.updateAuthStatus();
   }
 
+  /**
+   * Callback to trigger re-rendering on login request
+   */
   updateAuthStatus = () => {
-    try{
-      const jwt = localStorage.getItem('tok');
-      const user = jwtDecode(jwt);
-      this.setState({ user });
-    }
-    catch(ex){}
+    const user = auth.getCurrentUser();
+    if(user) this.setState({ user });
   }
 
+  /**
+   * Callback to trigger re-rendering on logout request
+   */
   resetAuthStatus = () => {
     this.setState({ user: undefined });
   }
-
-
     
   render() {
     return (
@@ -44,7 +46,10 @@ class App extends Component {
   
         <Switch>
             <Route path = "/builder" component = {DeckBuilder} />
-            <Route path = "/register" component = {RegisterForm} />
+            <Route 
+              path = "/register" 
+              render={(props) => <RegisterForm {...props} updateAuth = {this.updateAuthStatus} />}
+            />
             <Route 
               path = "/login" 
               render={(props) => <LoginForm {...props} updateAuth = {this.updateAuthStatus} />}

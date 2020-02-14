@@ -3,7 +3,7 @@ import FormContainer from './common/FormContainer';
 import FormInput from './common/FormInput';
 import Joi from 'joi';
 import FormButton from './common/FormButton';
-import { login } from '../services/auth';
+import auth from '../services/auth';
 
 class LoginForm extends FormContainer {
     state = {
@@ -11,9 +11,7 @@ class LoginForm extends FormContainer {
             email: "",
             password: "",
         },
-        errors: {
-
-        }
+        errors: {}
     }
 
     schema = {
@@ -30,13 +28,12 @@ class LoginForm extends FormContainer {
             .label("Password"),
     };
 
-      /**
+    /**
      * @override Submit the registration form
      */
     doSubmit = async () => { 
         try{
-            const { data } = await login(this.state.data);
-            localStorage.setItem("tok", data);
+            await auth.login(this.state.data);
             this.props.updateAuth();
             this.props.history.push("/"); //Redirect
         }

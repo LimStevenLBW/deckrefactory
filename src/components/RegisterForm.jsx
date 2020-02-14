@@ -4,6 +4,7 @@ import FormInput from './common/FormInput';
 import Joi from 'joi';
 import FormButton from './common/FormButton';
 import { register } from '../services/register';
+import auth from '../services/auth';
 import './RegisterForm.scss';
 
 class RegisterForm extends Form {
@@ -56,7 +57,8 @@ class RegisterForm extends Form {
 
         try{
             const res = await register(body);
-            localStorage.setItem("tok", res.headers['x-auth-token']); //Retrieve from custom header
+            auth.storeTok(res.headers['x-auth-token']) //Retrieve token from custom header
+            this.props.updateAuth();
             this.props.history.push('/')
         }
         catch(ex){
