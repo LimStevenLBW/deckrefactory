@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as compare from '../utils/compare';
+import { toast } from 'react-toastify';
 
 import SearchFormContainer from './SearchFormContainer';
 import Tabs from './common/Tabs';
@@ -15,6 +16,7 @@ import SortButtons from './SortButtons';
 
 class DeckBuilder extends Component {
     state = { 
+        deckName: "",
         selectedGame: "",
         deckList: [],
         queriedCards: {},
@@ -22,16 +24,21 @@ class DeckBuilder extends Component {
     }
 
     componentDidMount() {
-        const {cards: queriedCards} = getCards();
-        console.log(queriedCards)
+        const { cards: queriedCards } = getCards();
         this.setState({selectedGame: "mtg", queriedCards: queriedCards})
+
+        try{ //Load a saved deck
+            const data = localStorage.getItem('deck');
+            const { deckName, deckList } = JSON.parse(data);
+            this.setState({ deckName, deckList });
+        }
+        catch(ex){}
     }
 
     /**
      * Updates the current card browser list
      */
     updateQueriedCards = (queriedCards) => {
-        console.log(queriedCards)
         this.setState({selectedGame: "mtg", queriedCards: queriedCards})
     }
 
@@ -75,6 +82,16 @@ class DeckBuilder extends Component {
         this.setState({ deckList });
     }
 
+    onSaveDeck = () => {
+        const deck = {
+            deckName: this.state.deckName,
+            deckList: this.state.deckList
+        }
+
+        localStorage.setItem("deck", JSON.stringify(deck));
+        toast.success("Deck Successfully Saved");
+    }
+
     /**
      * Sort the current decklist based on the listed names
      */
@@ -107,6 +124,13 @@ class DeckBuilder extends Component {
         return false;
     }
 
+    /**
+     * Temporarily persist search results, settings, etc for convenience
+     */
+    cacheSessionData = () => {
+
+    }
+
     render() { 
         const { selectedGame, queriedCards, deckList } = this.state;
 
@@ -122,6 +146,7 @@ class DeckBuilder extends Component {
                 <div className = "row mb-2">
                     <div className = "col-4"> 
                         <SortButtons 
+                            onSaveDeck = { this.onSaveDeck }
                             onSortAZ = { this.onSortAZ }
                             onSortMana = { this.onSortMana }
                         />

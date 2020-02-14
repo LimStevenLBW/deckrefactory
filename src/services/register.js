@@ -9,3 +9,7 @@ const endpoint = backend + '/users';
 export function register(body) {
     return http.post(endpoint, body);
 }
+
+export default {
+    register,
+}

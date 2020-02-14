@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Navbar from './components/Navbar';
 import DeckBuilder from './components/DeckBuilder';
@@ -10,6 +11,7 @@ import Logout from './components/Logout';
 
 import auth from './services/auth';
 import './App.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 /**
  * Establishes application routes
@@ -42,8 +44,9 @@ class App extends Component {
   render() {
     return (
       <div className = "app app-background">
+        <ToastContainer />
         <Navbar user = { this.state.user }/>
-  
+
         <Switch>
             <Route path = "/builder" component = {DeckBuilder} />
             <Route 

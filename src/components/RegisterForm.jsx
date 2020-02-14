@@ -1,13 +1,13 @@
 import React from 'react';
-import Form from './common/FormContainer';
+import FormContainer from './common/FormContainer';
 import FormInput from './common/FormInput';
 import Joi from 'joi';
 import FormButton from './common/FormButton';
-import { register } from '../services/register';
+import userService from '../services/register';
 import auth from '../services/auth';
 import './RegisterForm.scss';
 
-class RegisterForm extends Form {
+class RegisterForm extends FormContainer {
     state = {
         data: {
             email: "",
@@ -56,15 +56,15 @@ class RegisterForm extends Form {
         }
 
         try{
-            const res = await register(body);
+            const res = await userService.register(body);
             auth.storeTok(res.headers['x-auth-token']) //Retrieve token from custom header
             this.props.updateAuth();
             this.props.history.push('/')
         }
         catch(ex){
-            console.error("An error occurred while attempting to register user")
-            console.error("Status: " + ex.response.status);
             if(ex.response && ex.response.status === 400){
+                console.error("An error occurred while attempting to register user")
+                console.error("Status: " + ex.response.status);
                 const { errors } = this.state;
                 errors.email = ex.response.data;
                 this.setState({ errors });

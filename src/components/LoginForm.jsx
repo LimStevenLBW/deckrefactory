@@ -33,7 +33,8 @@ class LoginForm extends FormContainer {
      */
     doSubmit = async () => { 
         try{
-            await auth.login(this.state.data);
+            const data = await auth.login(this.state.data);
+            auth.storeTok(data);
             this.props.updateAuth();
             this.props.history.push("/"); //Redirect
         }
@@ -77,7 +78,7 @@ class LoginForm extends FormContainer {
                 </form>
 
                 <p className = "text-center">
-                    Forgot your password? Click here to reset
+                    Forgot your password? Shame I haven't finished the reset feature
                 </p>
             </div>
         );

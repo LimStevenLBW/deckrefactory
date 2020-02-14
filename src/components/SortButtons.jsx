@@ -3,24 +3,33 @@ import React from 'react';
 /**
  * 
  */
-const SortButtons = ({ onSortAZ, onSortMana }) => {
+const SortButtons = ({ onSaveDeck, onSortAZ, onSortMana }) => {
     return (  
         <div className = "row text-center">
-            <div className = "col-6"> 
+            <div className = "col-4"> 
                 <button 
                     type = "button" 
-                    className = "btn btn-primary w-75"
+                    className = "btn btn-primary w-100"
+                    onClick = {onSaveDeck}>
+                        Save
+                </button>
+            </div>   
+
+            <div className = "col-4"> 
+                <button 
+                    type = "button" 
+                    className = "btn btn-primary w-100"
                     onClick = {onSortAZ}>
-                        Sort A-Z
+                        A-Z
                 </button>
             </div>    
 
-            <div className = "col-6"> 
+            <div className = "col-4"> 
                 <button 
                     type = "button" 
-                    className = "btn btn-primary w-75"
+                    className = "btn btn-primary w-100"
                     onClick = {onSortMana}>
-                        Sort Mana
+                        Mana
                 </button>
             </div>      
         </div>

@@ -9,8 +9,7 @@ const tokenField = "tok";
  * Sends http post request to the backend for login request and stores the token
  */
 export function login(body) {
-    const { data } =  http.post(endpoint, body);
-    storeTok(data);
+    return http.post(endpoint, body);
 }
 
 /**
@@ -36,9 +35,18 @@ export function getCurrentUser() {
         const user = jwtDecode(jwt);
         return user;
     }
-    catch(ex){
-        return undefined;
+    catch(ex){ return undefined }
+}
+
+/**
+ * Get auth token from local storage
+ */
+export function getCurrentTok() {
+    try{
+        const jwt = localStorage.getItem(tokenField);
+        return jwt;
     }
+    catch(ex){ return undefined }
 }
 
 export default {
@@ -46,4 +54,5 @@ export default {
     storeTok,
     removeTok,
     getCurrentUser,
+    getCurrentTok,
 }
