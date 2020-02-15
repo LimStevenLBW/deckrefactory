@@ -50,7 +50,13 @@ class SideBarItem extends Component {
                             <p>{item.rarity}</p>
                            
                             <p>{item.text}</p>
-                            <p>Power: {item.power} / Toughness: {item.toughness}</p>
+                            {(item.power && item.toughness) &&
+                             <p>Power: {item.power} / Toughness: {item.toughness}</p>
+                            }
+                        </div>
+
+                        <div className = "sb-item-info">
+                            Left-Click to Add, Right-Click to Remove
                         </div>
                     </span> : <React.Fragment></React.Fragment>
                 }

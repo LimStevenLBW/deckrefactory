@@ -1,6 +1,7 @@
 import status from './statusCodes';
 import http from './axios';
 import { mtgIO } from '../config.js';
+import { toast } from 'react-toastify';
 
 //Example Consumption https://api.magicthegathering.io/v1/cards?colors=red,blue&cmc=3&pageSize=1&page=1
 
@@ -9,7 +10,20 @@ import { mtgIO } from '../config.js';
  */
 export function search(dataObj, pageSize, page){
     const endpoint = buildEndpoint(dataObj, pageSize, page);
-    return http.get(endpoint);
+    
+    
+    //return http.get(endpoint);
+    const toastId = toast.info("Searching for new cards... Please Wait", { hideProgressBar: true, autoClose: false });
+    return http.request({
+      method: "get", 
+      url: endpoint,  
+    }).then (data => {
+      // Upload is done! 
+      // The remaining progress bar will be filled up
+      // The toast will be closed when the transition end
+      toast.dismiss(toastId);
+      return data;
+    });
 }
 
 /**

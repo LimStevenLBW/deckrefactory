@@ -20,6 +20,7 @@ import { search } from '../services/mtgSearch';
                 query: "",
                 colors: []
             },
+            isLoadingData: false
         }
      }
 
@@ -62,32 +63,36 @@ import { search } from '../services/mtgSearch';
     /**
      * @Override Submits the query with filter options from props
      */
-    doSubmit = async (e) => {
+    doSubmit = (e) => {
         e.preventDefault();
         
         try{
-            const res = await search(this.state.data, 16, 1)
-        
-            const { data } = await res;
-            
-            console.log(res);
-            console.log("promise:-- " , data);
-            console.log("cards:--" , data.cards);
-            this.props.updateQueriedCards(data.cards);
-         
+            let res;
+            this.setState({ isLoadingData: true }, async () => {
+
+                res = await search(this.state.data, 16, 1)
+                console.log(res)
+                console.log(JSON.stringify(res))
+                const { data } = await res;
+                this.props.updateQueriedCards(data.cards);
+                this.setState({ isLoadingData: false })
+                //console.log(res);
+               // console.log("promise:-- " , data);
+               // console.log("cards:--" , data.cards);
+            })
         }
         catch(ex){
+            this.setState({ isLoadingData: false })
             console.log(ex);
             console.log("error occurred")
         }
-    
       //  console.log(Object.keys(promise.data));
         //console.log(JSON.stringify(promise.data));
        
     }
 
     render() { 
-        const { data } = this.state;
+        const { data, isLoadingData } = this.state;
 
         return (  
             <React.Fragment>
@@ -133,6 +138,7 @@ import { search } from '../services/mtgSearch';
                         name = {"query"}
                         onChange = {this.handleChange}
                         onSubmit = {this.doSubmit}
+                        isLoading = { isLoadingData }
                     />
                 </div>
             </div>

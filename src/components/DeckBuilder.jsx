@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 
 import SearchFormContainer from './SearchFormContainer';
 import Tabs from './common/Tabs';
-import DeckStats from './DeckStats';
 import CardBrowser from './CardBrowser';
 import ChartBrowser from './ChartBrowser';
 import DeckSideBar from './DeckSideBar';
@@ -18,6 +17,7 @@ class DeckBuilder extends Component {
     state = { 
         deckName: "",
         selectedGame: "",
+        selectedView: "cards",
         deckList: [],
         queriedCards: {},
         displayCards: true,
@@ -143,6 +143,15 @@ class DeckBuilder extends Component {
         this.setState({ deckList });
     }
 
+    onSelectedView = (viewName) => {
+        if(viewName === "analysis"){
+            this.setState({ selectedView: viewName, displayCards: false })
+        }
+        else {
+            this.setState({ selectedView: viewName, displayCards: true })
+        }
+    }
+
     /**
      * Temporarily persist search results, settings, etc for convenience
      */
@@ -151,7 +160,7 @@ class DeckBuilder extends Component {
     }
 
     render() { 
-        const { selectedGame, queriedCards, deckList } = this.state;
+        const { selectedGame, queriedCards, deckList, selectedView } = this.state;
 
         return ( 
             <React.Fragment>
@@ -174,7 +183,8 @@ class DeckBuilder extends Component {
 
                     <div className = "col-8"> 
                         <Tabs 
-                            onSelectedView = { this.onSelectedView }    
+                            onViewSelect = { this.onSelectedView }  
+                            selectedView = { selectedView }  
                         />
                     </div>
                 </div>
@@ -198,7 +208,7 @@ class DeckBuilder extends Component {
                             addNewCard = { this.addNewCard }
                         /> : 
                         <ChartBrowser
-
+                            deckList = { deckList }
                         />}
                          
                     </div>

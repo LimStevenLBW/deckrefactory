@@ -9,6 +9,10 @@
     cursor: pointer;
 }
 
+.sb-item:hover {
+    background-color: rgb(206, 237, 250);
+}
+
 .sb-item-info {
     color: rgb(170, 173, 173);
     padding: 5px;

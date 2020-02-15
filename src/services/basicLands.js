@@ -5,6 +5,7 @@ const lands = {
             "colors":[  
                 "Red"
             ],
+            "cmc": "-1",
             "imageUrl": "images/artwork/nicol.png",
             "colorIdentity":[
                 "R"
@@ -20,6 +21,7 @@ const lands = {
             "colors":[  
                 "Green"
             ],
+            "cmc": "-1",
             "imageUrl": "images/artwork/nicol.png",
             "colorIdentity":[
                 "G"
@@ -35,6 +37,7 @@ const lands = {
             "colors":[  
                 "Blue"
             ],
+            "cmc": "-1",
             "imageUrl": "images/artwork/nicol.png",
             "colorIdentity":[
                 "U"
@@ -50,6 +53,7 @@ const lands = {
             "colors":[  
                 "White"
             ],
+            "cmc": "-1",
             "imageUrl": "images/artwork/nicol.png",
             "colorIdentity":[
                 "W"
@@ -65,6 +69,7 @@ const lands = {
             "colors":[  
                 "Black"
             ],
+            "cmc": "-1",
             "imageUrl": "images/artwork/nicol.png",
             "colorIdentity":[
                 "B"

@@ -118,6 +118,9 @@ const cards = {
             "colors":[  
                 "Blue"
             ],
+            "colorIdentity":[
+                "B", "U", "R"
+            ],
             "imageUrl": "images/artwork/nicol.png",
         },
         {  
@@ -126,6 +129,9 @@ const cards = {
             "cmc":3,
             "colors":[  
                 "Green"
+            ],
+            "colorIdentity":[
+                "G"
             ],
             "imageUrl": "images/artwork/cultivate.jpg",
         },
@@ -136,6 +142,9 @@ const cards = {
             "colors":[  
                 ""
             ],
+            "colorIdentity":[
+                
+            ],
             "imageUrl": "images/artwork/arcum.jpg",
         },
         {  
@@ -144,6 +153,9 @@ const cards = {
             "cmc":1,
             "colors":[  
                 "Red", "Black"
+            ],
+            "colorIdentity":[
+                "R"
             ],
             "imageUrl": "images/artwork/cackler.jpg",
         },
@@ -154,6 +166,9 @@ const cards = {
             "colors":[  
                 "Red", "Black", "Green", "Blue", "White"
             ],
+            "colorIdentity":[
+                "B", "U", "R"
+            ],
             "imageUrl": "images/artwork/progenitus.jpg",
         },
         {  
@@ -162,6 +177,9 @@ const cards = {
             "cmc":2,
             "colors":[  
                 "Blue", "White", "Black"
+            ],
+            "colorIdentity":[
+                "B", "U", "R"
             ],
             "imageUrl": "images/artwork/esper.jpg",
         },
@@ -172,6 +190,9 @@ const cards = {
             "colors":[  
                 "Blue"
             ],
+            "colorIdentity":[
+                "U"
+            ],
             "imageUrl": "images/artwork/mu.jpg",
         },
         {  
@@ -180,6 +201,9 @@ const cards = {
             "cmc": 12,
             "colors":[  
                 "Green"
+            ],
+            "colorIdentity":[
+                "G"
             ],
             "imageUrl": "images/artwork/ghalta.jpg",
         },
@@ -190,6 +214,9 @@ const cards = {
             "colors":[  
                 "Black", "Red"
             ],
+            "colorIdentity":[
+                "B", "R"
+            ],
             "imageUrl": "images/artwork/rakdos.png",
         },
         {  
@@ -198,6 +225,9 @@ const cards = {
             "cmc": 3,
             "colors":[  
                 "Blue"
+            ],
+            "colorIdentity":[
+                "U"
             ],
             "imageUrl": "images/artwork/thassa.jpg",
         },

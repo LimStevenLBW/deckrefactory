@@ -11,7 +11,14 @@ class CardBrowser extends Component {
     }
 
     componentDidMount() {
-    
+        try{
+            const tableString = sessionStorage.getItem("table");
+            if(tableString) {
+                const table = JSON.parse(tableString);
+                this.setState({ table });
+            }
+        }
+        catch(ex){}
     }
 
     componentDidUpdate(prevProps) {
@@ -25,7 +32,7 @@ class CardBrowser extends Component {
         const colPerRow = 4; //Controls how many columns are allowed
         const table = []; //Reset the list
         const { queriedCards } = this.props;
-        const dataLength = Object.keys(queriedCards).length;
+        const dataLength = 16; //Object.keys(queriedCards).length;
 
         //Iterate through data
         for(let i = 0; i < dataLength; i += colPerRow) {
@@ -54,6 +61,7 @@ class CardBrowser extends Component {
             table.push(newRow); //Add each assembled row to the final table
         }
         
+        sessionStorage.setItem("table", JSON.stringify(table));
         this.setState({ table });
     }
 
@@ -96,8 +104,11 @@ class CardBrowser extends Component {
                 </React.Fragment>
             );
         }
-        
-        return <React.Fragment>loading new table</React.Fragment>;
+
+        return  (<div class="alert alert-warning" role="alert">
+                    . . . Attempting to load table
+                </div>);
+           
     }
 }
  
