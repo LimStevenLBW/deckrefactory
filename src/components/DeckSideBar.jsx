@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/js/dist/collapse';
 import SideBarItem from './common/SideBarItem';
 import CollapsableLink from './common/CollapsableLink';
+import getSum from '../utils/sum';
 import './DeckSideBar.scss';
 
 /**
@@ -14,13 +15,11 @@ const main = "mainCollapseTarget";
 const side = "sideCollapseTarget";
 const misc = "miscCollapseTarget";
 
-const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selectedItem, upShiftClick, downShiftClick }) => {
-    //Calculate Deck Count property
-    let sum = 0;
-    if(items) {
-        items.forEach(card => {
-        sum += card.quantity;
-    })}
+const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, selectedItem, upShiftClick, downShiftClick }) => {
+    //Calculate deck count values
+    const mainCount = getSum(deckList.main);
+    const sideCount = getSum(deckList.side);
+    const miscCount = getSum(deckList.misc);
 
     return ( 
     //Note: The index is used as the key property for now, this may introduce bugs
@@ -28,14 +27,14 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
 
         <CollapsableLink 
             textProperty = "Main Deck" 
-            valueProperty = {sum} 
+            valueProperty = {mainCount} 
             classModifier = "btn-primary"
             target = {main}
         />
 
         <div className = "collapse collapse-show show" id = {main}>
             <ul className = "list-group clickable">    
-                {items.map((item, index) => (
+                {deckList.main.map((item, index) => (
                     <SideBarItem 
                         item = { item }
                         key = { index }
@@ -44,6 +43,7 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
                         onRightSelect = { onRightSelect }
                         upShiftClick = { upShiftClick }
                         downShiftClick = { downShiftClick }
+                        listName = "main"
                     />
                 ))}
             </ul >
@@ -51,14 +51,14 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
 
         <CollapsableLink 
             textProperty = "Sideboard" 
-            valueProperty = {0}
+            valueProperty = {sideCount}
             classModifier = "btn-secondary"
             target = {side}
         />
 
         <div className = "collapse collapse-show" id = {side}>
             <ul className = "list-group clickable">    
-                {items.map((item, index) => (
+                {deckList.side.map((item, index) => (
                     <SideBarItem 
                         item = { item }
                         key = { index }
@@ -67,6 +67,7 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
                         onRightSelect = { onRightSelect }
                         upShiftClick = { upShiftClick }
                         downShiftClick = { downShiftClick }
+                        listName = "side"
                     />
                 ))}
             </ul >
@@ -74,14 +75,14 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
 
         <CollapsableLink 
             textProperty = "Miscellaneous" 
-            valueProperty = {0}
+            valueProperty = {miscCount}
             classModifier = "btn-secondary"
             target = {misc}
         />
 
         <div className = "collapse collapse-show show" id = {misc}>
             <ul className = "list-group clickable">    
-                {items.map((item, index) => (
+                {deckList.misc.map((item, index) => (
                     <SideBarItem 
                         item = { item }
                         key = { index }
@@ -90,6 +91,7 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
                         onRightSelect = { onRightSelect }
                         upShiftClick = { upShiftClick }
                         downShiftClick = { downShiftClick }
+                        listName = "misc"
                     />
                 ))}
             </ul >

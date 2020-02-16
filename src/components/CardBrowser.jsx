@@ -31,8 +31,8 @@ class CardBrowser extends Component {
     generateTable = () => {
         const colPerRow = 4; //Controls how many columns are allowed
         const table = []; //Reset the list
-        const { queriedCards } = this.props;
-        const dataLength = 16; //Object.keys(queriedCards).length;
+        const { cardList } = this.props;
+        const dataLength = 16; //Object.keys(cardList).length;
 
         //Iterate through data
         for(let i = 0; i < dataLength; i += colPerRow) {
@@ -46,7 +46,7 @@ class CardBrowser extends Component {
                     columnItem = this.mapToViewData(null,`${i},${j}`); 
                 }
                 else{ //Acquire data and map to card model
-                    const data = this.getCard(queriedCards, j);
+                    const data = this.getCard(cardList, j);
                     columnItem = this.mapToViewData(data,`${i},${j}` || data.id); 
                 }
                 
@@ -80,9 +80,9 @@ class CardBrowser extends Component {
             );
     }
 
-    //Retrieves data from a specific card in the list of queried cards
-    getCard(queriedCards, index){
-        const cardInfo = queriedCards[index];
+    //Retrieves and returns a specific card object in the provided list of queried cards
+    getCard(cardList, index){
+        const cardInfo = cardList[index];
         return cardInfo;
     }
 

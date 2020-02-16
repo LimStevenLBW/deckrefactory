@@ -15,26 +15,40 @@ import SortButtons from './SortButtons';
 
 class DeckBuilder extends Component {
     state = { 
-        deckName: "",
         selectedGame: "",
         selectedView: "cards",
-        deckList: [],
-        sideList: [],
-        miscList: [],
+        deck: {
+            info: {
+                name: "",
+                description: "",
+                author: "",
+                lastUpdated: "",
+                cmc: 0,
+                color: "",
+            },
+            list: {
+                main: [],
+                side: [],
+                misc: [],
+            }
+        },
+
         queriedCards: {},
         displayCards: true,
     }
 
     componentDidMount() {
         const { cards: queriedCards } = getCards();
-        this.setState({selectedGame: "mtg", queriedCards: queriedCards})
+        this.setState({selectedGame: "mtg", queriedCards: queriedCards});
 
+        /*
         try{ //Load a saved deck
             const data = localStorage.getItem('deck');
             const { deckName, deckList } = JSON.parse(data);
             this.setState({ deckName, deckList });
         }
         catch(ex){}
+        */
     }
 
     /**
@@ -51,37 +65,49 @@ class DeckBuilder extends Component {
         this.setState({ deckList });
     }
 
-    addNewCard = (newCard) => {
-        const { deckList } = this.state;
+    /**
+     * Add a new card into a named section of the decklist, defaulting to main
+     * Deck state is updated to trigger a re-render
+     */
+    addNewCard = (newCard, listName = 'main') => {
+        const deck = this.state.deck;
+        const workingList = deck.list[listName];
         
         //Check if the card already exists
-        const duplicate = this.checkForDuplicate(newCard)
+        const duplicate = this.checkForDuplicate(newCard, workingList)
         if(duplicate !== false){
-            deckList[duplicate].quantity++;
+            workingList[duplicate].quantity++;
         }
         else{
             newCard["quantity"] = 1;
-            deckList.push(newCard);
+            workingList.push(newCard);
         }
         
-        this.setState({ deckList });
+        deck.list[listName] = workingList;
+        this.setState({ deck });
     }
 
-    removeCard = (event, selectedCard) => {
+    /**
+     * Removes a card from a named section of the decklist, but if the card has
+     * a quantity value above 1, its quantity value is only decremented
+     */
+    removeCard = (event, selectedCard, listName) => {
         event.preventDefault();
-        const { deckList } = this.state;
+        const deck = this.state.deck;
+        const workingList = deck.list[listName];
 
-        //Check if more than one copy exists, if so, just decrement the counter
-        const duplicate = this.checkForDuplicate(selectedCard);
+        //Check if more than one copy exists, if so, just decrement the counter instead of removing
+        const duplicate = this.checkForDuplicate(selectedCard, workingList);
         if(duplicate !== false){
-            const duplicateAmount = deckList[duplicate].quantity;
+            const duplicateAmount = workingList[duplicate].quantity;
 
-            if(duplicateAmount > 1) deckList[duplicate].quantity--;
-            else if(duplicateAmount === 1) deckList.splice(deckList.indexOf(selectedCard), 1);
+            if(duplicateAmount > 1) workingList[duplicate].quantity--;
+            else if(duplicateAmount === 1) workingList.splice(workingList.indexOf(selectedCard), 1);
             else console.log("an error has occurred with removeCard")
         }
         
-        this.setState({ deckList });
+        deck.list[listName] = workingList;
+        this.setState({ deck });
     }
 
     upShiftClick = (selectedCard) => {
@@ -127,13 +153,12 @@ class DeckBuilder extends Component {
     }
 
     /**
-     * Examine each card in the decklist and return the index of the duplicate if it exists
+     * Examine each card in a provided list and returns the index of the duplicate if it exists
      * Currently only examines based on name
      */
-    checkForDuplicate = (newCard) => {
-        const { deckList } = this.state;
-        for(let i = 0; i < deckList.length; i++){
-            if(deckList[i].name === newCard.name) {
+    checkForDuplicate = (newCard, list) => {
+        for(let i = 0; i < list.length; i++){
+            if(list[i].name === newCard.name) {
                 return i;
             }
         }
@@ -176,7 +201,8 @@ class DeckBuilder extends Component {
     }
 
     render() { 
-        const { selectedGame, queriedCards, deckList, selectedView } = this.state;
+        const { selectedGame, queriedCards, deck, selectedView } = this.state;
+        const { list: deckList } = deck;
 
         return ( 
             <React.Fragment>
@@ -208,7 +234,7 @@ class DeckBuilder extends Component {
                 <div className = "row">
                     <div className = "col-4"> 
                         <DeckSideBar 
-                            items = { deckList } 
+                            deckList = { deckList } 
                             textProperty = "name"
                             onLeftSelect = { this.addNewCard }
                             onRightSelect = { this.removeCard }
@@ -220,11 +246,11 @@ class DeckBuilder extends Component {
                         {this.state.displayCards ? 
                         <CardBrowser 
                             selectedGame = { selectedGame }
-                            queriedCards = { queriedCards } 
+                            cardList = { queriedCards } 
                             addNewCard = { this.addNewCard }
                         /> : 
                         <ChartBrowser
-                            deckList = { deckList }
+                            deckList = { deckList.main } //Only main deck is analyzed
                         />}
                          
                     </div>

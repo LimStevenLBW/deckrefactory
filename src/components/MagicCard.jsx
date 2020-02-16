@@ -51,7 +51,7 @@ class MagicCard extends Card {
         
         this.setState({classList: classList.join(' '), isPlayingAnim: true});  
 
-        this.props.onMouseClickHandler(this.props.data); //Call parent handler
+        this.props.onMouseClickHandler(this.props.data); //Call parent handler, passing the data all the way up
     }
 
     //Note, onMouseOver propagates unlike onMouseEnter, it'll catch fast mouse movements

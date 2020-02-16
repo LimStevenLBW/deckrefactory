@@ -16,7 +16,7 @@ class SideBarItem extends Component {
     }
 
     render() { 
-        const { item, textProperty, onLeftSelect, onRightSelect, upShiftClick, downShiftClick } = this.props;
+        const { item, textProperty, onLeftSelect, onRightSelect, upShiftClick, downShiftClick, listName } = this.props;
 
         return (  
             <li
@@ -28,7 +28,7 @@ class SideBarItem extends Component {
                         onLeftSelect(item);
                     }}
                     onContextMenu = {(e) => {
-                        onRightSelect(e, item);
+                        onRightSelect(e, item, listName); //e is provided to prevent context menu from opening, listname is needed to know which list to add to
                     }}
                     onMouseOver = {this.onMouseOverHandler}
                     onMouseOut = {this.onMouseOutHandler}
