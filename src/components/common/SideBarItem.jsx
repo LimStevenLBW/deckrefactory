@@ -16,28 +16,46 @@ class SideBarItem extends Component {
     }
 
     render() { 
-        const { item, textProperty, onLeftSelect, onRightSelect } = this.props;
+        const { item, textProperty, onLeftSelect, onRightSelect, upShiftClick, downShiftClick } = this.props;
 
         return (  
             <li
-                className = "sb-item glow-anim list-group-item d-flex justify-content-between align-items-center p-1"
-                onClick = {() => {
-                    onLeftSelect(item);
-                }}
-                onContextMenu = {(e) => {
-                    onRightSelect(e, item);
-                }}
-                onMouseOver = {this.onMouseOverHandler}
-                onMouseOut = {this.onMouseOutHandler}
+                className = "sb-item-container d-flex align-items-center"
             >
-                <span className = "badge badge-primary badge-pill mr-1">{item.quantity}</span>
-                <div className = "text-truncate">
-                    {item[textProperty]}
+                <div 
+                    className = "w-100 sb-item glow-anim list-group-item d-flex justify-content-between align-items-center p-1"
+                    onClick = {() => {
+                        onLeftSelect(item);
+                    }}
+                    onContextMenu = {(e) => {
+                        onRightSelect(e, item);
+                    }}
+                    onMouseOver = {this.onMouseOverHandler}
+                    onMouseOut = {this.onMouseOutHandler}
+                >
+                    <span className = "badge badge-primary badge-pill mr-1">{item.quantity}</span>
+                    <div className = "text-truncate">
+                        {item[textProperty]}
+                    </div>
+
+                    <div className = "flex-grow-1 text-right">
+                        <ManaIcons mana = {item.manaCost} />
+                    </div>
                 </div>
 
-                <div className = "flex-grow-1 text-right">
-                    <ManaIcons mana = {item.manaCost} />
-                </div>
+                <span className = "sb-item-arrow-container">
+                    <button 
+                        className = "sb-item-arrow" 
+                        onClick = {() => upShiftClick(item)}>
+                    ▲
+                    </button>
+
+                    <button 
+                        className = "sb-item-arrow" 
+                        onClick = {() => downShiftClick(item)}>
+                    ▼
+                    </button>
+                </span>
 
                 {this.state.isTooltipVisible ? 
                     <span

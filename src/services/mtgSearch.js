@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 export function search(dataObj, pageSize, page){
     const endpoint = buildEndpoint(dataObj, pageSize, page);
     
-    
     //return http.get(endpoint);
     const toastId = toast.info("Searching for new cards... Please Wait", { hideProgressBar: true, autoClose: false });
     return http.request({

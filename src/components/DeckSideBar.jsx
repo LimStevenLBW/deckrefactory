@@ -12,9 +12,9 @@ import './DeckSideBar.scss';
 
 const main = "mainCollapseTarget";
 const side = "sideCollapseTarget";
-const maybe = "maybeCollapseTarget";
+const misc = "miscCollapseTarget";
 
-const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selectedItem }) => {
+const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selectedItem, upShiftClick, downShiftClick }) => {
     //Calculate Deck Count property
     let sum = 0;
     if(items) {
@@ -42,6 +42,8 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
                         textProperty = { textProperty }
                         onLeftSelect = { onLeftSelect }
                         onRightSelect = { onRightSelect }
+                        upShiftClick = { upShiftClick }
+                        downShiftClick = { downShiftClick }
                     />
                 ))}
             </ul >
@@ -53,12 +55,45 @@ const DeckSideBar = ({ items, textProperty, onLeftSelect, onRightSelect, selecte
             classModifier = "btn-secondary"
             target = {side}
         />
+
+        <div className = "collapse collapse-show" id = {side}>
+            <ul className = "list-group clickable">    
+                {items.map((item, index) => (
+                    <SideBarItem 
+                        item = { item }
+                        key = { index }
+                        textProperty = { textProperty }
+                        onLeftSelect = { onLeftSelect }
+                        onRightSelect = { onRightSelect }
+                        upShiftClick = { upShiftClick }
+                        downShiftClick = { downShiftClick }
+                    />
+                ))}
+            </ul >
+        </div>
+
         <CollapsableLink 
             textProperty = "Miscellaneous" 
             valueProperty = {0}
             classModifier = "btn-secondary"
-            target = {maybe}
+            target = {misc}
         />
+
+        <div className = "collapse collapse-show show" id = {misc}>
+            <ul className = "list-group clickable">    
+                {items.map((item, index) => (
+                    <SideBarItem 
+                        item = { item }
+                        key = { index }
+                        textProperty = { textProperty }
+                        onLeftSelect = { onLeftSelect }
+                        onRightSelect = { onRightSelect }
+                        upShiftClick = { upShiftClick }
+                        downShiftClick = { downShiftClick }
+                    />
+                ))}
+            </ul >
+        </div>
     </div>
     );
 }

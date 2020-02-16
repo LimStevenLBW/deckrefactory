@@ -5,6 +5,12 @@
     box-shadow: 0px 0px 40px 0px rgba(212,254,255,1);
 }
 
+.sb-item-container{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 .sb-item {
     cursor: pointer;
 }
@@ -18,14 +24,33 @@
     padding: 5px;
 }
 
+.sb-item-arrow-container {
+    border-radius: 6px;
+    background-color: whitesmoke;
+    padding: 3px;
+    opacity: 100% !important; //For some reason, something is setting it to zero
+    position:absolute;
+    left: -8%;
+    z-index: -1;
+}
+
+.sb-item-arrow {
+    margin-left: 2px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+.sb-item-arrow:hover {
+    color: blue;
+}
+
 .tooltip{
     border-radius: 6px;
     width: 220px;
     background-color: black;
     cursor: pointer;
     opacity: 100% !important; //For some reason, something is setting it to zero
-    position: absolute;
-    right: -62%;
+    position: relative;
+    right: -25%;
     z-index: 1;
     pointer-events: none; //Causes the mouse to *phase through*
 }

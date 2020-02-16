@@ -19,6 +19,8 @@ class DeckBuilder extends Component {
         selectedGame: "",
         selectedView: "cards",
         deckList: [],
+        sideList: [],
+        miscList: [],
         queriedCards: {},
         displayCards: true,
     }
@@ -80,6 +82,20 @@ class DeckBuilder extends Component {
         }
         
         this.setState({ deckList });
+    }
+
+    upShiftClick = (selectedCard) => {
+        const { deckList } = this.state;
+
+        //Check if more than one copy exists, if so, just decrement the counter
+        const duplicate = this.checkForDuplicate(selectedCard);
+        if(duplicate !== false){
+            const duplicateAmount = deckList[duplicate].quantity;
+
+            if(duplicateAmount > 1) deckList[duplicate].quantity--;
+            else if(duplicateAmount === 1) deckList.splice(deckList.indexOf(selectedCard), 1);
+            else console.log("an error has occurred with removeCard")
+        }
     }
 
     onSaveDeck = () => {
