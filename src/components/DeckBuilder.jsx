@@ -67,7 +67,7 @@ class DeckBuilder extends Component {
 
     /**
      * Add a new card into a named section of the decklist, defaulting to main
-     * Deck state is updated to trigger a re-render
+     * If a duplicate exists, quantity is updated instead, Deck state is updated to trigger a re-render
      */
     addNewCard = (newCard, listName = 'main') => {
         const deck = this.state.deck;
@@ -92,7 +92,7 @@ class DeckBuilder extends Component {
      * a quantity value above 1, its quantity value is only decremented
      */
     removeCard = (event, selectedCard, listName) => {
-        event.preventDefault();
+        if(event) event.preventDefault();
         const deck = this.state.deck;
         const workingList = deck.list[listName];
 
@@ -110,18 +110,62 @@ class DeckBuilder extends Component {
         this.setState({ deck });
     }
 
-    upShiftClick = (selectedCard) => {
-        const { deckList } = this.state;
-
-        //Check if more than one copy exists, if so, just decrement the counter
-        const duplicate = this.checkForDuplicate(selectedCard);
-        if(duplicate !== false){
-            const duplicateAmount = deckList[duplicate].quantity;
-
-            if(duplicateAmount > 1) deckList[duplicate].quantity--;
-            else if(duplicateAmount === 1) deckList.splice(deckList.indexOf(selectedCard), 1);
-            else console.log("an error has occurred with removeCard")
+    /**
+     * 
+     */
+    shiftCardHandler = (event, selectedCard, listName, shiftUp = true) => {
+        const deck = this.state.deck;
+        let nextListName;
+        switch(listName) {
+            case 'main':
+                if(shiftUp) nextListName = 'misc';
+                else nextListName = 'side';
+                break;
+            case 'side':
+                if(shiftUp) nextListName = 'main';
+                else nextListName = 'misc';
+                break;
+            case 'misc':
+                if(shiftUp) nextListName = 'side';
+                else nextListName = 'main';
+                break;
         }
+
+        const workingList = deck.list[nextListName];
+        const prevList = deck.list[listName];
+
+        if(event.shiftKey) { //If key shift is held, remove card regardless of quantity
+            const duplicate = this.checkForDuplicate(selectedCard, workingList);
+
+            if(duplicate !== false) {
+                workingList[duplicate].quantity += selectedCard.quantity; //Add the quantities together 
+            }
+            else {
+                workingList.push(selectedCard); //Move the card into the list
+            }
+
+            prevList.splice(prevList.indexOf(selectedCard), 1); //Remove it from the previous list
+            deck.list[nextListName] = workingList;
+            this.setState({ deck });
+        }
+        else { //Otherwise, use standard evaluation for removal, only move one at a time
+            this.removeCard(event, selectedCard, listName);
+            this.addNewCard(selectedCard, nextListName);
+        }
+
+    }
+
+    /**
+     * Examine each card in a provided list and returns the index of the duplicate if it exists
+     * Currently only examines based on name
+     */
+    checkForDuplicate = (newCard, list) => {
+        for(let i = 0; i < list.length; i++){
+            if(list[i].name === newCard.name) {
+                return i;
+            }
+        }
+        return false;
     }
 
     onSaveDeck = () => {
@@ -150,19 +194,6 @@ class DeckBuilder extends Component {
         const { deckList } = this.state;
         deckList.sort(compare.cmc);
         this.setState({ deckList });
-    }
-
-    /**
-     * Examine each card in a provided list and returns the index of the duplicate if it exists
-     * Currently only examines based on name
-     */
-    checkForDuplicate = (newCard, list) => {
-        for(let i = 0; i < list.length; i++){
-            if(list[i].name === newCard.name) {
-                return i;
-            }
-        }
-        return false;
     }
 
     addBasicLand = (land) => {
@@ -238,6 +269,7 @@ class DeckBuilder extends Component {
                             textProperty = "name"
                             onLeftSelect = { this.addNewCard }
                             onRightSelect = { this.removeCard }
+                            onShiftClick = { this.shiftCardHandler }
                         />
                     </div>
 

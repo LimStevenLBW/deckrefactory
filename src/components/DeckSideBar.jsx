@@ -15,7 +15,7 @@ const main = "mainCollapseTarget";
 const side = "sideCollapseTarget";
 const misc = "miscCollapseTarget";
 
-const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, selectedItem, upShiftClick, downShiftClick }) => {
+const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, selectedItem, onShiftClick }) => {
     //Calculate deck count values
     const mainCount = getSum(deckList.main);
     const sideCount = getSum(deckList.side);
@@ -41,8 +41,7 @@ const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, sele
                         textProperty = { textProperty }
                         onLeftSelect = { onLeftSelect }
                         onRightSelect = { onRightSelect }
-                        upShiftClick = { upShiftClick }
-                        downShiftClick = { downShiftClick }
+                        onShiftClick = { onShiftClick }
                         listName = "main"
                     />
                 ))}
@@ -65,8 +64,7 @@ const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, sele
                         textProperty = { textProperty }
                         onLeftSelect = { onLeftSelect }
                         onRightSelect = { onRightSelect }
-                        upShiftClick = { upShiftClick }
-                        downShiftClick = { downShiftClick }
+                        onShiftClick = { onShiftClick }
                         listName = "side"
                     />
                 ))}
@@ -89,8 +87,7 @@ const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, sele
                         textProperty = { textProperty }
                         onLeftSelect = { onLeftSelect }
                         onRightSelect = { onRightSelect }
-                        upShiftClick = { upShiftClick }
-                        downShiftClick = { downShiftClick }
+                        onShiftClick = { onShiftClick }
                         listName = "misc"
                     />
                 ))}

@@ -16,7 +16,7 @@ class SideBarItem extends Component {
     }
 
     render() { 
-        const { item, textProperty, onLeftSelect, onRightSelect, upShiftClick, downShiftClick, listName } = this.props;
+        const { item, textProperty, onLeftSelect, onRightSelect, onShiftClick, listName } = this.props;
 
         return (  
             <li
@@ -46,13 +46,13 @@ class SideBarItem extends Component {
                 <span className = "sb-item-arrow-container">
                     <button 
                         className = "sb-item-arrow" 
-                        onClick = {() => upShiftClick(item)}>
+                        onClick = {(e) => onShiftClick(e, item, listName)}>
                     ▲
                     </button>
 
                     <button 
                         className = "sb-item-arrow" 
-                        onClick = {() => downShiftClick(item)}>
+                        onClick = {(e) => onShiftClick(e, item, listName, false)}>
                     ▼
                     </button>
                 </span>
