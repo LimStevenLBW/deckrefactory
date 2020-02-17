@@ -39,23 +39,22 @@ class DeckBuilder extends Component {
 
     componentDidMount() {
         const { cards: queriedCards } = getCards();
-        this.setState({selectedGame: "mtg", queriedCards: queriedCards});
+        this.setState({ selectedGame: "mtg", queriedCards: queriedCards });
 
-        /*
+        
         try{ //Load a saved deck
             const data = localStorage.getItem('deck');
-            const { deckName, deckList } = JSON.parse(data);
-            this.setState({ deckName, deckList });
+            const deck = JSON.parse(data);
+            this.setState({ deck });
         }
         catch(ex){}
-        */
     }
 
     /**
      * Updates the current card browser list
      */
     updateQueriedCards = (queriedCards) => {
-        this.setState({selectedGame: "mtg", queriedCards: queriedCards})
+        this.setState({ selectedGame: "mtg", queriedCards: queriedCards })
     }
 
     /**
@@ -169,10 +168,7 @@ class DeckBuilder extends Component {
     }
 
     onSaveDeck = () => {
-        const deck = {
-            deckName: this.state.deckName,
-            deckList: this.state.deckList
-        }
+        const deck = this.state.deck;
 
         localStorage.setItem("deck", JSON.stringify(deck));
         toast.success("Deck Successfully Saved");
@@ -182,18 +178,22 @@ class DeckBuilder extends Component {
      * Sort the current decklist based on the listed names
      */
     onSortAZ = () => {
-        const { deckList } = this.state;
-        deckList.sort(compare.alpha);
-        this.setState({ deckList });
+        const { deck } = this.state;
+        deck.list.main.sort(compare.alpha);
+        deck.list.side.sort(compare.alpha);
+        deck.list.misc.sort(compare.alpha);
+        this.setState({ deck });
     }
 
     /**
      * Sort the current decklist based on the converted mana costs
      */
     onSortMana = () => {
-        const { deckList } = this.state;
-        deckList.sort(compare.cmc);
-        this.setState({ deckList });
+        const { deck } = this.state;
+        deck.list.main.sort(compare.cmc);
+        deck.list.side.sort(compare.cmc);
+        deck.list.misc.sort(compare.cmc);
+        this.setState({ deck });
     }
 
     addBasicLand = (land) => {
