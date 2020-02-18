@@ -1,13 +1,13 @@
 import React from 'react';
 import 'bootstrap/js/dist/dropdown';
 
-const ButtonDropDown = ({ buttonlabel, labels, onClickHandler}) => {
+const ButtonDropDown = ({ buttonlabel, labels, onClickHandler }) => {
     return (  
-        <div class="btn-group">
+        <div className = "btn-group">
             <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {buttonlabel}
             </button>
-            <div class="dropdown-menu">
+            <div className = "dropdown-menu">
                 {labels.map((option, key) => {
                     return(
                         <a 
@@ -22,4 +22,3 @@ const ButtonDropDown = ({ buttonlabel, labels, onClickHandler}) => {
 }
  
 export default ButtonDropDown;
-

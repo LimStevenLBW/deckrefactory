@@ -15,7 +15,7 @@ import SortButtons from './SortButtons';
 
 class DeckBuilder extends Component {
     state = { 
-        selectedGame: "",
+        selectedGame: "mtg",
         selectedView: "cards",
         deck: {
             info: {
@@ -32,29 +32,42 @@ class DeckBuilder extends Component {
                 misc: [],
             }
         },
-
+        endpoint: "",
         queriedCards: {},
+        queriedHeaders: {},
         displayCards: true,
     }
 
     componentDidMount() {
-        const { cards: queriedCards } = getCards();
-        this.setState({ selectedGame: "mtg", queriedCards: queriedCards });
-
-        
-        try{ //Load a saved deck
-            const data = localStorage.getItem('deck');
-            const deck = JSON.parse(data);
-            this.setState({ deck });
+        if(!sessionStorage.length) { 
+            //If storage is empty, use defaults
+            const { cards: queriedCards } = getCards();
+            this.setState({ queriedCards });
         }
-        catch(ex){}
+        else { 
+            //Get the cardbrowser gallery state from session storage
+            const currentPageNum = parseInt(sessionStorage.getItem("page"));
+            const tableString = sessionStorage.getItem(`table#${currentPageNum}`)
+            const queriedCards = JSON.parse(tableString);
+            this.setState({ queriedCards });
+        }
+      
+        try { 
+            //Load a saved deck from local storage
+            const data = localStorage.getItem('deck');
+            const endpoint = sessionStorage.getItem('baseQuery');
+            const deck = JSON.parse(data);
+            this.setState({ deck, endpoint });
+        }
+        catch(ex) {}
     }
 
     /**
-     * Updates the current card browser list
+     * Updates the current card browser list and update state
      */
-    updateQueriedCards = (queriedCards) => {
-        this.setState({ selectedGame: "mtg", queriedCards: queriedCards })
+    updateQueriedCards = (queriedCards, queriedHeaders, endpoint) => {
+        if(endpoint !== null) this.setState({ queriedCards, queriedHeaders, endpoint });
+        else this.setState({ queriedCards, queriedHeaders})
     }
 
     /**
@@ -128,6 +141,9 @@ class DeckBuilder extends Component {
                 if(shiftUp) nextListName = 'side';
                 else nextListName = 'main';
                 break;
+            default:
+                nextListName = listName; //Don't move it
+                console.error("Error occurred while editing deck list");    
         }
 
         const workingList = deck.list[nextListName];
@@ -197,22 +213,23 @@ class DeckBuilder extends Component {
     }
 
     addBasicLand = (land) => {
-        const { deckList } = this.state;
+        const deck = this.state.deck;
+
         const lands = getLands().cards;
 
         const newCard = lands.filter(cardObj => cardObj.name === land)[0];
 
         //Check if the card already exists
-        const duplicate = this.checkForDuplicate(newCard)
+        const duplicate = this.checkForDuplicate(newCard, 'main')
         if(duplicate !== false){
-            deckList[duplicate].quantity++;
+            deck.list.main[duplicate].quantity++;
         }
         else{
             newCard["quantity"] = 1;
-            deckList.push(newCard);
+            deck.list.main.push(newCard);
         }
         
-        this.setState({ deckList });
+        this.setState({ deck });
     }
 
     onSelectedView = (viewName) => {
@@ -232,7 +249,7 @@ class DeckBuilder extends Component {
     }
 
     render() { 
-        const { selectedGame, queriedCards, deck, selectedView } = this.state;
+        const { selectedGame, queriedCards, queriedHeaders, deck, selectedView, endpoint } = this.state;
         const { list: deckList } = deck;
 
         return ( 
@@ -279,7 +296,11 @@ class DeckBuilder extends Component {
                         <CardBrowser 
                             selectedGame = { selectedGame }
                             cardList = { queriedCards } 
+                            endpoint = { endpoint }
+                            headersList = { queriedHeaders }
                             addNewCard = { this.addNewCard }
+                            updateQueriedCards = { this.updateQueriedCards }
+                            
                         /> : 
                         <ChartBrowser
                             deckList = { deckList.main } //Only main deck is analyzed

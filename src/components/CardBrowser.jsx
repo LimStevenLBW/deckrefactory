@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CardRow from './common/CardRow';
+import Pagination from './common/Pagination';
+import { pageChange } from '../services/mtgSearch';
 
 class CardBrowser extends Component {
     constructor(props){
@@ -7,31 +9,71 @@ class CardBrowser extends Component {
 
         this.state = {
             table: [],
+            currentPageNum: 1,
+            itemsCount: 16,
+            pageSize: 16,
         }
     }
 
     componentDidMount() {
-        try{
-            const tableString = sessionStorage.getItem("table");
-            if(tableString) {
-                const table = JSON.parse(tableString);
-                this.setState({ table });
-            }
-        }
-        catch(ex){}
+
     }
 
+    /**
+     * Ensures updating is repeatedly handled when a new prop card list is received
+     */
     componentDidUpdate(prevProps) {
-        if (this.props !== prevProps) {
-            this.generateTable();
+        const cardList = this.props.cardList;
+        const headers = this.props.headersList;
+
+        //When a new cardList is received, schedule a new update
+        if (cardList !== prevProps.cardList) {
+            let table; 
+            let currentPageNum;
+            let itemsCount;
+
+            //Default case: if a list is passed from props, we use it to generate the table
+            //The default list won't be passed if session storage contains values
+            if(Object.keys(cardList).length) { 
+
+                currentPageNum = parseInt(sessionStorage.getItem("page"));
+                itemsCount = parseInt(sessionStorage.getItem('count'));
+                if(!currentPageNum) currentPageNum = this.state.currentPageNum;
+                if(!itemsCount)itemsCount = this.state.itemsCount;
+                
+                table = this.generateTable(cardList);
+            }
+            else {
+                //Check if table data is in cache, if so, load it
+                try{ 
+                    //Get table and pagination data from storage if it exists
+                    currentPageNum = parseInt(sessionStorage.getItem("page"));
+                    itemsCount = parseInt(sessionStorage.getItem('count'));
+                    const tableString = sessionStorage.getItem(`table#${currentPageNum}`)
+                    const cardList = JSON.parse(tableString);
+
+                    table = this.generateTable(cardList);   
+                }
+                catch(ex){
+                    console.error(ex);
+                }
+            }
+            
+            //If the card list was retrieved from a query, new headers will set the pagination instead
+            if(Object.keys(headers).length) itemsCount = this.setPagination(this.props.headersList);
+
+            //Finally, update the gallery
+            this.setState({ table, currentPageNum, itemsCount },  
+                () => this.savePageData(this.props.cardList)); //Save into session data after rendering
         }
     }
 
-    //Generate the table based on the selected game and available images
-    generateTable = () => {
+   /**
+    * Generates a renderable table object from a json list of cards, returns the table
+    */
+    generateTable = (cardList) => {
         const colPerRow = 4; //Controls how many columns are allowed
         const table = []; //Reset the list
-        const { cardList } = this.props;
         const dataLength = 16; //Object.keys(cardList).length;
 
         //Iterate through data
@@ -60,9 +102,8 @@ class CardBrowser extends Component {
             
             table.push(newRow); //Add each assembled row to the final table
         }
-        
-        sessionStorage.setItem("table", JSON.stringify(table));
-        this.setState({ table });
+
+        return table;
     }
 
     //Maps data into a viewable object
@@ -86,8 +127,62 @@ class CardBrowser extends Component {
         return cardInfo;
     }
 
+    //Request new data from deckbuilder
+    onPageChange = (pageNumber) => {
+        //Set the current page number
+        sessionStorage.setItem('page', pageNumber);
+        this.setState({ currentPageNum: pageNumber }, () => this.getPagedData(pageNumber)); 
+    }
+
+    getPagedData = async (pageNumber) => {
+        try{
+            //First try to see if the data was already stored before
+            const tableString = sessionStorage.getItem(`table#${pageNumber}`); 
+            if(tableString) {
+                const cardList = JSON.parse(tableString);
+                const table = this.generateTable(cardList);
+                this.setState({ table });
+            }
+            else{ //Get the data from a request;
+                const endpoint = `${this.props.endpoint}page=${pageNumber}`
+                let res;
+                res = await pageChange(endpoint);
+                const { data, headers } = await res;
+                this.props.updateQueriedCards(data.cards, headers, null);
+            }
+        }
+        catch(ex){
+            alert("ERROR")
+            console.error(ex);
+        }
+    }
+
+    setPagination = (headersList) => {
+        //If the headers aren't empty, set the pagination
+        if(Object.keys(headersList).length) { 
+            const itemsCount = parseInt(headersList['total-count']);
+            //const pageSize = parseInt(headersList['page-size']);
+            
+            return itemsCount;
+        }
+        else{ //Next, try getting it from session storage
+            const itemsCount = parseInt(sessionStorage.getItem('count'));
+            return itemsCount;
+        }
+    }
+
+    savePageData = (cardList) => {
+        const pageNumber = this.state.currentPageNum;
+        const itemsCount = this.state.itemsCount;
+        const endpoint = this.props.endpoint;
+        sessionStorage.setItem(`table#${pageNumber}`, JSON.stringify(cardList)); //Cache the table
+        sessionStorage.setItem(`page`, pageNumber); //Save the current page number 
+        sessionStorage.setItem('count', itemsCount);
+        if(endpoint) sessionStorage.setItem('baseQuery', endpoint);
+    }
+
     render() { 
-        const { table } = this.state;
+        const { table, currentPageNum, itemsCount, pageSize } = this.state;
 
         if(table.length > 0){
             return ( 
@@ -101,11 +196,20 @@ class CardBrowser extends Component {
                             />);
                         })} 
                     </div>
+
+                    <div className = "row">
+                        <Pagination 
+                            onPageChange = {this.onPageChange}
+                            itemsCount = {itemsCount}
+                            pageSize = {pageSize}
+                            currentPageNum = {currentPageNum}
+                        />
+                    </div>
                 </React.Fragment>
             );
         }
 
-        return  (<div class="alert alert-warning" role="alert">
+        return  (<div className = "alert alert-warning" role="alert">
                     . . . Attempting to load table
                 </div>);
            

@@ -4,7 +4,7 @@ const FormSearchBar = ({ name, onChange, onSubmit, isLoading }) => {
     return (  
         <form onSubmit = {(e) => onSubmit(e)}>
             
-            <div class="input-group">
+            <div className = "input-group">
                 <input
                     disabled = { isLoading }
                     type = "text"
@@ -14,11 +14,11 @@ const FormSearchBar = ({ name, onChange, onSubmit, isLoading }) => {
                     onChange = {(e) => onChange(e)}
                 />
 
-                <div class="input-group-append  my-3">
+                <div className = "input-group-append  my-3">
                     <button 
                         disabled = { isLoading }
-                        class="btn btn-outline-secondary" 
-                        type="button"
+                        className = "btn btn-outline-secondary" 
+                        type = "button"
                         onClick = { (e) => onSubmit(e) }>Search
                     </button>
                 </div>

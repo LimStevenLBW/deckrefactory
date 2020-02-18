@@ -6,10 +6,10 @@ import { toast } from 'react-toastify';
 //Example Consumption https://api.magicthegathering.io/v1/cards?colors=red,blue&cmc=3&pageSize=1&page=1
 
 /**
- * Returns search response
+ * Returns the first page of a search response
  */
-export function search(dataObj, pageSize, page){
-    const endpoint = buildEndpoint(dataObj, pageSize, page);
+export function search(endpoint){
+    endpoint = `${endpoint}page=${1}`; //Get the first page
     
     //return http.get(endpoint);
     const toastId = toast.info("Searching for new cards... Please Wait", { hideProgressBar: true, autoClose: false });
@@ -26,9 +26,23 @@ export function search(dataObj, pageSize, page){
 }
 
 /**
+ * 
+ */
+export function pageChange(endpoint) {
+   const toastId = toast.info("Searching for new cards... Please Wait", { hideProgressBar: true, autoClose: false });
+    return http.request({
+      method: "get", 
+      url: endpoint,  
+    }).then (data => {
+      toast.dismiss(toastId);
+      return data;
+    });
+}
+
+/**
  * Helps completes a get request to magic.io using provided query data
  */
-function buildEndpoint({ format, type, cmc , query, colors }, pageSize, page ) {
+export function buildEndpoint({ format, type, cmc , query, colors }, pageSize) {
     let url = mtgIO;
 
     if(query) url = `${url}name=${query}&`;
@@ -46,7 +60,6 @@ function buildEndpoint({ format, type, cmc , query, colors }, pageSize, page ) {
     }
 
     url = `${url}pageSize=${pageSize}&`;
-    url = `${url}page=${page}`;
     //if(url[url.length-1] === '&') url = url.substring(0, url.length - 1);
     
     return url;

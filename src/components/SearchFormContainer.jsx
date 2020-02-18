@@ -4,7 +4,7 @@ import FormSearchBar from './common/FormSearchBar';
 import FormSelect from './common/FormSelect';
 import FormColors from './common/FormColors';
 import ButtonDropDown from './common/ButtonDropDown';
-import { search } from '../services/mtgSearch';
+import { search, buildEndpoint } from '../services/mtgSearch';
 
 /**
  * Extends Form Container, renders forms for initiating an advanced search
@@ -69,26 +69,19 @@ import { search } from '../services/mtgSearch';
         try{
             let res;
             this.setState({ isLoadingData: true }, async () => {
-
-                res = await search(this.state.data, 16, 1)
-                console.log(res)
-                console.log(JSON.stringify(res))
-                const { data } = await res;
-                this.props.updateQueriedCards(data.cards);
-                this.setState({ isLoadingData: false })
-                //console.log(res);
-               // console.log("promise:-- " , data);
-               // console.log("cards:--" , data.cards);
+                const endpoint = buildEndpoint(this.state.data, 16);
+                res = await search(endpoint)
+                const { data, headers } = await res;
+                this.props.updateQueriedCards(data.cards, headers, endpoint);
+                this.setState({ isLoadingData: false });
+                sessionStorage.clear(); //Clear out the session data, removing any stored tables
             })
         }
         catch(ex){
-            this.setState({ isLoadingData: false })
+            this.setState({ isLoadingData: false });
             console.log(ex);
             console.log("error occurred")
         }
-      //  console.log(Object.keys(promise.data));
-        //console.log(JSON.stringify(promise.data));
-       
     }
 
     render() { 

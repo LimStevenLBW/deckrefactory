@@ -25,7 +25,7 @@ class SideBarItem extends Component {
                 <div 
                     className = "w-100 sb-item glow-anim list-group-item d-flex justify-content-between align-items-center p-1"
                     onClick = {() => {
-                        onLeftSelect(item);
+                        onLeftSelect(item, listName);
                     }}
                     onContextMenu = {(e) => {
                         onRightSelect(e, item, listName); //e is provided to prevent context menu from opening, listname is needed to know which list to add to
