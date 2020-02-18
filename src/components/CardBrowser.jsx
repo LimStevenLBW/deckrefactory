@@ -85,7 +85,7 @@ class CardBrowser extends Component {
                 let columnItem;
 
                 if(j >= dataLength) { //No data/card available
-                    columnItem = this.mapToViewData(null,`${i},${j}`); 
+                    columnItem = this.mapToViewData(null,`${i},${j}empty`); 
                 }
                 else{ //Acquire data and map to card model
                     const data = this.getCard(cardList, j);

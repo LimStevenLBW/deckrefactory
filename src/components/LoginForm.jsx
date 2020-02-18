@@ -4,6 +4,9 @@ import FormInput from './common/FormInput';
 import Joi from 'joi';
 import FormButton from './common/FormButton';
 import auth from '../services/auth';
+import './LoginForm.scss'
+import bannerLeft from '../images/banner-left2.jpg';
+import bannerRight from '../images/banner-right2.jpg';
 
 class LoginForm extends FormContainer {
     state = {
@@ -49,8 +52,13 @@ class LoginForm extends FormContainer {
 
     render() { 
         return (  
-            <div className = "container w-50 mt-3 light">
-                 <form onSubmit = {this.handleSubmit}>
+            <div className = "container w-50 light">
+
+                <img className = "banner-fixed-left" src = {bannerLeft} alt = ""></img>
+
+                <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
+            
+                 <form className = "pt-5" onSubmit = {this.handleSubmit}>
                      <h1>Login</h1>
 
                     <FormInput 

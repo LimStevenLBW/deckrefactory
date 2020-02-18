@@ -5,6 +5,9 @@ import Joi from 'joi';
 import FormButton from './common/FormButton';
 import userService from '../services/register';
 import auth from '../services/auth';
+
+import bannerLeft from '../images/banner-left.jpg';
+import bannerRight from '../images/banner-right.jpg';
 import './RegisterForm.scss';
 
 class RegisterForm extends FormContainer {
@@ -78,50 +81,55 @@ class RegisterForm extends FormContainer {
 
     render() {
         return (
-            <div className = "container w-50 mt-3 light">
-                <h1>Register</h1>
+            <div className = "container w-50 light">
 
-                <form onSubmit = {this.handleSubmit}>
-                    <FormInput 
-                        name = 'email'
-                        type = 'text'
-                        handler = {this.handleChange}
-                        label = "Email Address"
-                        error = {this.state.errors['email']}
-                    />
-
-                    <FormInput 
-                        name = 'username'
-                        type = 'text'
-                        handler = {this.handleChange}
-                        label = "Nickname"
-                        error = {this.state.errors['username']}
-                    />
-
-                    <FormInput 
-                        name = 'password'
-                        type = 'password'
-                        handler = {this.handleChange}
-                        label = "Password"
-                        error = {this.state.errors['password']}
-                    />
-
-                    <FormInput 
-                        name = 'confirmation'
-                        type = 'password'
-                        handler = {this.handleChange}
-                        label = "Confirm Password"
-                        error = {this.state.errors['confirmation']}
-                    />
-
-                    <FormButton 
-                        classList = ""
-                        checkValidity = {this.validateAll}
-                        label = {"Submit"}
-                        onSubmit = {this.handleSubmit}
-                    />
-                </form>
+                <img className = "banner-fixed-left" src = {bannerLeft} alt = ""></img>
+                <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
                 
+                    <div className = "pt-4">
+                    <h1>Register</h1>
+
+                    <form onSubmit = {this.handleSubmit}>
+                        <FormInput 
+                            name = 'email'
+                            type = 'text'
+                            handler = {this.handleChange}
+                            label = "Email Address"
+                            error = {this.state.errors['email']}
+                        />
+
+                        <FormInput 
+                            name = 'username'
+                            type = 'text'
+                            handler = {this.handleChange}
+                            label = "Nickname"
+                            error = {this.state.errors['username']}
+                        />
+                
+                        <FormInput 
+                            name = 'password'
+                            type = 'password'
+                            handler = {this.handleChange}
+                            label = "Password"
+                            error = {this.state.errors['password']}
+                        />
+
+                        <FormInput 
+                            name = 'confirmation'
+                            type = 'password'
+                            handler = {this.handleChange}
+                            label = "Confirm Password"
+                            error = {this.state.errors['confirmation']}
+                        />
+
+                        <FormButton 
+                            classList = ""
+                            checkValidity = {this.validateAll}
+                            label = {"Submit"}
+                            onSubmit = {this.handleSubmit}
+                        />
+                    </form>
+                    </div>
             </div>
         );
     }

@@ -75,14 +75,14 @@ class MagicCard extends Card {
 
         return ( 
             <div key = {keyName} className = "col-sm pl-1 pr-1">
-                {this.state.imageUrl !== noImage ?
+                {(this.state.imageUrl !== noImage) && (this.state.imageUrl) ?
                     <img 
-                    className = "cardArt"
-                    src = {this.state.imageUrl} 
-                    alt = "ERROR"
-                    onClick = {this.onClick}
-                    onMouseOver = {this.onMouseOverHandler}
-                    onMouseOut = {this.onMouseOutHandler}
+                        className = "cardArt"
+                        src = {this.state.imageUrl} 
+                        alt = "ERROR"
+                        onClick = {this.onClick}
+                        onMouseOver = {this.onMouseOverHandler}
+                        onMouseOut = {this.onMouseOutHandler}
                     ></img>
                     :
                     <img 
