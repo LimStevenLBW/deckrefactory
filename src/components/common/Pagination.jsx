@@ -1,4 +1,5 @@
 import React from "react";
+import './Pagination.scss';
 
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPageNum }) => {
     const pagesCount = Math.ceil(itemsCount / pageSize); //Calculate the number of pages to display
@@ -14,7 +15,13 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPageNum }) => {
         pageButtons.push(i);
         i++;
     }
-    while(i < pagesCount);
+    while(i <= pagesCount);
+
+    let itemsEnd;
+    let itemsStart;
+    itemsEnd = pageSize * currentPageNum;
+    itemsStart = itemsEnd - pageSize + 1;
+    if(currentPageNum === pagesCount) itemsEnd = itemsCount; //If last page, set the range to be the total count
 
     return (
         <nav>
@@ -31,8 +38,8 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPageNum }) => {
                     </li>
                 ))}
                 
-                <li>
-                    Displaying {pageSize} results out of {itemsCount}
+                <li className = "page-description">
+                    Displaying results {itemsStart}-{itemsEnd} of {itemsCount}
                 </li>
             </ul>
             {/* You can't use HTML comments inside of JSX bc it thinks they are real dom nodes, but js comments can still work
