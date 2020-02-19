@@ -231,6 +231,66 @@ const cards = {
             ],
             "imageUrl": "images/artwork/thassa.jpg",
         },
+        {  
+            "name":"Fable of Owl and Wolf",
+            "manaCost":"{3}{GU}{GU}{GU}",
+            "cmc": 6,
+            "colors":[  
+                "Green", "Blue"
+            ],
+            "colorIdentity":[
+                "G", "U"
+            ],
+            "imageUrl": "images/artwork/fable.jpg",
+        },
+        {  
+            "name":"Sheoldred, Whispering One",
+            "manaCost":"{5}{B}{B}",
+            "cmc": 7,
+            "colors":[  
+                "Black"
+            ],
+            "colorIdentity":[
+                "B"
+            ],
+            "imageUrl": "images/artwork/sheoldred.jpg",
+        },
+        {  
+            "name":"Elesh Norn, Grand Cenobite",
+            "manaCost":"{5}{W}{W}",
+            "cmc": 7,
+            "colors":[  
+                "White"
+            ],
+            "colorIdentity":[
+                "W"
+            ],
+            "imageUrl": "images/artwork/elesh.jpg",
+        },
+        {  
+            "name":"Black Lotus",
+            "manaCost":"{0}",
+            "cmc": 0,
+            "colors":[  
+                "Colorless"
+            ],
+            "colorIdentity":[
+                ""
+            ],
+            "imageUrl": "images/artwork/lotus.jpg",
+        },
+        {  
+            "name":"Krenko, Mob Boss",
+            "manaCost":"{2}{R}{R}",
+            "cmc": 4,
+            "colors":[  
+                "Red"
+            ],
+            "colorIdentity":[
+                "R"
+            ],
+            "imageUrl": "images/artwork/krenko.jpg",
+        },
      ]
 }
 

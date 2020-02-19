@@ -14,10 +14,14 @@ export function getColumnChartData(deckList) {
     ];
 
     if(deckList) deckList.forEach(card => {
-        if(card.cmc){
-            if(card.cmc <= 0) dataPoints[0].y = card.quantity;
-            else if(card.cmc >= 10) dataPoints[10].y = card.quantity;
-            else dataPoints[card.cmc].y = card.quantity;
+        if(card.type)
+            if(card.type.includes('Land')) return;
+
+            if(card.name === "Black Lotus") console.log(card.cmc)
+        if(card.cmc || card.cmc == 0){
+            if(card.cmc <= 0) dataPoints[0].y += card.quantity;
+            else if(card.cmc >= 10) dataPoints[10].y += card.quantity;
+            else dataPoints[card.cmc].y += card.quantity;
         }
         
     });

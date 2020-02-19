@@ -18,7 +18,7 @@ class CardBrowser extends Component {
     componentDidMount() {
         const cardList = this.props.cardList;
         const headers = this.props.headersList;
-        this.beginUpdate(cardList, headers);
+        if(cardList.length) this.beginUpdate(cardList, headers);
     }
 
     /**

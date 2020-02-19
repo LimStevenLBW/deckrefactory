@@ -63,7 +63,7 @@ class SideBarItem extends Component {
                         alt = "ERROR"
                     >
                         <div className = "sb-item-info">
-                            <p>{item.name}</p>
+                            <p>{item.name}, Cost: {item.cmc}</p>
                             <p>{item.type}</p>
                             <p>{item.rarity}</p>
                            
