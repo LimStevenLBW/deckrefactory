@@ -3,8 +3,8 @@ import './Footer.scss'
 
 const Footer = () => {
     return (  
-        <React.Fragment>
-            <div className = "row footer-body">
+        <div className = "container-fluid footer-body text-center">
+            <div className = "row align-items-center h-100">
                 <div className = "col-12">Deck Refactory Version 0.0.1 by Steven Lim</div>
                 
             </div>
@@ -12,7 +12,7 @@ const Footer = () => {
             <div className = "row footer-credits">
                 <div className = "col-12">Last updated February 2020</div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
  

@@ -309,9 +309,7 @@ class DeckBuilder extends Component {
                 </div>
             </div>
 
-            <div className = "container-fluid text-center">
-              <Footer />
-            </div>
+            <Footer />
 
          </React.Fragment>     
         );

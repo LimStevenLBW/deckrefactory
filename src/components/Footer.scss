@@ -11,10 +11,12 @@
 
 .footer-body {
     @include swamp_theme_fg2;
-    height: 60px;
+    font-size: 18px;
+    height: 50px;
 }
 
 .footer-credits {
     @include swamp_theme_fg;
+    font-style: italic;
     height: 30px;
 }
