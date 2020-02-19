@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import DeckBuilder from './components/DeckBuilder';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
+import Home from './components/Home';
 import NotFound from './components/NotFound';
 import Logout from './components/Logout';
 
@@ -48,6 +49,7 @@ class App extends Component {
         <Navbar user = { this.state.user }/>
 
         <Switch>
+            <Route path = "/home" component = {Home} />
             <Route path = "/builder" component = {DeckBuilder} />
             <Route 
               path = "/register" 
@@ -62,7 +64,7 @@ class App extends Component {
               render={(props) => <Logout {...props} resetAuth = {this.resetAuthStatus} />}
             />
             <Route path = "/notfound" component = {NotFound} />
-            <Redirect from = "/" exact to = "/builder" />
+            <Redirect from = "/" exact to = "/home" />
             <Redirect to = "/notfound" />
           </Switch>
       </div>
