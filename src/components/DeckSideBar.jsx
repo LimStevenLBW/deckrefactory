@@ -60,7 +60,7 @@ const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, sele
                 {deckList.side.map((item, index) => (
                     <SideBarItem 
                         item = { item }
-                        key = { index }
+                        key = { index + item.quantity }
                         textProperty = { textProperty }
                         onLeftSelect = { onLeftSelect }
                         onRightSelect = { onRightSelect }

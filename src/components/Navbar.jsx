@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import navbarIcon from '../images/navbar.png'
 import './Navbar.scss'
 
 const Navbar = ({ user }) => {
     return (
         <nav className = "navbar-bg navbar navbar-expand-lg navbar-light">
+
             <Link
-                className="navbar-brand"
+                className="navbar-brand pl-4"
                 to="/">
                 DeckRefactory
             </Link>
+
+            <img className = "navbarIcon" src = {navbarIcon} alt = "">
+            </img>
 
             <button
                 className="navbar-toggler"
@@ -20,8 +25,8 @@ const Navbar = ({ user }) => {
                 <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
+            <div className="collapse navbar-collapse pr-4" id="navbarSupportedContent">
+                <ul className="navbar-nav ml-auto"> {/*Set ml-auto to right align*/}
                     <li className="nav-item">
                         <NavLink
                             className="nav-link"

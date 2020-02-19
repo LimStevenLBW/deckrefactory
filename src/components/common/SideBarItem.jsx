@@ -4,9 +4,46 @@ import './SideBarItem.scss';
 
 class SideBarItem extends Component {
     state = {  
+        quantity: this.props.item.quantity,
         isTooltipVisible: false,
+        isPlayingAnim: false,
+        classList: this.baseClassList
     }
 
+    baseClassList = "w-100 sb-item list-group-item d-flex justify-content-between align-items-center p-1"
+
+    componentDidMount(){
+        this.playAnimation();
+     //   this.setState({quantity: this.props.item.quantity})
+    }
+    
+    //Watch for changes to quantity and set the state, triggering component did update
+    static getDerivedStateFromProps(nextProps, prevState) {
+        //if(nextProps.item.quanty)
+        if (
+          prevState.quantity !== nextProps.item.quantity
+        ) {
+          return {
+            quantity: nextProps.item.quantity
+          };
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.quantity !== this.state.quantity){
+            this.playAnimation();
+        }
+    }
+    
+    
+    /*
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.item !== prevProps.item) {
+            console.log('hello?')
+            this.playAnimation();
+        }
+    }
+*/
     onMouseOverHandler = () => {
         this.setState({isTooltipVisible: true})
     }
@@ -15,15 +52,41 @@ class SideBarItem extends Component {
         this.setState({isTooltipVisible: false})
     }
 
+    playAnimation = () => {
+        const classList = [(this.baseClassList)]; 
+        //console.log(classList)
+        
+        /*
+        if(this.state.isPlayingAnim){
+            //Reset the animation
+            this.setState({ classList: this.baseClassList }, ()=> {
+                classList.push("glow-anim");
+            });
+        */
+        classList.push("glow-anim"); //Play the animation
+        
+        
+        this.setState({classList: classList.join(' '), isPlayingAnim: true});  
+    }
+
+    onAnimationEndHandler = () => {
+        this.setState({
+            isPlayingAnim: false, 
+            classList: "w-100 sb-item list-group-item d-flex justify-content-between align-items-center p-1"
+        });
+    }
+
+
     render() { 
         const { item, textProperty, onLeftSelect, onRightSelect, onShiftClick, listName } = this.props;
-
+        
         return (  
             <li
                 className = "sb-item-container d-flex align-items-center"
             >
                 <div 
-                    className = "w-100 sb-item glow-anim list-group-item d-flex justify-content-between align-items-center p-1"
+                    className = {this.state.classList}
+                    onAnimationEnd = {this.onAnimationEndHandler}
                     onClick = {() => {
                         onLeftSelect(item, listName);
                     }}

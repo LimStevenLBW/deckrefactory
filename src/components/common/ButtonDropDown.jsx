@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/js/dist/dropdown';
+import './ButtonDropDown.scss'
 
 const ButtonDropDown = ({ buttonlabel, labels, onClickHandler }) => {
     return (  
