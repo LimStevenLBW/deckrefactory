@@ -16,7 +16,9 @@ class CardBrowser extends Component {
     }
 
     componentDidMount() {
-
+        const cardList = this.props.cardList;
+        const headers = this.props.headersList;
+        this.beginUpdate(cardList, headers);
     }
 
     /**
@@ -27,45 +29,48 @@ class CardBrowser extends Component {
         const headers = this.props.headersList;
 
         //When a new cardList is received, schedule a new update
-        if (cardList !== prevProps.cardList) {
-            let table; 
-            let currentPageNum;
-            let itemsCount;
+        if (cardList !== prevProps.cardList || (this.state.table.length <= 0)) {
+           this.beginUpdate(cardList, headers);
+        }
+    }
 
-            //Default case: if a list is passed from props, we use it to generate the table
-            //The default list won't be passed if session storage contains values
-            if(Object.keys(cardList).length) { 
+    beginUpdate = (cardList, headers) => {
+        let table; 
+        let currentPageNum;
+        let itemsCount;
 
+        //Default case: if a list is passed from props, we use it to generate the table
+        //The default list won't be passed if session storage contains values
+        if(Object.keys(cardList).length) { 
+            currentPageNum = parseInt(sessionStorage.getItem("page"));
+            itemsCount = parseInt(sessionStorage.getItem('count'));
+            if(!currentPageNum) currentPageNum = this.state.currentPageNum;
+            if(!itemsCount)itemsCount = this.state.itemsCount;
+            
+            table = this.generateTable(cardList);
+        }
+        else {
+            //Check if table data is in cache, if so, load it
+            try{ 
+                //Get table and pagination data from storage if it exists
                 currentPageNum = parseInt(sessionStorage.getItem("page"));
                 itemsCount = parseInt(sessionStorage.getItem('count'));
-                if(!currentPageNum) currentPageNum = this.state.currentPageNum;
-                if(!itemsCount)itemsCount = this.state.itemsCount;
-                
-                table = this.generateTable(cardList);
-            }
-            else {
-                //Check if table data is in cache, if so, load it
-                try{ 
-                    //Get table and pagination data from storage if it exists
-                    currentPageNum = parseInt(sessionStorage.getItem("page"));
-                    itemsCount = parseInt(sessionStorage.getItem('count'));
-                    const tableString = sessionStorage.getItem(`table#${currentPageNum}`)
-                    const cardList = JSON.parse(tableString);
+                const tableString = sessionStorage.getItem(`table#${currentPageNum}`)
+                const cardList = JSON.parse(tableString);
 
-                    table = this.generateTable(cardList);   
-                }
-                catch(ex){
-                    console.error(ex);
-                }
+                table = this.generateTable(cardList);   
             }
-            
-            //If the card list was retrieved from a query, new headers will set the pagination instead
-            if(Object.keys(headers).length) itemsCount = this.setPagination(this.props.headersList);
-
-            //Finally, update the gallery
-            this.setState({ table, currentPageNum, itemsCount },  
-                () => this.savePageData(this.props.cardList)); //Save into session data after rendering
+            catch(ex){
+                console.error(ex);
+            }
         }
+        
+        //If the card list was retrieved from a query, new headers will set the pagination instead
+        if(Object.keys(headers).length) itemsCount = this.setPagination(this.props.headersList);
+
+        //Finally, update the gallery
+        this.setState({ table, currentPageNum, itemsCount },  
+            () => this.savePageData(this.props.cardList)); //Save into session data after rendering
     }
 
    /**
@@ -157,6 +162,16 @@ class CardBrowser extends Component {
         }
     }
 
+    savePageData = (cardList) => {
+        const pageNumber = this.state.currentPageNum;
+        const itemsCount = this.state.itemsCount;
+        const endpoint = this.props.endpoint;
+        sessionStorage.setItem(`table#${pageNumber}`, JSON.stringify(cardList)); //Cache the table
+        sessionStorage.setItem(`page`, pageNumber); //Save the current page number 
+        sessionStorage.setItem('count', itemsCount);
+        if(endpoint) sessionStorage.setItem('baseQuery', endpoint);
+    }
+
     setPagination = (headersList) => {
         //If the headers aren't empty, set the pagination
         if(Object.keys(headersList).length) { 
@@ -169,16 +184,6 @@ class CardBrowser extends Component {
             const itemsCount = parseInt(sessionStorage.getItem('count'));
             return itemsCount;
         }
-    }
-
-    savePageData = (cardList) => {
-        const pageNumber = this.state.currentPageNum;
-        const itemsCount = this.state.itemsCount;
-        const endpoint = this.props.endpoint;
-        sessionStorage.setItem(`table#${pageNumber}`, JSON.stringify(cardList)); //Cache the table
-        sessionStorage.setItem(`page`, pageNumber); //Save the current page number 
-        sessionStorage.setItem('count', itemsCount);
-        if(endpoint) sessionStorage.setItem('baseQuery', endpoint);
     }
 
     render() { 

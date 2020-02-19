@@ -35,7 +35,6 @@ class DeckBuilder extends Component {
         endpoint: "",
         queriedCards: {},
         queriedHeaders: {},
-        displayCards: true,
     }
 
     componentDidMount() {
@@ -234,10 +233,10 @@ class DeckBuilder extends Component {
 
     onSelectedView = (viewName) => {
         if(viewName === "analysis"){
-            this.setState({ selectedView: viewName, displayCards: false })
+            this.setState({ selectedView: viewName })
         }
         else {
-            this.setState({ selectedView: viewName, displayCards: true })
+            this.setState({ selectedView: viewName })
         }
     }
 
@@ -292,7 +291,7 @@ class DeckBuilder extends Component {
 
                     <div className = "col-8">
                         
-                        {this.state.displayCards ? 
+                        {this.state.selectedView === 'cards' ? 
                         <CardBrowser 
                             selectedGame = { selectedGame }
                             cardList = { queriedCards } 

@@ -72,9 +72,10 @@ import { search, buildEndpoint } from '../services/mtgSearch';
                 const endpoint = buildEndpoint(this.state.data, 16);
                 res = await search(endpoint)
                 const { data, headers } = await res;
+                sessionStorage.clear(); //Clear out the session data, removing any stored tables before updating
+
                 this.props.updateQueriedCards(data.cards, headers, endpoint);
                 this.setState({ isLoadingData: false });
-                sessionStorage.clear(); //Clear out the session data, removing any stored tables
             })
         }
         catch(ex){
