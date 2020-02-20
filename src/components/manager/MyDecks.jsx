@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
+import SummaryCard from './SummaryCard';
 
 class MyDecks extends Component {
     state = {  }
     render() { 
         return (  
-            <div>
+            <React.Fragment>
                 <div className = "alert alert-warning" role="alert">
-                    You are currently not logged in. Login to manage your inventory!
+                    The current feature is still under construction
                 </div>
 
-            </div>
+                <div className = "container">
+                    <div className = "col-5">
+                        <SummaryCard />
+                    </div>
+
+                    <div className = "col-7">
+                        
+                    </div>
+
+                </div>
+            </React.Fragment>
         );
     }
 }
