@@ -3,7 +3,7 @@ import React from 'react';
 const Tabs = (props) => {
     const { views, onViewSelect, selectedView } = props;
     return (
-        <div className = "row">           
+        <div className = "row text-center">           
             <div className = "col-6"> 
                 <button 
                     disabled = {selectedView === "analysis"}

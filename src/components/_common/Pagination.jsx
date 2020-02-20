@@ -25,7 +25,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPageNum }) => {
 
     return (
         <nav>
-            <ul className = "pagination">
+            <ul className = "pagination ml-1">
                 {pageButtons.map(page => (
                     <li key = {page} 
                         className = {page === currentPageNum ? "page-item active" : "page-item"}

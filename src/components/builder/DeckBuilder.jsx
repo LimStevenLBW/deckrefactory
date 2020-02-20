@@ -260,7 +260,7 @@ class DeckBuilder extends Component {
                     />
                 </div>
 
-            <div className = "container pl-0 pr-0 mb-2">
+            <div className = "container-fluid pl-5 pr-5 mb-2">
                 <div className = "row mb-2">
                     <div className = "col-4"> 
                         <SortButtons 
@@ -289,7 +289,7 @@ class DeckBuilder extends Component {
                         />
                     </div>
 
-                    <div className = "col-8">
+                    <div className = "col-8 pl-1 pr-1">
                         
                         {this.state.selectedView === 'cards' ? 
                         <CardBrowser 

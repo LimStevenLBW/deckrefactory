@@ -192,7 +192,6 @@ class CardBrowser extends Component {
         if(table.length > 0){
             return ( 
                 <React.Fragment>
-                    <div className = "row">
                         {table.map((row, key) => {
                             return(
                             <CardRow 
@@ -200,16 +199,13 @@ class CardBrowser extends Component {
                                 rowData = {row}
                             />);
                         })} 
-                    </div>
 
-                    <div className = "row">
                         <Pagination 
                             onPageChange = {this.onPageChange}
                             itemsCount = {itemsCount}
                             pageSize = {pageSize}
                             currentPageNum = {currentPageNum}
                         />
-                    </div>
                 </React.Fragment>
             );
         }
