@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ManaIcons from './ManaIcons';
+import ManaIcons from '../_common/ManaIcons';
 import './SideBarItem.scss';
 
 class SideBarItem extends Component {

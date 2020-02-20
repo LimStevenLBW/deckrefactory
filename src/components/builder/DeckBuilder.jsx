@@ -260,7 +260,7 @@ class DeckBuilder extends Component {
                     />
                 </div>
 
-            <div className = "container-fluid pl-5 pr-5 mb-2">
+            <div className = "container-fluid cf-spacing mb-2">
                 <div className = "row mb-2">
                     <div className = "col-4"> 
                         <SortButtons 
