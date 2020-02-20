@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CardRow from './common/CardRow';
-import Pagination from './common/Pagination';
-import { pageChange } from '../services/mtgSearch';
+import CardRow from '../_common/CardRow';
+import Pagination from '../_common/Pagination';
+import { pageChange } from '../../services/mtgSearch';
 
 class CardBrowser extends Component {
     constructor(props){

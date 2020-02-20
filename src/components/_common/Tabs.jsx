@@ -18,7 +18,7 @@ const Tabs = (props) => {
                     disabled = {selectedView === "cards"}
                     type = "button" 
                     className = "btn btn-primary w-100"
-                    onClick = {() => onViewSelect("cards")}>Explore New Cards
+                    onClick = {() => onViewSelect("cards")}>View Card Explorer
                 </button>
             </div>      
         </div>

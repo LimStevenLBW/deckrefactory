@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from './common/Card';
-import noImage from '../images/mtgback.jpg';
+import Card from '../_common/Card';
+import noImage from '../../images/mtgback.jpg';
 import './MagicCard.scss';
 
 class MagicCard extends Card {

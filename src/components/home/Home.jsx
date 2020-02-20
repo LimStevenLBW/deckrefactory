@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.scss';
-import jumbotronImage from '../images/jumbotron.jpg';
-import jumbotronButton from '../images/navbar.png';
+import jumbotronImage from '../../images/jumbotron.jpg';
+import jumbotronButton from '../../images/navbar.png';
 
 const Home = (props) => {
     return (  

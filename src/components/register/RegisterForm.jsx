@@ -1,13 +1,13 @@
 import React from 'react';
-import FormContainer from './common/FormContainer';
-import FormInput from './common/FormInput';
+import FormContainer from '../_forms/FormContainer';
+import FormInput from '../_forms/FormInput';
 import Joi from 'joi';
-import FormButton from './common/FormButton';
-import userService from '../services/register';
-import auth from '../services/auth';
+import FormButton from '../_forms/FormButton';
+import userService from '../../services/register';
+import auth from '../../services/auth';
 
-import bannerLeft from '../images/banner-left.jpg';
-import bannerRight from '../images/banner-right.jpg';
+import bannerLeft from '../../images/banner-left.jpg';
+import bannerRight from '../../images/banner-right.jpg';
 import './RegisterForm.scss';
 
 class RegisterForm extends FormContainer {
@@ -86,7 +86,7 @@ class RegisterForm extends FormContainer {
                 <img className = "banner-fixed-left" src = {bannerLeft} alt = ""></img>
                 <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
                 
-                    <div className = "pt-4">
+                    <div className = "pt-5">
                     <h1>Register</h1>
 
                     <form onSubmit = {this.handleSubmit}>

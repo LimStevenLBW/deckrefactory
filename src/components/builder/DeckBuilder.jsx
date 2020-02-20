@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import * as compare from '../utils/compare';
+import * as compare from '../../utils/compare';
 import { toast } from 'react-toastify';
 
 import SearchFormContainer from './SearchFormContainer';
-import Tabs from './common/Tabs';
+import Tabs from '../_common/Tabs';
 import CardBrowser from './CardBrowser';
 import ChartBrowser from './ChartBrowser';
 import DeckSideBar from './DeckSideBar';
 import Footer from './Footer';
-import { getCards } from '../services/falseApi';
-import { getLands } from '../services/basicLands';
+import { getCards } from '../../services/falseApi';
+import { getLands } from '../../services/basicLands';
 import './DeckBuilder.scss';
 import SortButtons from './SortButtons';
 
@@ -56,7 +56,7 @@ class DeckBuilder extends Component {
             const data = localStorage.getItem('deck');
             const endpoint = sessionStorage.getItem('baseQuery');
             const deck = JSON.parse(data);
-            this.setState({ deck, endpoint });
+            if(deck) this.setState({ deck, endpoint });
         }
         catch(ex) {}
     }

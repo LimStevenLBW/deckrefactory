@@ -1,5 +1,5 @@
 import React from 'react';
-import MagicCard from '../MagicCard';
+import MagicCard from '../builder/MagicCard';
 
 const CardRow = ({ rowData }) => {
 

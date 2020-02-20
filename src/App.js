@@ -3,10 +3,11 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Navbar from './components/Navbar';
-import DeckBuilder from './components/DeckBuilder';
-import RegisterForm from './components/RegisterForm';
-import LoginForm from './components/LoginForm';
-import Home from './components/Home';
+import DeckBuilder from './components/builder/DeckBuilder';
+import MyDecks from './components/manager/MyDecks';
+import RegisterForm from './components/register/RegisterForm';
+import LoginForm from './components/login/LoginForm';
+import Home from './components/home/Home';
 import NotFound from './components/NotFound';
 import Logout from './components/Logout';
 
@@ -51,6 +52,7 @@ class App extends Component {
         <Switch>
             <Route path = "/home" component = {Home} />
             <Route path = "/builder" component = {DeckBuilder} />
+            <Route path = "/decks" component = {MyDecks} />
             <Route 
               path = "/register" 
               render={(props) => <RegisterForm {...props} updateAuth = {this.updateAuthStatus} />}

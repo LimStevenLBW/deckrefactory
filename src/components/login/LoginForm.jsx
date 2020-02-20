@@ -1,12 +1,12 @@
 import React from 'react';
-import FormContainer from './common/FormContainer';
-import FormInput from './common/FormInput';
+import FormContainer from '../_forms/FormContainer';
+import FormInput from '../_forms/FormInput';
 import Joi from 'joi';
-import FormButton from './common/FormButton';
-import auth from '../services/auth';
+import FormButton from '../_forms/FormButton';
+import auth from '../../services/auth';
 import './LoginForm.scss'
-import bannerLeft from '../images/banner-left2.jpg';
-import bannerRight from '../images/banner-right2.jpg';
+import bannerLeft from '../../images/banner-left2.jpg';
+import bannerRight from '../../images/banner-right2.jpg';
 
 class LoginForm extends FormContainer {
     state = {
@@ -86,7 +86,7 @@ class LoginForm extends FormContainer {
                 </form>
 
                 <p className = "text-center">
-                    Forgot your password? Shame I haven't finished the reset feature
+                    
                 </p>
             </div>
         );

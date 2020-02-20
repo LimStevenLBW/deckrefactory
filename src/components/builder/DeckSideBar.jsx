@@ -1,8 +1,8 @@
 import React from 'react';
 import 'bootstrap/js/dist/collapse';
-import SideBarItem from './common/SideBarItem';
-import CollapsableLink from './common/CollapsableLink';
-import getSum from '../utils/sum';
+import SideBarItem from '../_common/SideBarItem';
+import CollapsableLink from '../_common/CollapsableLink';
+import getSum from '../../utils/sum';
 import './DeckSideBar.scss';
 
 /**
