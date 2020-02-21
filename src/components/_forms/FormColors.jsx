@@ -82,7 +82,7 @@ class FormColors extends Component {
                             onClick = {(e) => this.toggleColor(e)}>
 
                             <img
-                                className = {color.active ? "mana-color-select" : "mana-color-select disabled"}
+                                className = {color.active ? "mana-color-select" : "mana-color-select-disabled"}
                                 src = {color.image}
                                 alt = "test">
                             </img>    

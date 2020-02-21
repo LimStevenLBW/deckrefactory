@@ -145,7 +145,7 @@ import { search, buildEndpoint } from '../../services/mtgSearch';
                         onClickHandler = {this.props.addBasicLand}
                     />
                 </div>
-                <div className = "col-4  text-center">
+                <div className = "col-4 text-center">
                     <FormColors 
                         handleColors = {this.handleColors}
                     />

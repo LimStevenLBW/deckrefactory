@@ -122,7 +122,7 @@ class SideBarItem extends Component {
 
                 {this.state.isTooltipVisible ? 
                     <span
-                        className = "tooltip"
+                        className = "sb-tooltip"
                         alt = "ERROR"
                     >
                         <div className = "sb-item-info">

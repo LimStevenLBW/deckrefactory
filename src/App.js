@@ -50,7 +50,7 @@ class App extends Component {
         <Navbar user = { this.state.user }/>
 
         <Switch>
-            <Route path = "/home" component = {Home} />
+            <Route exact path = "/" component = {Home} />
             <Route path = "/builder" component = {DeckBuilder} />
             <Route path = "/decks" component = {MyDecks} />
             <Route 
@@ -66,7 +66,7 @@ class App extends Component {
               render={(props) => <Logout {...props} resetAuth = {this.resetAuthStatus} />}
             />
             <Route path = "/notfound" component = {NotFound} />
-            <Redirect from = "/" exact to = "/home" />
+            <Redirect from = "/home" exact to = "/" />
             <Redirect to = "/notfound" />
           </Switch>
       </div>

@@ -2,14 +2,19 @@ import React from 'react';
 import './Home.scss';
 import jumbotronImage from '../../images/jumbotron.jpg';
 import jumbotronButton from '../../images/navbar.png';
+import {backend, mtgIO, env} from '../../config';
 
 const Home = (props) => {
+    console.log(process.env)
+    console.log("backend", backend);
+    console.log("mtgio", mtgIO)
+    console.log("env", env);
     return (  
         <div className="home-bg-container">
             <img className = "home-bg" src = {jumbotronImage}></img>
-            <div class="jumbotron jumbotron-fluid pt-3 pb-2">
+            <div className ="jumbotron jumbotron-fluid pt-3 pb-2">
                 
-                <div class="container">
+                <div className ="container">
                     <div className = "row">
                         <div className = "col-8 pl-5">
                             <h1 className = "display-4">Welcome to <br></br>DeckRefactory</h1>

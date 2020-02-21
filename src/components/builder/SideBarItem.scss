@@ -37,10 +37,10 @@
     border-radius: 6px;
     background-color: whitesmoke;
     padding: 3px;
-    opacity: 100% !important; //For some reason, something is setting it to zero
+
     position: absolute;
     left: -30px;
-    z-index: 0;
+    z-index: 1;
 }
 
 .sb-item-arrow {
@@ -52,20 +52,21 @@
     color: blue;
 }
 
-.tooltip{
+.sb-tooltip{
+    position: absolute;
+    display: block;
     border-radius: 6px;
     width: 220px;
     background-color: black;
     cursor: pointer;
-    opacity: 100% !important; //For some reason, something is setting it to zero
-    position: relative;
+    font-size: 0.875rem;
     right: -25%;
-    z-index: 1;
+    z-index: 1000;
     pointer-events: none; //Causes the mouse to *phase through*
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-li:hover .tooltip{
+li:hover .sb-tooltip{
     visibility: visible;
 }
 
