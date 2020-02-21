@@ -5,10 +5,10 @@ import jumbotronButton from '../../images/navbar.png';
 import {backend, mtgIO, env} from '../../config';
 
 const Home = (props) => {
-    console.log(process.env)
+    /*console.log(process.env)
     console.log("backend", backend);
     console.log("mtgio", mtgIO)
-    console.log("env", env);
+    console.log("env", env);*/
     return (  
         <div className="home-bg-container">
             <img className = "home-bg" src = {jumbotronImage}></img>
@@ -17,8 +17,8 @@ const Home = (props) => {
                 <div className ="container">
                     <div className = "row">
                         <div className = "col-8 pl-5">
-                            <h1 className = "display-4">Welcome to <br></br>DeckRefactory</h1>
-                            <p className = "lead">Create, edit, and save your Magic the Gathering decks. Find your next idea here!</p>
+                            <h1 className = "display-4">Welcome to <br />DeckRefactory</h1>
+                            <p className = "lead">Create, modify, and tune your Magic the Gathering decks. Find your next idea here!</p>
                             <p className = "lead-subtext">Click our logo on the right to get started~</p>
                         </div>
                         <div className = "col-4">
@@ -34,7 +34,7 @@ const Home = (props) => {
             
             <footer className = "footer-copyright">
                 <div className = "footer-copyright-text"> 
-                    "This is an unofficial fansite permitted under the fan content policy. Portions of the materials used are property of ©Wizards of the Coast LLC.”
+                    "This is an unofficial fansite. Materials used are property of ©Wizards of the Coast LLC.”
                 </div>
             </footer>
 

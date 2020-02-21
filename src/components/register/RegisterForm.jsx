@@ -86,7 +86,7 @@ class RegisterForm extends FormContainer {
                 <img className = "banner-fixed-left" src = {bannerLeft} alt = ""></img>
                 <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
                 
-                    <div className = "pt-5">
+                    <div className = "pt-4">
                     <h1>Register</h1>
 
                     <form onSubmit = {this.handleSubmit}>

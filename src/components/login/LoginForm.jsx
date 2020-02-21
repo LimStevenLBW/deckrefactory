@@ -58,7 +58,7 @@ class LoginForm extends FormContainer {
 
                 <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
             
-                 <form className = "pt-5" onSubmit = {this.handleSubmit}>
+                 <form className = "pt-4" onSubmit = {this.handleSubmit}>
                      <h1>Login</h1>
 
                     <FormInput 

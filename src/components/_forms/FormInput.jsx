@@ -15,7 +15,7 @@ const FormInput = ({ name, label, handler, value, type, error }) => {
                 className = "form-control"
             />
 
-            {error && <div className = "alert alert-danger">{error}</div>}
+            {error && <div className = "alert alert-danger pt-1 pb-1">{error}</div>}
         </div>  
     );
 }
