@@ -1,6 +1,7 @@
 import React from 'react';
 import Joi from 'joi';
 import auth from '../../services/auth';
+import { NavLink } from 'react-router-dom';
 
 import FormContainer from '../_forms/FormContainer';
 import FormInput from '../_forms/FormInput';
@@ -90,50 +91,74 @@ class LoginForm extends FormContainer {
 
     render() { 
         return (  
-            <div className = "container w-50 light">
+            <div className = "container-fluid p-0 m-0 light">
+            <div className = "row no-gutters">
+                <div className = "col-3">
+                    <img className = "banner-fixed-left" src = {bannerLeft} alt = ""></img>
+                </div>
 
-                <img className = "banner-fixed-left" src = {bannerLeft} alt = ""></img>
-
-                <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
-            
-                 <form className = "pt-4" onSubmit = {this.handleSubmit}>
-                     <h1>Login</h1>
-
-                    <FormInput 
-                        name = 'email'
-                        type = 'text'
-                        handler = {this.handleChange}
-                        label = "Email Address"
-                        error = {this.state.errors['email']}
-                        value = {this.state.data['email']}
-                    />
-
-                    <FormInput 
-                        name = 'password'
-                        type = 'password'
-                        handler = {this.handleChange}
-                        label = "Password"
-                        error = {this.state.errors['password']}
-                    />
-
-                    <FormCheckbox 
-                        textValue = "Remember My Username"
-                        formID = "username-checkbox"
-                        isChecked = {this.state.isChecked}
-                        handleChecked = {this.handleChecked}
-                    />
-
-                    <FormButton 
-                        classList = "btn btn-primary mt-2 pl-4 pr-4"
-                        checkValidity = {this.validateAll}
-                        label = {"Login"}
-                        onSubmit = {this.handleSubmit}
-                    />
-                </form>
-
-                <p className = "text-center">
+                <div className = "col-6">
+                    <header className = "mb-4 mt-4">
+                        <h1>Welcome Planeswalker!</h1>
+                        <h5>Please enter your login details to sign in</h5>
+                    </header>
                     
-                </p>
+                    <form className = "login-container p-4" onSubmit = {this.handleSubmit}>
+                        <h1>Login</h1>
+
+                        <FormInput 
+                            name = 'email'
+                            type = 'text'
+                            handler = {this.handleChange}
+                            label = "Email Address"
+                            error = {this.state.errors['email']}
+                            value = {this.state.data['email']}
+                        />
+
+                        <FormInput 
+                            name = 'password'
+                            type = 'password'
+                            handler = {this.handleChange}
+                            label = "Password"
+                            error = {this.state.errors['password']}
+                        />
+
+                        <FormCheckbox 
+                            textValue = "Remember My Username"
+                            formID = "username-checkbox"
+                            isChecked = {this.state.isChecked}
+                            handleChecked = {this.handleChecked}
+                        />
+
+                        <FormButton 
+                            classList = "btn btn-primary mt-2 pl-4 pr-4"
+                            checkValidity = {this.validateAll}
+                            label = {"Login"}
+                            onSubmit = {this.handleSubmit}
+                        />
+
+                    <div className = "text-center">
+                        <NavLink
+                            className="login-nav-link"
+                            to="/register">
+                            Forgot your password? Click here to reset it (feature not yet available)
+                        </NavLink>
+
+                        <NavLink 
+                            className="login-nav-link"
+                            to="/register">
+                            Don't have an account? Click here to register!
+                        </NavLink>
+                        
+                    </div>
+
+                    </form>
+                </div>
+
+                <div className = "col-3">
+                  <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
+                </div>
+                </div>
             </div>
         );
     }

@@ -1,17 +1,33 @@
 .light {
     color: rgb(233, 237, 243);
 }
+.login-container{
+    border: 2px solid white;
+    height: 450px;
+}
+
+.login-nav-link{
+    display: block;
+    color: inherit;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.login-nav-link:hover{
+    color: grey;
+}
+
+.login-nav-link:visited{
+    color:inherit;
+}
 
 .banner-fixed-left{
-    height: 100%;
-    width: 18%;
-    position: fixed;
-    left: 0px;
+    height: 800px;
+    width: 85%;
 }
 
 .banner-fixed-right{
-    height: 100%;
-    width: 18%;
-    position: fixed;
-    right: 0px;
+    height: 800px;
+    width: 85%;
+    position: absolute;
+    right: 0;
 }
