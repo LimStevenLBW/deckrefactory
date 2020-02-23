@@ -158,6 +158,7 @@ class LoginForm extends FormContainer {
                 <div className = "col-3">
                   <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
                 </div>
+                
                 </div>
             </div>
         );

@@ -81,13 +81,17 @@ class RegisterForm extends FormContainer {
 
     render() {
         return (
-            <div className = "container w-50 light">
-
-                <img className = "banner-fixed-left" src = {bannerLeft} alt = ""></img>
-                <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
-                
-                    <div className = "pt-4">
-                    <h1>Register</h1>
+            <div className = "container-fluid p-0 m-0 light">
+            <div className = "row no-gutters">
+                <div className = "col-3">
+                    <img className = "banner-fixed-left" src = {bannerLeft} alt = ""></img>
+                </div>
+            
+                <div className = "col-6 pt-4">
+                    <header className = "mb-4 mt-4">
+                        <h1>Register</h1>
+                        <h5>Sign up for a free account to save and manage your decks!</h5>
+                    </header>
 
                     <form onSubmit = {this.handleSubmit}>
                         <FormInput 
@@ -123,13 +127,18 @@ class RegisterForm extends FormContainer {
                         />
 
                         <FormButton 
-                            classList = ""
+                            classList = "btn btn-primary mt-2 pl-4 pr-4"
                             checkValidity = {this.validateAll}
                             label = {"Submit"}
                             onSubmit = {this.handleSubmit}
                         />
                     </form>
-                    </div>
+                </div>
+
+                <div className = "col-3">
+                    <img className = "banner-fixed-right" src = {bannerRight} alt = ""></img>
+                </div>
+            </div>
             </div>
         );
     }
