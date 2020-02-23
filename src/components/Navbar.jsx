@@ -8,7 +8,7 @@ const Navbar = ({ user }) => {
         <nav className = "navbar-bg navbar navbar-expand-lg navbar-light">
 
             <Link
-                className="navbar-brand pl-4"
+                className = "navbar-brand pl-4"
                 to="/">
                 DeckRefactory
             </Link>
@@ -16,8 +16,10 @@ const Navbar = ({ user }) => {
             <img className = "navbarIcon" src = {navbarIcon} alt = "">
             </img>
 
+            <div>&nbsp; alpha preview</div>
+
             <button
-                className="navbar-toggler"
+                className = "navbar-toggler"
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbarSupportedContent"
@@ -25,17 +27,17 @@ const Navbar = ({ user }) => {
                 <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse pr-4" id="navbarSupportedContent">
-                <ul className="navbar-nav ml-auto"> {/*Set ml-auto to right align*/}
-                    <li className="nav-item">
+            <div className = "collapse navbar-collapse pr-4" id="navbarSupportedContent">
+                <ul className = "navbar-nav ml-auto"> {/*Set ml-auto to right align*/}
+                    <li className = "nav-item">
                         <NavLink
-                            className="nav-link"
+                            className = "nav-link"
                             to="/">
                             Home 
                         </NavLink>
                     </li>
 
-                    <li className="nav-item">
+                    <li className = "nav-item">
                         <NavLink
                             className="nav-link"
                             to="/builder">
@@ -44,7 +46,7 @@ const Navbar = ({ user }) => {
                     </li>
                     
 
-                    <li className="nav-item">
+                    <li className = "nav-item">
                         <NavLink
                             className="nav-link"
                             to="/decks">
@@ -55,6 +57,12 @@ const Navbar = ({ user }) => {
                     {user ? 
                     (<React.Fragment>
                         <li className="nav-item">
+                            <NavLink className="nav-link" to="/profile">
+                                Profile
+                            </NavLink>
+                        </li> 
+
+                        <li className = "nav-item">
                             <NavLink className="nav-link" to="/logout">
                                 Sign Out
                             </NavLink>
@@ -62,19 +70,25 @@ const Navbar = ({ user }) => {
                     </React.Fragment>)
                     : 
                     (<React.Fragment>
-                     <li className="nav-item">
+                     <li className = "nav-item">
                          <NavLink className="nav-link" to="/register">
                              Register
                          </NavLink>
                      </li>
 
-                     <li className="nav-item">
+                     <li className = "nav-item">
                          <NavLink className="nav-link" to="/login">
                              Login
                          </NavLink>
                      </li> 
                     </React.Fragment>)
                     }
+
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/copyright">
+                            Copyright
+                        </NavLink>
+                    </li> 
                 </ul>
             </div>
         </nav>
