@@ -7,7 +7,7 @@ const NotFound = () => {
             <div className = "alert alert-warning" role="alert">
                 Requested page was not found, maybe it's under construction?
             </div>
-            <img className = "w-50" src = {gudetama}></img>
+            <img className = "w-50" src = {gudetama} alt = "notfound"></img>
         </React.Fragment>
     );
 }

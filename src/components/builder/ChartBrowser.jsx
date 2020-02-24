@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { getColumnChartData, getPieChartData } from '../../utils/dataPoints';
-import CanvasJSReact from '../../utils/canvasjs/canvasjs.react';
+//import CanvasJSReact from '../../utils/canvasjs/canvasjs.react';
 import ColumnChart from './ColumnChart';
 import PieChart from './PieChart';
 

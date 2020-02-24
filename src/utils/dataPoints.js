@@ -17,7 +17,7 @@ export function getColumnChartData(deckList) {
         if(card.type)
             if(card.type.includes('Land')) return;
 
-        if(card.cmc || card.cmc == 0){
+        if(card.cmc || card.cmc === 0){
             if(card.cmc <= 0) dataPoints[0].y += card.quantity;
             else if(card.cmc >= 10) dataPoints[10].y += card.quantity;
             else dataPoints[card.cmc].y += card.quantity;

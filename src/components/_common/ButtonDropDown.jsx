@@ -8,13 +8,16 @@ const ButtonDropDown = ({ buttonlabel, labels, onClickHandler }) => {
             <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {buttonlabel}
             </button>
+            
             <div className = "dropdown-menu">
                 {labels.map((option, key) => {
                     return(
-                        <a 
+                        <div
                             className = "dropdown-item" key = {key} 
-                            onClick = {() => onClickHandler(option)}>{option}
-                        </a>
+                            onClick = {() => onClickHandler(option)}
+                        >
+                            Add {option}
+                        </div>
                     );
                 })}
             </div>

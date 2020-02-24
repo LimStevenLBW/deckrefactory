@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Tabs = (props) => {
-    const { views, onViewSelect, selectedView } = props;
+    const { onViewSelect, selectedView } = props;
     return (
         <div className = "row text-center">           
             <div className = "col-6"> 

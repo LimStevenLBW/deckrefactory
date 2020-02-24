@@ -2,7 +2,7 @@ import React from 'react';
 import './Home.scss';
 import jumbotronImage from '../../images/jumbotron.jpg';
 import jumbotronButton from '../../images/navbar.png';
-import {backend, mtgIO, env} from '../../config';
+//import {backend, mtgIO, env} from '../../config';
 
 const Home = (props) => {
     /*console.log(process.env)
@@ -25,7 +25,7 @@ const Home = (props) => {
                     <div 
                         onClick = {() => props.history.push('/builder')}
                         className = "jumbotron-button-container">
-                        <img className = "jumbotron-button" src = {jumbotronButton}></img>
+                        <img className = "jumbotron-button" src = {jumbotronButton} alt ="error"></img>
                     </div>      
                 </div>
             </div>
@@ -33,7 +33,7 @@ const Home = (props) => {
         </div>
         <div className = "row m-0 w-100">
                 <div className = "home-bg-container">
-                    <img className = "home-bg" src = {jumbotronImage}></img>
+                    <img className = "home-bg" src = {jumbotronImage} alt ="error"></img>
                 </div>
         </div>
 

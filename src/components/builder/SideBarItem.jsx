@@ -19,14 +19,13 @@ class SideBarItem extends Component {
     
     //Watch for changes to quantity and set the state, triggering component did update
     static getDerivedStateFromProps(nextProps, prevState) {
-        //if(nextProps.item.quanty)
-        if (
-          prevState.quantity !== nextProps.item.quantity
-        ) {
+        //if(nextProps.item.quantity)
+        if (prevState.quantity !== nextProps.item.quantity) {
           return {
             quantity: nextProps.item.quantity
           };
         }
+        return null;
     }
 
     componentDidUpdate(prevProps, prevState) {
