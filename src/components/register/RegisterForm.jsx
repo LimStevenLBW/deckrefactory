@@ -88,12 +88,12 @@ class RegisterForm extends FormContainer {
                 </div>
             
                 <div className = "col-6 pt-4">
-                    <header className = "mb-4 mt-4">
-                        <h1>Register</h1>
-                        <h5>Sign up for a free account to save and manage your decks!</h5>
+                    <header className = "mb-4">
+                        <h2>Register</h2>
+                        <p>Sign up for a free account to save and manage your decks!</p>
                     </header>
-
-                    <form onSubmit = {this.handleSubmit}>
+                    
+                    <form className = "pl-4 pr-4" onSubmit = {this.handleSubmit}>
                         <FormInput 
                             name = 'email'
                             type = 'text'

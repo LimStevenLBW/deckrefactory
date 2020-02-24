@@ -99,12 +99,12 @@ class LoginForm extends FormContainer {
 
                 <div className = "col-6">
                     <header className = "mb-4 mt-4">
-                        <h1>Welcome Planeswalker!</h1>
-                        <h5>Please enter your login details to sign in</h5>
+                        <h2>Welcome Planeswalker!</h2>
+                        <p>Please enter your login details to sign in</p>
                     </header>
                     
-                    <form className = "login-container p-4" onSubmit = {this.handleSubmit}>
-                        <h1>Login</h1>
+                    <form className = "login-container pl-5 pr-5 pt-4" onSubmit = {this.handleSubmit}>
+                        <h2>Login</h2>
 
                         <FormInput 
                             name = 'email'

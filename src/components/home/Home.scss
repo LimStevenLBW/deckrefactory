@@ -1,3 +1,46 @@
+#home-color{
+    background-color: #e3e7f0;
+}
+
+.home-bg-container{
+ 
+}
+
+.home-bg {
+    pointer-events: none;
+    z-index: -1;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.welcome-heading {
+    font-size: 4.2rem;
+    font-weight: 325;
+    line-height: 1.2;
+    color: rgb(36, 21, 131);
+}
+
+.welcome-descript {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.subtext{
+    color: rgb(36, 21, 131);
+    text-align: right;
+    padding: 0px 43px 0px 0px;
+    margin: 0px;
+}
+
+.jumbotron-home {
+    font-size: 24px;
+}
+
+p.lead{
+    margin-bottom: .5rem;
+}
+
 .footer-copyright{
     position: fixed;
     bottom: 10px;
@@ -14,46 +57,23 @@
     color: whitesmoke;
 }
 
-.lead-subtext{
-    color: black;
-    text-align: right;
-    padding: 0px 25px 0px 0px;
-    margin: 0px;
-}
-
-p.lead{
-    margin-bottom: .5rem;
-}
-
-.home-bg-container{
-    position: fixed;
-    height: 100%;
-    width: 100%;
-}
-
-.home-bg{
-    pointer-events: none;
-    z-index: -1;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
-
 .jumbotron-button{
     height: 100%;
     width: 100%;
 }
 
-.jumbotron-button-border{
+.jumbotron-button-container{
     height: 200px;
     width: 200px;
     border-radius: 50%;
     border: 3px solid black;
     padding: 20px;
-    margin: auto;
+    margin-top: 55px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.jumbotron-button-border:hover{
+.jumbotron-button-container:hover{
     cursor: pointer;
     -webkit-box-shadow: 0px 0px 40px 0px rgba(190, 95, 17,1);
     -moz-box-shadow: 0px 0px 40px 0px rgba(190, 95, 17,1);
