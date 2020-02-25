@@ -118,7 +118,7 @@ const ManaIcons = ({ mana }) => {
                 case 'X': src = manaX; break; //X
                 default:
                     src = null;
-                    console.log('ERROR SRC');
+                    //console.log(mana);
             }
 
         if(src) srcList.push(src);

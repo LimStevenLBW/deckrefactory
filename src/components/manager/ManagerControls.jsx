@@ -8,12 +8,13 @@ import './ManagerButtons.scss';
 /**
  * 
  */
-const ManagerControls = ({ history }) => {
+const ManagerControls = ({ history, onSave, onDelete }) => {
     return (  
         <React.Fragment>
             <div className = "col-3 text-center">
                 <button
-                    className = "manager-btn">
+                    className = "manager-btn"
+                    onClick = {onDelete}>
                     <img className = "manager-btn-img" src = {trash} alt = ""></img>
                     <label>Delete</label>
                 </button>
@@ -21,7 +22,8 @@ const ManagerControls = ({ history }) => {
             
             <div className = "col-3 text-center">
                 <button
-                    className = "manager-btn">
+                    className = "manager-btn"
+                    onClick = {onSave}>
                     <img className = "manager-btn-img" src = {floppy} alt = ""></img>
                     <label>Save</label>
                 </button>

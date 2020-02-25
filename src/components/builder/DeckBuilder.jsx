@@ -229,7 +229,7 @@ class DeckBuilder extends Component {
     }
 
     addBasicLand = (land) => {
-        const deck = this.state.deck;
+        let deck = this.state.deck;
 
         const lands = getLands().cards;
 
@@ -245,6 +245,7 @@ class DeckBuilder extends Component {
             deck.list.main.push(newCard);
         }
         
+        deck = this.updateCounts(deck);
         this.setState({ deck });
     }
 

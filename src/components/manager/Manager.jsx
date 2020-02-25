@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import SummaryCard from './SummaryCard';
 import DeckGridSelector from './DeckGridSelector';
 import ManagerControls from './ManagerControls';
 import Banner from './Banner';
 
 import './Manager.scss'
+import NameEdit from './NameEdit';
 
 /**
  * Two column layout page, highlights a selected deck with a summary
@@ -26,6 +28,29 @@ class Manager extends Component {
         if(deck) this.setState({ deck });
     }
 
+    onNameChange = (e) => {
+        e.preventDefault();
+        const name = e.currentTarget.value;
+        const deck = this.state.deck;
+        deck.info.name = name;
+        this.setState({ deck });
+    }
+
+    onSaveHandler = () => {
+        const deck = this.state.deck;
+
+        localStorage.setItem("deck", JSON.stringify(deck));
+        toast.success("Deck Successfully Saved");
+    }
+
+    onDeleteHandler = () => {
+        const shouldDelete = window.confirm("This is a destructive action, are you sure you want to delete your deck?");
+        if(shouldDelete) {
+            localStorage.removeItem('deck');
+            toast.warn("Deck Was Deleted")
+        }
+    }
+
     render() { 
         return (  
             <React.Fragment>
@@ -37,17 +62,20 @@ class Manager extends Component {
                     <div className = "row no-gutters manager">
                         <div className = "col-6 white-overlay">
                             <div className = "row justify-content-center ml-0 mr-0 mt-3 mb-2">
-                                <ManagerControls history = {this.props.history}/>
+                                <ManagerControls 
+                                    history = {this.props.history}
+                                    onSave = {this.onSaveHandler}
+                                    onDelete = {this.onDeleteHandler}
+                                />
                             </div>
 
                             <div className = "row justify-content-center m-0">
-                                <h3>
-                                    {this.state.deck.info.name ? this.state.deck.info.name : "Unnamed Deck"}
-                                </h3>
+                                <NameEdit name = {this.state.deck.info.name} 
+                                    onNameChange = {this.onNameChange}/>
                             </div>
 
                             <div className = "row ml-0 mr-0 mb-5">
-                                <SummaryCard deck = {this.state.deck}/>
+                                <SummaryCard deckInfo = {this.state.deck.info}/>
                             </div>
                         </div>
     

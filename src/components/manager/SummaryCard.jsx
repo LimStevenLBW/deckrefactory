@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './SummaryCard.scss';
-import SummaryListItem from './SummaryListItem';
+//import SummaryListItem from './SummaryListItem';
 import EditableListItem from '../_common/EditableListItem';
 import manaC from '../../images/mana/C.svg';
 
@@ -46,6 +46,8 @@ class SummaryCard extends Component {
 
         /*
         */
+
+        const { deckInfo } = this.props;
         return (  
             <div className = "summary-card">
                 <img className = "summary-color-img" src = {manaC} alt = ""></img>
@@ -61,11 +63,11 @@ class SummaryCard extends Component {
                         label = "Playstyle"
                         textValue = "Control, Aggro"
                     />
-                    <li className ="summary-li-item">Average Mana Cost: 2.43</li>
-                    <li className ="summary-li-item">Colors: Mono-Blue</li>
-                    <li className ="summary-li-item">Main Deck: 60 Cards</li>
-                    <li className ="summary-li-item">Side Deck: 16 Cards</li>
-                    <li className ="summary-li-item">Misc Deck: 6 Cards</li>
+                    <li className ="summary-li-item">Average Mana Cost: </li>
+                    <li className ="summary-li-item">Colors: </li>
+                    <li className ="summary-li-item">Main Deck: {deckInfo.mainCnt}</li>
+                    <li className ="summary-li-item">Side Deck: {deckInfo.sideCnt}</li>
+                    <li className ="summary-li-item">Misc Deck: {deckInfo.miscCnt}</li>
                     <li className ="summary-li-item">Last Updated 2/24/2020</li>
                 </ul>
             </div>
