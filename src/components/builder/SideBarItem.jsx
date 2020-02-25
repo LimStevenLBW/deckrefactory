@@ -62,8 +62,7 @@ class SideBarItem extends Component {
             });
         */
         classList.push("glow-anim"); //Play the animation
-        
-        
+           
         this.setState({classList: classList.join(' '), isPlayingAnim: true});  
     }
 

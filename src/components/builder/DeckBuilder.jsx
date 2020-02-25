@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as compare from '../../utils/compare';
 import { toast } from 'react-toastify';
+import getSum from '../../utils/sum';
 
 import SearchFormContainer from './SearchFormContainer';
 import Tabs from '../_common/Tabs';
@@ -21,11 +22,13 @@ class DeckBuilder extends Component {
             info: {
                 name: "",
                 format: "",
+                playstyle: "",
                 description: "",
                 author: "",
                 lastUpdated: "",
                 cmc: 0,
                 color: "",
+                updated: "",
             },
             list: {
                 main: [],
@@ -77,12 +80,20 @@ class DeckBuilder extends Component {
         this.setState({ deckList });
     }
 
+    updateCounts = (deck) => {
+        //Calculate deck count values
+        deck.info.mainCnt = getSum(deck.list.main);
+        deck.info.sideCnt = getSum(deck.list.side);
+        deck.info.miscCnt = getSum(deck.list.misc);
+        return deck;
+    }
+
     /**
      * Add a new card into a named section of the decklist, defaulting to main
      * If a duplicate exists, quantity is updated instead, Deck state is updated to trigger a re-render
      */
     addNewCard = (newCard, listName = 'main') => {
-        const deck = this.state.deck;
+        let deck = this.state.deck;
         const workingList = deck.list[listName];
         
         //Check if the card already exists
@@ -96,6 +107,8 @@ class DeckBuilder extends Component {
         }
         
         deck.list[listName] = workingList;
+
+        deck = this.updateCounts(deck);
         this.setState({ deck });
     }
 
@@ -105,7 +118,7 @@ class DeckBuilder extends Component {
      */
     removeCard = (event, selectedCard, listName) => {
         if(event) event.preventDefault();
-        const deck = this.state.deck;
+        let deck = this.state.deck;
         const workingList = deck.list[listName];
 
         //Check if more than one copy exists, if so, just decrement the counter instead of removing
@@ -119,6 +132,8 @@ class DeckBuilder extends Component {
         }
         
         deck.list[listName] = workingList;
+
+        deck = this.updateCounts(deck);
         this.setState({ deck });
     }
 
@@ -126,7 +141,7 @@ class DeckBuilder extends Component {
      * 
      */
     shiftCardHandler = (event, selectedCard, listName, shiftUp = true) => {
-        const deck = this.state.deck;
+        let deck = this.state.deck;
         let nextListName;
         switch(listName) {
             case 'main':
@@ -161,6 +176,7 @@ class DeckBuilder extends Component {
 
             prevList.splice(prevList.indexOf(selectedCard), 1); //Remove it from the previous list
             deck.list[nextListName] = workingList;
+            deck = this.updateCounts(deck);
             this.setState({ deck });
         }
         else { //Otherwise, use standard evaluation for removal, only move one at a time
@@ -251,6 +267,7 @@ class DeckBuilder extends Component {
     render() { 
         const { selectedGame, queriedCards, queriedHeaders, deck, selectedView, endpoint } = this.state;
         const { list: deckList } = deck;
+        const { info: deckInfo } = deck;
 
         return ( 
             <React.Fragment>
@@ -283,6 +300,7 @@ class DeckBuilder extends Component {
                     <div className = "col-4"> 
                         <DeckSideBar 
                             deckList = { deckList } 
+                            deckInfo = {deckInfo}
                             textProperty = "name"
                             onLeftSelect = { this.addNewCard }
                             onRightSelect = { this.removeCard }

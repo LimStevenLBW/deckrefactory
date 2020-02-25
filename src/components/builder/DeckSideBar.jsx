@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/js/dist/collapse';
 import SideBarItem from './SideBarItem';
 import CollapsableLink from '../_common/CollapsableLink';
-import getSum from '../../utils/sum';
 import './DeckSideBar.scss';
 
 /**
@@ -15,19 +14,16 @@ const main = "mainCollapseTarget";
 const side = "sideCollapseTarget";
 const misc = "miscCollapseTarget";
 
-const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, selectedItem, onShiftClick }) => {
-    //Calculate deck count values
-    const mainCount = getSum(deckList.main);
-    const sideCount = getSum(deckList.side);
-    const miscCount = getSum(deckList.misc);
+const DeckSideBar = ({ deckList, deckInfo, textProperty, onLeftSelect, onRightSelect, selectedItem, onShiftClick }) => {
 
+    const {mainCnt, sideCnt, miscCnt} = deckInfo;
     return ( 
     //Note: The index is used as the key property for now, this may introduce bugs
     <div className = "mh-100 decksidebar border border-primary rounded">
 
         <CollapsableLink 
             textProperty = "Main Deck" 
-            valueProperty = {mainCount} 
+            valueProperty = {mainCnt} 
             classModifier = "btn-primary"
             target = {main}
         />
@@ -50,7 +46,7 @@ const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, sele
 
         <CollapsableLink 
             textProperty = "Sideboard" 
-            valueProperty = {sideCount}
+            valueProperty = {sideCnt}
             classModifier = "btn-secondary"
             target = {side}
         />
@@ -73,7 +69,7 @@ const DeckSideBar = ({ deckList, textProperty, onLeftSelect, onRightSelect, sele
 
         <CollapsableLink 
             textProperty = "Miscellaneous" 
-            valueProperty = {miscCount}
+            valueProperty = {miscCnt}
             classModifier = "btn-secondary"
             target = {misc}
         />
