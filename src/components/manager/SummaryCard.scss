@@ -1,0 +1,39 @@
+.summary-card {
+    display: block;
+    margin: auto;
+    border: 2px solid rgb(238, 231, 231);
+    padding: 10px;
+    width: 65%;
+    background-color: rgb(223, 229, 235);
+    border-radius: 0.25rem;
+    box-shadow: 1.5px 3px rgba(193, 197, 202, 1);
+}
+
+.summary-color-img{
+    display: block;
+    margin: auto;
+    text-align: center;
+    width: 40%;
+    padding: 5px;;
+}
+
+.summary-li-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.summary-li-item{
+    position: relative;
+    display: block;
+    padding: 0.15rem .25rem;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.editable-li-item{
+    position: relative;
+    display: block;
+    padding: 0.15rem .25rem .55rem;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}

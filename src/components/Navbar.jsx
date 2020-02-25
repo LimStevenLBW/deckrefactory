@@ -41,7 +41,8 @@ const Navbar = ({ user }) => {
                         <NavLink
                             className="nav-link"
                             to="/builder">
-                            Deckbuilder <span className="sr-only">(current)</span>
+                            Build a Deck
+                            <span className="sr-only">(current)</span>
                         </NavLink>
                     </li>
                     
@@ -49,8 +50,8 @@ const Navbar = ({ user }) => {
                     <li className = "nav-item">
                         <NavLink
                             className="nav-link"
-                            to="/decks">
-                            My Decks
+                            to="/manager">
+                            Manage Decks
                         </NavLink>
                     </li>
 

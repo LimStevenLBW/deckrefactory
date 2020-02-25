@@ -34,7 +34,6 @@ class SideBarItem extends Component {
         }
     }
     
-    
     /*
     componentDidUpdate(prevProps, prevState) {
         if (this.props.item !== prevProps.item) {

@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 import Navbar from './components/Navbar';
 import DeckBuilder from './components/builder/DeckBuilder';
-import MyDecks from './components/manager/MyDecks';
+import Manager from './components/manager/Manager';
 import RegisterForm from './components/register/RegisterForm';
 import LoginForm from './components/login/LoginForm';
 import Home from './components/home/Home';
@@ -52,7 +52,7 @@ class App extends Component {
         <Switch>
             <Route exact path = "/" component = {Home} />
             <Route path = "/builder" component = {DeckBuilder} />
-            <Route path = "/decks" component = {MyDecks} />
+            <Route path = "/manager" component = {Manager} />
             <Route 
               path = "/register" 
               render={(props) => <RegisterForm {...props} updateAuth = {this.updateAuthStatus} />}

@@ -20,6 +20,7 @@ class DeckBuilder extends Component {
         deck: {
             info: {
                 name: "",
+                format: "",
                 description: "",
                 author: "",
                 lastUpdated: "",
@@ -54,7 +55,7 @@ class DeckBuilder extends Component {
         try { 
             //Load a saved deck from local storage
             const data = localStorage.getItem('deck');
-            const endpoint = sessionStorage.getItem('baseQuery');
+            const endpoint = sessionStorage.getItem('baseQuery'); //Page URL for pagination if it exists
             const deck = JSON.parse(data);
             if(deck) this.setState({ deck, endpoint });
         }
