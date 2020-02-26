@@ -1,5 +1,5 @@
 import React from 'react';
-import edit from '../../images/edit.svg'
+//import edit from '../../images/edit.svg'
 import './NameEdit.scss';
 
 const NameEdit = ({ name, onNameChange }) => {

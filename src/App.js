@@ -7,6 +7,7 @@ import DeckBuilder from './components/builder/DeckBuilder';
 import Manager from './components/manager/Manager';
 import RegisterForm from './components/register/RegisterForm';
 import LoginForm from './components/login/LoginForm';
+import Copyright from './components/copyright/Copyright';
 import Home from './components/home/Home';
 import NotFound from './components/NotFound';
 import Logout from './components/Logout';
@@ -65,6 +66,7 @@ class App extends Component {
               path = "/logout" 
               render={(props) => <Logout {...props} resetAuth = {this.resetAuthStatus} />}
             />
+            <Route path = "/copyright" component = {Copyright} />
             <Route path = "/notfound" component = {NotFound} />
             <Redirect from = "/home" exact to = "/" />
             <Redirect to = "/notfound" />
