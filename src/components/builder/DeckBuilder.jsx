@@ -9,6 +9,8 @@ import CardBrowser from './CardBrowser';
 import ChartBrowser from './ChartBrowser';
 import DeckSideBar from './DeckSideBar';
 import Footer from './Footer';
+import { getDate } from '../../utils/date';
+import { calcManaAvg, calcDeckColors } from '../../utils/mtgDeck';
 import { getCards } from '../../services/falseApi';
 import { getLands } from '../../services/basicLands';
 import './DeckBuilder.scss';
@@ -27,8 +29,11 @@ class DeckBuilder extends Component {
                 author: "",
                 lastUpdated: "",
                 cmc: 0,
-                color: "",
+                colors: "",
                 updated: "",
+                mainCnt: 0,
+                sideCnt: 0,
+                miscCnt: 0,
             },
             list: {
                 main: [],
@@ -201,9 +206,15 @@ class DeckBuilder extends Component {
 
     onSaveDeck = () => {
         const deck = this.state.deck;
+ 
+        deck.info.cmc = calcManaAvg(deck); //Get average mana cost
+        deck.info.colors = calcDeckColors(deck); //Get mana color name
+        deck.info.lastUpdated = getDate(); //Get date of update
 
-        localStorage.setItem("deck", JSON.stringify(deck));
-        toast.success("Deck Successfully Saved");
+        this.setState({ deck }, () => {
+            localStorage.setItem("deck", JSON.stringify(deck));
+            toast.success("Deck was saved locally");
+        });
     }
 
     /**
@@ -230,13 +241,13 @@ class DeckBuilder extends Component {
 
     addBasicLand = (land) => {
         let deck = this.state.deck;
-
+        const workingList = deck.list['main'];
         const lands = getLands().cards;
 
         const newCard = lands.filter(cardObj => cardObj.name === land)[0];
 
         //Check if the card already exists
-        const duplicate = this.checkForDuplicate(newCard, 'main')
+        const duplicate = this.checkForDuplicate(newCard, workingList);
         if(duplicate !== false){
             deck.list.main[duplicate].quantity++;
         }

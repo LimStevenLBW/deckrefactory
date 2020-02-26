@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './SummaryCard.scss';
 //import SummaryListItem from './SummaryListItem';
 import EditableListItem from '../_common/EditableListItem';
+import FormSelect from '../_forms/FormSelect';
 import manaC from '../../images/mana/C.svg';
 
 /*
@@ -28,47 +29,38 @@ class SummaryCard extends Component {
     }
 
     render() { 
-        /*
-        const { info } = this.props.deck;
-        console.log(info)
-        const keys = Object.keys(info);
-        const listItems = [];
-
-        for(const key of keys){
-            listItems.push({
-                label: key,
-                textValue: info[key],
-            })
-        }
-        */
-
-        //console.log(listItems)
-
-        /*
-        */
-
         const { deckInfo } = this.props;
+        let avgManaTrimmed;
+        if(deckInfo.cmc) avgManaTrimmed = deckInfo.cmc.toFixed(2);
+
         return (  
             <div className = "summary-card">
                 <img className = "summary-color-img" src = {manaC} alt = ""></img>
                 
                 <ul className ="list-group">
-                    <EditableListItem 
-                        className = "editable-li-item"
-                        label = "Format"
-                        textValue = "Casual, Standard"
-                    />
+                        <FormSelect 
+                            name = {"format"} //used to identify form data
+                            label = {"Select a Format"}
+                            handler = {this.props.onFormatChange}
+                            value = {deckInfo.format} 
+                            options = {
+                                ["Casual", "Standard", "Modern", "Vintage", "Commander", "Legacy", "Oathbreaker", "Frontier"]
+                            }
+                        />
+
                     <EditableListItem 
                         className = "editable-li-item"
                         label = "Playstyle"
-                        textValue = "Control, Aggro"
+                        textValue = {deckInfo.playstyle}
+                        handler = {this.props.onPlayStyleChange}
                     />
-                    <li className ="summary-li-item">Average Mana Cost: </li>
-                    <li className ="summary-li-item">Colors: </li>
+
+                    <li className ="summary-li-item">Average Mana Cost: {avgManaTrimmed}</li>
+                    <li className ="summary-li-item">Colors: {deckInfo.colors}</li>
                     <li className ="summary-li-item">Main Deck: {deckInfo.mainCnt}</li>
                     <li className ="summary-li-item">Side Deck: {deckInfo.sideCnt}</li>
                     <li className ="summary-li-item">Misc Deck: {deckInfo.miscCnt}</li>
-                    <li className ="summary-li-item">Last Updated 2/24/2020</li>
+                    <li className ="summary-li-item">Last Updated {deckInfo.lastUpdated}</li>
                 </ul>
             </div>
         );

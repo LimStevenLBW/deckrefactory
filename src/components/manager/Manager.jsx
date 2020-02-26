@@ -51,6 +51,20 @@ class Manager extends Component {
         }
     }
 
+    onFormatChange = (e) => {
+        e.preventDefault();
+        const deck = this.state.deck;
+        deck.info.format = e.currentTarget.value;
+        this.setState({ deck })
+    }
+    
+    onPlayStyleChange = (e) => {
+        e.preventDefault();
+        const deck = this.state.deck;
+        deck.info.playstyle = e.currentTarget.value;
+        this.setState({ deck })
+    }
+
     render() { 
         return (  
             <React.Fragment>
@@ -75,7 +89,11 @@ class Manager extends Component {
                             </div>
 
                             <div className = "row ml-0 mr-0 mb-5">
-                                <SummaryCard deckInfo = {this.state.deck.info}/>
+                                <SummaryCard 
+                                    deckInfo = {this.state.deck.info}
+                                    onFormatChange = {this.onFormatChange}
+                                    onPlayStyleChange = {this.onPlayStyleChange}
+                                 />
                             </div>
                         </div>
     
@@ -84,7 +102,7 @@ class Manager extends Component {
                                 <Banner />
                             </div>
 
-                            <div className = "row dgs-disabled ml-0 mr-0 mt-4 mb-4">
+                            <div className = "row dgs-disabled ml-0 mr-0 mt-5 mb-2">
                                 <DeckGridSelector />
                             </div>
                         </div>

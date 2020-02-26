@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EditableListItem = (props) => {
-    const {label, textValue, className} = props;
+    const {label, textValue, className, handler} = props;
     return (  
         <li className = {className}>
             {label}:
@@ -9,7 +9,7 @@ const EditableListItem = (props) => {
                 type="text" 
                 className = "form-control" 
                 placeholder = {textValue}
-                onSubmit = {() => console.log("Test Submit")}>
+                onChange = {(e) => handler(e)}>
             </input>
         </li>
     );

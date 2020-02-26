@@ -272,7 +272,7 @@ const cards = {
             "manaCost":"{0}",
             "cmc": 0,
             "colors":[  
-                "Colorless"
+                
             ],
             "colorIdentity":[
                 ""
