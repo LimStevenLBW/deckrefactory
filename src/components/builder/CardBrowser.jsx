@@ -27,10 +27,13 @@ class CardBrowser extends Component {
     componentDidUpdate(prevProps) {
         const cardList = this.props.cardList;
         const headers = this.props.headersList;
+        const table = this.state.table;
 
         //When a new cardList is received, schedule a new update
-        if (cardList !== prevProps.cardList || (this.state.table.length <= 0)) {
-           this.beginUpdate(cardList, headers);
+        if(table){
+            if (cardList !== prevProps.cardList || (table.length <= 0)) {
+                this.beginUpdate(cardList, headers);
+            }
         }
     }
 
@@ -79,7 +82,7 @@ class CardBrowser extends Component {
     generateTable = (cardList) => {
         const colPerRow = 4; //Controls how many columns are allowed
         const table = []; //Reset the list
-        const dataLength = 16; //Object.keys(cardList).length;
+        const dataLength = cardList.length; //Object.keys(cardList).length;
 
         //Iterate through data
         for(let i = 0; i < dataLength; i += colPerRow) {
@@ -94,7 +97,10 @@ class CardBrowser extends Component {
                 }
                 else{ //Acquire data and map to card model
                     const data = this.getCard(cardList, j);
-                    columnItem = this.mapToViewData(data,`${i},${j}` || data.id); 
+                    let keyName = `${i},${j}`; //Default to gallery index
+                    if(data.id !== undefined) keyName = data.id;
+                    columnItem = this.mapToViewData(data, keyName); 
+                    
                 }
                 
                items.push(columnItem); //Add the renderable column to the row's items
@@ -157,7 +163,6 @@ class CardBrowser extends Component {
             }
         }
         catch(ex){
-            alert("ERROR")
             console.error(ex);
         }
     }
@@ -189,7 +194,7 @@ class CardBrowser extends Component {
     render() { 
         const { table, currentPageNum, itemsCount, pageSize } = this.state;
 
-        if(table.length > 0){
+        if(table && table.length > 0){
             return ( 
                 <React.Fragment>
                         {table.map((row, key) => {
@@ -211,9 +216,8 @@ class CardBrowser extends Component {
         }
 
         return  (<div className = "alert alert-warning" role="alert">
-                    . . . Attempting to load table
+                    . . . Could not find results for the specified query . . .
                 </div>);
-           
     }
 }
  

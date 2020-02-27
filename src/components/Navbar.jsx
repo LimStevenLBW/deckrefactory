@@ -45,7 +45,6 @@ const Navbar = ({ user }) => {
                             <span className="sr-only">(current)</span>
                         </NavLink>
                     </li>
-                    
 
                     <li className = "nav-item">
                         <NavLink

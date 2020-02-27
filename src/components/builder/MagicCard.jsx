@@ -8,36 +8,10 @@ class MagicCard extends Card {
         super(props);
 
         this.state = {
-            imageUrl: noImage,
             isTooltipVisible: false,
             isPlayingAnim: false,
             classList: "tooltipImage cardArtEnlarged"
         }
-    }
-
-    componentDidMount() {
-        if(this.props.data) {
-            const { imageUrl } = this.props.data;
-            this.setState({imageUrl});
-        }
-    }
-
-    /**
-     * Adds an additional conditional to check for updated image props and re-render if so
-     */
-    shouldComponentUpdate(prevProps, prevState) {
-        let url = "notSet"
-        if(prevProps.data){
-            if(prevProps.data.imageUrl) url = prevProps.data.imageUrl;
-        }
-
-        if (url !== this.state.imageUrl && url !== "notSet") {
-            this.setState({imageUrl: url});
-            return true;
-        }
-        else if(prevState !== this.state) return true; //Default state update conditional
-      
-        return false; //Do not render if false
     }
 
     onClick = () => {
@@ -71,15 +45,22 @@ class MagicCard extends Card {
     }
 
     render() { 
-        const { keyName } = this.props;
+        const { keyName, data} = this.props;
+
+        let imageUrl = "";
+        
+        //If imageUrl is available
+        if(data && data.imageUrl) {
+            imageUrl = data.imageUrl;
+        }
 
         return ( 
             <div key = {keyName} className = "col-sm pl-1 pr-1">
-                {(this.state.imageUrl !== noImage) && (this.state.imageUrl) ?
+                {data ?
                     <img 
                         className = "cardArt"
-                        src = {this.state.imageUrl} 
-                        alt = "ERROR"
+                        src = {imageUrl} 
+                        alt = "Could not find an image for this card"
                         onClick = {this.onClick}
                         onMouseOver = {this.onMouseOverHandler}
                         onMouseOut = {this.onMouseOutHandler}
@@ -87,7 +68,7 @@ class MagicCard extends Card {
                     :
                     <img 
                         className = "cardArt unclickable"
-                        src = {this.state.imageUrl} 
+                        src = {noImage} 
                         alt = "ERROR"
                     ></img>
                 }
@@ -95,8 +76,8 @@ class MagicCard extends Card {
                 {this.state.isTooltipVisible ? 
                     <img 
                         className = {this.state.classList}
-                        src = {this.state.imageUrl} 
-                        alt = "ERROR"
+                        src = {imageUrl} 
+                        alt = "No Expanded Image Available"
                         onAnimationEnd = {this.onAnimationEndHandler}
                     >
                     </img> : <React.Fragment></React.Fragment>

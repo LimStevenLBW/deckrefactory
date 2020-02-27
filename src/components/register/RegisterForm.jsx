@@ -62,7 +62,7 @@ class RegisterForm extends FormContainer {
             const res = await userService.register(body);
             auth.storeTok(res.headers['x-auth-token']) //Retrieve token from custom header
             this.props.updateAuth();
-            this.props.history.push('/')
+            this.props.history.push('/builder')
         }
         catch(ex){
             if(ex.response && ex.response.status === 400){

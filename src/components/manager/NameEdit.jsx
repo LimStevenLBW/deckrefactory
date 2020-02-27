@@ -12,7 +12,6 @@ const NameEdit = ({ name, onNameChange }) => {
                 onChange = {(e) => onNameChange(e)} >
             </input>
 
-            
         </div>
     );
 }

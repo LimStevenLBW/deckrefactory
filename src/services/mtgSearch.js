@@ -46,7 +46,7 @@ export function buildEndpoint({ format, type, cmc , query, colors }, pageSize) {
     let url = mtgIO;
 
     if(query) url = `${url}name=${query}&`;
-    if(format) url = `${url}format=${format}&`;
+    if(format) url = `${url}gameFormat=${format}&`;
     if(type) url = `${url}type=${type}&`;
     if(cmc) url = `${url}cmc=${cmc}&`;
 

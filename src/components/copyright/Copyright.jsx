@@ -3,13 +3,13 @@ import './Copyright.scss';
 
 const Copyright = () => {
     return (  
-        <div className = "container text-center light mt-3">
-            <h3>
+        <div className = "container text-center light p-5">
+            <h4>
                 DeckRefactory is unofficial Fan Content permitted under the Fan Content Policy. 
                 Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast.
                 ©Wizards of the Coast LLC.
-             </h3>
-             <hr classname ="my-3"></hr>
+             </h4>
+             <hr className ="my-3"></hr>
              <p>
                 All content we serve, both art and code, is provided as a free service to its users.
                 As such, the distribution or propagation of the material or code on this website
@@ -25,9 +25,9 @@ const Copyright = () => {
             </p>
 
             <hr className ="my-3"></hr>
-            <h3>
+            <h4>
                 For more information, please view the GNU General Public License v3.0 that this content is licensed under.
-            </h3>
+            </h4>
 
             <a className = "copyright-link" href = "https://www.gnu.org/licenses/gpl-3.0.en.html">
                GNU General Public License 3

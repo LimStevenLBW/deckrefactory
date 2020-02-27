@@ -78,7 +78,7 @@ class LoginForm extends FormContainer {
             }
 
             this.props.updateAuth();      //Update login Status
-            this.props.history.push("/"); //Redirect to homepage
+            this.props.history.push("/builder"); //Redirect to homepage
         }
         catch(ex){
             if(ex.response && ex.response.status === 400){
