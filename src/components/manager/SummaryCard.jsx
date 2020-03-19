@@ -50,7 +50,7 @@ class SummaryCard extends Component {
 
                     <EditableListItem 
                         className = "editable-li-item"
-                        label = "Playstyle"
+                        label = "Playstyle (Control, Aggro, etc)"
                         textValue = {deckInfo.playstyle}
                         handler = {this.props.onPlayStyleChange}
                     />

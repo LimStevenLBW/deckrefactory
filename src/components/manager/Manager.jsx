@@ -5,6 +5,8 @@ import DeckGridSelector from './DeckGridSelector';
 import ManagerControls from './ManagerControls';
 import Banner from './Banner';
 
+import newDeckObj from '../../models/deck';
+import auth from '../../services/auth';
 import './Manager.scss'
 import NameEdit from './NameEdit';
 
@@ -14,18 +16,23 @@ import NameEdit from './NameEdit';
  */
 class Manager extends Component {
     state = {  
-        deck: {
-            info: {
-                name: "Unnamed Deck"
-            }
-        },
+        user: {
+            "_id": "5e71024f43cd5d06a0421d4c",
+            "iat": 1584464463,
+            "nickname": "testuser1",
+            "email": "testuseremail"
+        }, 
+        deck: newDeckObj(),
     }
 
     componentDidMount() {
         //Load a saved deck from local storage
         const data = localStorage.getItem('deck');
         const deck = JSON.parse(data);
+        const user = auth.getCurrentUser();
+
         if(deck) this.setState({ deck });
+        if(user) this.setState({ user });
     }
 
     onNameChange = (e) => {
@@ -99,7 +106,9 @@ class Manager extends Component {
     
                         <div className = "col-6">
                             <div className = "row manager-heading m-0 p-3">
-                                <Banner />
+                                <Banner 
+                                    user = {this.state.user}
+                                />
                             </div>
 
                             <div className = "row dgs-disabled ml-0 mr-0 mt-5 mb-2">

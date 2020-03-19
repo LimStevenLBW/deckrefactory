@@ -1,47 +1,33 @@
 import React, { Component } from 'react';
-import * as compare from '../../utils/compare';
 import { toast } from 'react-toastify';
-import getSum from '../../utils/sum';
 
 import SearchFormContainer from './SearchFormContainer';
-import Tabs from '../_common/Tabs';
 import CardBrowser from './CardBrowser';
 import ChartBrowser from './ChartBrowser';
 import DeckSideBar from './DeckSideBar';
+import SortButtons from './SortButtons';
 import Footer from './Footer';
+
+import Tabs from '../_common/Tabs';
+import newDeckObj from '../../models/deck';
+
+import * as compare from '../../utils/compare';
 import { getDate } from '../../utils/date';
 import { calcManaAvg, calcDeckColors } from '../../utils/mtgDeck';
+import getSum from '../../utils/sum';
+
 import { getCards } from '../../services/falseApi';
 import { getLands } from '../../services/basicLands';
+
 import './DeckBuilder.scss';
-import SortButtons from './SortButtons';
+
 
 class DeckBuilder extends Component {
     state = { 
         selectedGame: "mtg",
         selectedView: "cards",
-        deck: {
-            info: {
-                name: "",
-                format: "",
-                playstyle: "",
-                description: "",
-                author: "",
-                lastUpdated: "",
-                cmc: 0,
-                colors: "",
-                updated: "",
-                mainCnt: 0,
-                sideCnt: 0,
-                miscCnt: 0,
-            },
-            list: {
-                main: [],
-                side: [],
-                misc: [],
-            }
-        },
         endpoint: "",
+        deck: newDeckObj(),
         queriedCards: {},
         queriedHeaders: {},
     }
