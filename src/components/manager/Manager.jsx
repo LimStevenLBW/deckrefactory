@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import SummaryCard from './SummaryCard';
-import DeckGridSelector from './DeckGridSelector';
 import ManagerControls from './ManagerControls';
-import Banner from './Banner';
+import Banner from './DeckGrid/Banner';
+import DeckGridSelector from './DeckGrid/DeckGridSelector';
 
 import newDeckObj from '../../models/deck';
+import { getDate } from '../../utils/date';
 import auth from '../../services/auth';
 import './Manager.scss'
 import NameEdit from './NameEdit';
@@ -45,7 +46,7 @@ class Manager extends Component {
 
     onSaveHandler = () => {
         const deck = this.state.deck;
-
+        deck.info.lastUpdated = getDate(); //Get date of update
         localStorage.setItem("deck", JSON.stringify(deck));
         toast.success("Deck Successfully Saved");
     }

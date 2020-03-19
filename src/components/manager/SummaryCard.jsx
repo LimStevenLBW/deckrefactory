@@ -1,26 +1,12 @@
 import React, { Component } from 'react';
 import './SummaryCard.scss';
+
 //import SummaryListItem from './SummaryListItem';
+import SummaryColorImg from './SummaryColorImg';
 import EditableListItem from '../_common/EditableListItem';
 import FormSelect from '../_forms/FormSelect';
-import manaC from '../../images/mana/C.svg';
 
-/*
-deck: {
-            info: {
-                name: "",
-                description: "",
-                author: "",
-                lastUpdated: "",
-                cmc: 0,
-                color: "",
-            },
-            list: {
-                main: [],
-                side: [],
-                misc: [],
-            }
-            */
+
 class SummaryCard extends Component {
     state = {  
         listItems: [
@@ -35,7 +21,7 @@ class SummaryCard extends Component {
 
         return (  
             <div className = "summary-card">
-                <img className = "summary-color-img" src = {manaC} alt = ""></img>
+                <SummaryColorImg colors = { deckInfo.colors }/>
                 
                 <ul className ="list-group">
                         <FormSelect 

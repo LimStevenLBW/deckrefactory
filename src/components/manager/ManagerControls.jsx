@@ -3,7 +3,7 @@ import floppy from '../../images/floppy.svg';
 import trash from '../../images/trash.svg';
 import test from '../../images/test.svg';
 import tune from '../../images/tune.svg';
-import './ManagerButtons.scss';
+import './ManagerControls.scss';
 
 /**
  * 

@@ -1,5 +1,5 @@
 import React from 'react';
-import icon from '../../images/mana/C.svg';
+import icon from '../../../images/mana/C.svg';
 import './DeckGridItem.scss';
 
 const DeckGridItem = () => {
