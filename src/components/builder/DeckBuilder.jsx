@@ -192,9 +192,11 @@ class DeckBuilder extends Component {
 
     onSaveDeck = () => {
         const deck = this.state.deck;
+        const colorObj = calcDeckColors(deck); //Get color information
  
         deck.info.cmc = calcManaAvg(deck); //Get average mana cost
-        deck.info.colors = calcDeckColors(deck); //Get mana color name
+        deck.info.colors = colorObj.colors; //Get List of colors
+        deck.info.colorIdentity = colorObj.colorIdentity //Get color scheme name
         deck.info.lastUpdated = getDate(); //Get date of update
 
         this.setState({ deck }, () => {

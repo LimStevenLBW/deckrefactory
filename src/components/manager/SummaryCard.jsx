@@ -42,7 +42,7 @@ class SummaryCard extends Component {
                     />
 
                     <li className ="summary-li-item">Average Mana Cost: {avgManaTrimmed}</li>
-                    <li className ="summary-li-item">Colors: {deckInfo.colors}</li>
+                    <li className ="summary-li-item">Colors: {deckInfo.colorIdentity}</li>
                     <li className ="summary-li-item">Main Deck: {deckInfo.mainCnt}</li>
                     <li className ="summary-li-item">Side Deck: {deckInfo.sideCnt}</li>
                     <li className ="summary-li-item">Misc Deck: {deckInfo.miscCnt}</li>

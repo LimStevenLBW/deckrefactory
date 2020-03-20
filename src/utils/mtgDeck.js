@@ -53,7 +53,10 @@ export function calcDeckColors(deck) {
     if(white >= mainCnt * .15) colorsList.push("White");
     if(blue >= mainCnt * .15) colorsList.push("Blue");
     
-    return getColorIdentity(colorsList);
+    return {
+        colorIdentity: getColorIdentity(colorsList),
+        colors: colorsList
+    }
 }
 
 /**
