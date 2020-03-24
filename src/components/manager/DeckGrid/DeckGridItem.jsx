@@ -6,7 +6,7 @@ import './DeckGridItem.scss';
 const DeckGridItem = ({ item }) => {
     if(item.data){
         return (  
-            <div className = "col-4">
+            <div className = "col-4 d-flex justify-content-center">
                 <button className = "grid-item">
                     <img className = "grid-item-img" src = {icon} alt = ""></img>
                     <div className = "grid-item-text">{item.data.info.name}</div>
@@ -18,12 +18,12 @@ const DeckGridItem = ({ item }) => {
     }
 
     return (
-    <div className = "col-4">
+    <div className = "col-4 d-flex justify-content-center">
             <button className = "grid-item">
                 <img className = "grid-item-img" src = {newIc} alt = ""></img>
                 <div className = "grid-item-text">New</div>
                 <div className = "grid-item-text">Select</div>
-                <div className = "grid-item-text">To Create</div>
+                <div className = "grid-item-text">To Createwwwwwwwwwwwwwwww</div>
             </button>
         </div>
     );
