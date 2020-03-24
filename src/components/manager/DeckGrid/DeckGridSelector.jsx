@@ -2,27 +2,19 @@ import React, { Component } from 'react';
 import SelectableDeckRow from './DeckGridRow';
 import './DeckGridSelector.scss';
 
+/**
+ * Receives the list of user decks as props and displays a grid of the selectable deck items
+ */
 class DeckGridSelector extends Component {
     state = { 
         table: [], 
     }
 
     componentDidMount() {
-        const sampleDeckList = [
-            {
-                info: {
-                    name: "test"
-                }
-            },
-            {
-                info: {
-                    name: "test2"
-                }
-            },
-        ]      
-        const colPerRow = 4; //Controls how many columns are allowed
+        const decks = this.props.decks;   
+        const colPerRow = 3; //Controls how many columns are allowed
         const table = []; //Reset the list
-        const dataLength = 12; //Object.keys(cardList).length;
+        const dataLength = 9; //Object.keys(cardList).length;
 
         //Iterate through columns of a row, each column is assigned a card
         for(let i = 0; i < dataLength; i += colPerRow){
@@ -35,7 +27,7 @@ class DeckGridSelector extends Component {
                     columnItem = null;
                 }
                 else{ //Acquire data and map column to object model
-                    const data = sampleDeckList[j];
+                    const data = decks[j];
                     columnItem = this.mapToViewData(data,`${i},${j}` || data.id); 
                 }
                 

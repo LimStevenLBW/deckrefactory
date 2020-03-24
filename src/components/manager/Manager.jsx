@@ -18,10 +18,33 @@ import NameEdit from './NameEdit';
 class Manager extends Component {
     state = {  
         user: {
-            "_id": "5e71024f43cd5d06a0421d4c",
-            "iat": 1584464463,
-            "nickname": "testuser1",
-            "email": "testuseremail"
+            _id: "5e71024f43cd5d06a0421d4c",
+            iat: 1584464463,
+            nickname: "testuser1",
+            email: "testuseremail",
+            decks: [
+                {
+                    info: {
+                        name: "test",
+                        format: "casual",
+                        colorIdentity: "mono-test"
+                    }
+                },
+                {
+                    info: {
+                        name: "test2",
+                        format: "casual",
+                        colorIdentity: "mono-test"
+                    }
+                },
+                {
+                    info: {
+                        name: "test3",
+                        format: "casual",
+                        colorIdentity: "mono-test"
+                    }
+                },
+            ]
         }, 
         deck: newDeckObj(),
     }
@@ -83,7 +106,7 @@ class Manager extends Component {
                 <div className = "container-fluid p-0">
                     <div className = "row no-gutters manager">
                         <div className = "col-6 white-overlay">
-                            <div className = "row justify-content-center ml-0 mr-0 mt-3 mb-2">
+                            <div className = "row justify-content-center mt-2 mb-1 pl-5 pr-5">
                                 <ManagerControls 
                                     history = {this.props.history}
                                     onSave = {this.onSaveHandler}
@@ -106,14 +129,14 @@ class Manager extends Component {
                         </div>
     
                         <div className = "col-6">
-                            <div className = "row manager-heading m-0 p-3">
+                            <div className = "row manager-heading m-0 p-4">
                                 <Banner 
                                     user = {this.state.user}
                                 />
                             </div>
 
-                            <div className = "row dgs-disabled ml-0 mr-0 mt-5 mb-2">
-                                <DeckGridSelector />
+                            <div className = "row ml-0 mr-0 mt-5 mb-2">
+                                <DeckGridSelector decks = { this.state.user.decks }/>
                             </div>
                         </div>
                     </div>
