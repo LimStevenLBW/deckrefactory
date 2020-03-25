@@ -58,6 +58,8 @@ class DeckGridSelector extends Component {
 
     render() { 
         const { table } = this.state;
+        const {onDeckSelected} = this.props;
+        
         return ( 
             <div className = "deck-grid p-4">
                 {table.map((row, key) => {
@@ -65,6 +67,7 @@ class DeckGridSelector extends Component {
                     <SelectableDeckRow 
                         key = {key}
                         rowData = {row}
+                        onDeckSelected = {onDeckSelected}
                     />);
                 })} 
             </div>

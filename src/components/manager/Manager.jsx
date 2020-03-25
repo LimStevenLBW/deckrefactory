@@ -96,6 +96,10 @@ class Manager extends Component {
         this.setState({ deck })
     }
 
+    onDeckSelectedHandler = (deck) => {
+        console.log(deck)
+    }
+
     render() { 
         return (  
             <React.Fragment>
@@ -136,7 +140,10 @@ class Manager extends Component {
                             </div>
 
                             <div className = "row ml-0 mr-0 mt-5 mb-2">
-                                <DeckGridSelector decks = { this.state.user.decks }/>
+                                <DeckGridSelector 
+                                    decks = { this.state.user.decks }
+                                    onDeckSelected = {this.onDeckSelectedHandler}
+                                />
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import DeckGridItem from './DeckGridItem';
 
-const DeckGridRow = ({ rowData }) => {
+const DeckGridRow = ({ rowData, onDeckSelected }) => {
     const items = rowData.items;
 
     return (  
@@ -11,6 +11,7 @@ const DeckGridRow = ({ rowData }) => {
                         <DeckGridItem 
                             key = {index}
                             item = {item}
+                            onDeckSelected = {onDeckSelected}
                         />
                     )
                 })}
