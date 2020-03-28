@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+
 import SummaryCard from './SummaryCard';
+import NameEdit from './NameEdit';
 import ManagerControls from './ManagerControls';
-import Banner from './DeckGrid/Banner';
+
+import HeaderText from './DeckGrid/HeaderText';
 import DeckGridSelector from './DeckGrid/DeckGridSelector';
 
 import newDeckObj from '../../models/deck';
 import { getDate } from '../../utils/date';
 import auth from '../../services/auth';
 import './Manager.scss'
-import NameEdit from './NameEdit';
 
 /**
  * Two column layout page, highlights a selected deck with a summary
@@ -67,21 +69,6 @@ class Manager extends Component {
         this.setState({ deck });
     }
 
-    onSaveHandler = () => {
-        const deck = this.state.deck;
-        deck.info.lastUpdated = getDate(); //Get date of update
-        localStorage.setItem("deck", JSON.stringify(deck));
-        toast.success("Deck Successfully Saved");
-    }
-
-    onDeleteHandler = () => {
-        const shouldDelete = window.confirm("This is a destructive action, are you sure you want to delete your deck?");
-        if(shouldDelete) {
-            localStorage.removeItem('deck');
-            toast.warn("Deck Was Deleted")
-        }
-    }
-
     onFormatChange = (e) => {
         e.preventDefault();
         const deck = this.state.deck;
@@ -96,7 +83,21 @@ class Manager extends Component {
         this.setState({ deck })
     }
 
+    onSaveHandler = (e) => {
+        //if offline, save to local storage
+
+        //if online, call api to add a new deck to user
+        //if deck name already exists, overwrite, if deck has no name, set the name as untitled deck on backend,
+    }
+
+    onDeleteHandler = (e) => {
+        //if offline, just clear local storage
+        //if online, call api to delete the current deck from user
+    }
+
     onDeckSelectedHandler = (deck) => {
+        //if deck exists, set the state
+        //if deck doesnt exist, call new deck function, should just call clear current deck
         console.log(deck)
     }
 
@@ -134,14 +135,14 @@ class Manager extends Component {
     
                         <div className = "col-6">
                             <div className = "row manager-heading m-0 p-4">
-                                <Banner 
-                                    user = {this.state.user}
+                                <HeaderText 
+                                    user = { this.state.user }
                                 />
                             </div>
 
                             <div className = "row ml-0 mr-0 mt-5 mb-2">
                                 <DeckGridSelector 
-                                    decks = { this.state.user.decks }
+                                    user = { this.state.user }
                                     onDeckSelected = {this.onDeckSelectedHandler}
                                 />
                             </div>

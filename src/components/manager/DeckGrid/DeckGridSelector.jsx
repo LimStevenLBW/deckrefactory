@@ -10,8 +10,18 @@ class DeckGridSelector extends Component {
         table: [], 
     }
 
+    /**
+     *
+     */
     componentDidMount() {
-        const decks = this.props.decks;   
+        const user = this.props.user;
+        if(user) this.updateTableState(user.decks);
+    }
+        
+    /**
+     * Updates the list of displayed cards, triggering a re-render
+     */
+    updateTableState = (decks) => {
         const colPerRow = 3; //Controls how many columns are allowed
         const table = []; //Reset the list
         const dataLength = 9; //Object.keys(cardList).length;
@@ -58,20 +68,27 @@ class DeckGridSelector extends Component {
 
     render() { 
         const { table } = this.state;
-        const {onDeckSelected} = this.props;
-        
-        return ( 
-            <div className = "deck-grid p-4">
-                {table.map((row, key) => {
-                    return(
-                    <SelectableDeckRow 
-                        key = {key}
-                        rowData = {row}
-                        onDeckSelected = {onDeckSelected}
-                    />);
-                })} 
-            </div>
+        const { onDeckSelected } = this.props;
+
+        return (
+        <React.Fragment>
+            {table.length > 0 ?
+                <div className = "deck-grid p-4">
+                    {table.map((row, key) => {
+                        return(
+                        <SelectableDeckRow 
+                            key = {key}
+                            rowData = {row}
+                            onDeckSelected = {onDeckSelected}
+                        />);
+                    })} 
+                </div>
+            :
+            <div></div>
+            }
+        </React.Fragment>
         );
+        
     }
 }
  
