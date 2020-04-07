@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Navbar from './components/Navbar';
+import Profile from './components/profile/Profile';
 import DeckBuilder from './components/builder/DeckBuilder';
 import Manager from './components/manager/Manager';
 import RegisterForm from './components/register/RegisterForm';
@@ -43,20 +44,30 @@ class App extends Component {
   resetAuthStatus = () => {
     this.setState({ user: undefined });
   }
-    
+  
   render() {
+    const { user } = this.state;
+
     return (
       <div className = "app app-background">
-        <ToastContainer />
-        <Navbar user = { this.state.user }/>
+        <ToastContainer autoClose = {2000} />
+        <Navbar user = {user}/>
 
         <Switch>
             <Route exact path = "/" component = {Home} />
-            <Route path = "/builder" component = {DeckBuilder} />
-            <Route path = "/manager" component = {Manager} />
+            <Route 
+              path = "/builder" 
+              render = {(props) => <DeckBuilder {...props} user = {user} />}
+            />
+            <Route path = "/manager" 
+              render = {(props) => <Manager {...props} user = {user} />}
+            />
             <Route 
               path = "/register" 
               render={(props) => <RegisterForm {...props} updateAuth = {this.updateAuthStatus} />}
+            />
+            <Route path = "/profile" 
+              render = {(props) => <Profile {...props} user = {user} />}
             />
             <Route 
               path = "/login" 

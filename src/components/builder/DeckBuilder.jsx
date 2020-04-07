@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
 
 import SearchFormContainer from './SearchFormContainer';
 import CardBrowser from './CardBrowser';
@@ -18,6 +17,7 @@ import getSum from '../../utils/sum';
 
 import { getCards } from '../../services/falseApi';
 import { getLands } from '../../services/basicLands';
+import dataApi from '../../services/dataApi';
 
 import './DeckBuilder.scss';
 
@@ -190,8 +190,13 @@ class DeckBuilder extends Component {
         return false;
     }
 
+    /**
+     * Calculates certain deck properties and sets them
+     * Calls save api function
+     */
     onSaveDeck = () => {
         const deck = this.state.deck;
+        const user = this.props.user;
         const colorObj = calcDeckColors(deck); //Get color information
  
         deck.info.cmc = calcManaAvg(deck); //Get average mana cost
@@ -199,9 +204,9 @@ class DeckBuilder extends Component {
         deck.info.colorIdentity = colorObj.colorIdentity //Get color scheme name
         deck.info.lastUpdated = getDate(); //Get date of update
 
-        this.setState({ deck }, () => {
-            localStorage.setItem("deck", JSON.stringify(deck));
-            toast.success("Deck was saved locally");
+        //Update the state of the deck
+        this.setState({ deck }, () => {     
+            dataApi.save(deck, user);
         });
     }
 
