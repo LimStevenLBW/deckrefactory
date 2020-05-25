@@ -4,20 +4,44 @@ import './Profile.scss';
 
 class Profile extends Component {
     state = {  }
-    render() { 
-        return (  
-            <div className = "profile-container">
-                <div className = "profile-pic-container">
-                    <img className = "profile-pic" src = {temp}></img>
-                </div>
-                
-                <h1 className = "profile-email">Email</h1>
-                <h1 className = "profile-username">username</h1>
-                <h2 className = "profile-change">change password</h2>
-                <h3 className = "profile-delete">Delete Account</h3>
 
-            </div>
-        );
+    componentDidMount(){
+      
+    }
+
+    render() { 
+        const user = this.props.user;
+        
+        if(user) {
+            const { email, username } = user;
+            return (  
+                <div className = "profile-container text-center">
+                    <div className = "profile-pic-container">
+                        <img className = "profile-pic" src = {temp}></img>
+                    </div>
+                    
+                    <h2 className = "profile-email">{ email }</h2>
+                    <h3 className = "profile-username">{ username }</h3>
+                   
+                    <button 
+                        className = "profile-button"
+                        onClick = {() => {console.log("called")}}
+                    >
+                        Change Password
+                    </button>
+
+                    <button 
+                        className = "profile-button"
+                        onClick = {() => {console.log("called")}}
+                    >  
+                        Delete Account
+                    </button>
+
+                </div>
+            );
+        }
+
+        return <div>Auth token is expired or does not exist, please relog</div>
     }
 }
  

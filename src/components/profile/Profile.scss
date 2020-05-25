@@ -3,7 +3,8 @@
     margin: auto;
     margin-top: 30px;
     padding: 10px 20px 10px 20px;
-    background-color: whitesmoke;
+    background-color: #e3e7f0;
+    border-radius: 1%;
 }
 
 .profile-pic-container{
@@ -25,4 +26,13 @@
     top: 50%;
     -webkit-transform: translateY(-50%) translateX(-50%);
     //ransform, -moz-transform need browser support
+}
+
+.profile-button{
+    display: block;
+    margin: auto;
+}
+
+.profile-button:hover{
+    color: rgb(144, 145, 148);
 }
