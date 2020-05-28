@@ -7,6 +7,7 @@ import Profile from './components/profile/Profile';
 import DeckBuilder from './components/builder/DeckBuilder';
 import Manager from './components/manager/Manager';
 import RegisterForm from './components/register/RegisterForm';
+import ChangeForm from './components/profile/change/ChangeForm';
 import LoginForm from './components/login/LoginForm';
 import Copyright from './components/copyright/Copyright';
 import Home from './components/home/Home';
@@ -68,6 +69,9 @@ class App extends Component {
             />
             <Route path = "/profile" 
               render = {(props) => <Profile {...props} user = {user} />}
+            />
+            <Route path = "/change-password" 
+              render = {(props) => <ChangeForm {...props} user = {user} />}
             />
             <Route 
               path = "/login" 

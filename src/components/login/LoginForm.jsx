@@ -137,20 +137,20 @@ class LoginForm extends FormContainer {
                             onSubmit = {this.handleSubmit}
                         />
 
-                    <div className = "text-center">
-                        <NavLink
-                            className="login-nav-link"
-                            to="/register">
-                            Forgot your password? Click here to reset it (feature not yet available)
-                        </NavLink>
+                        <div className = "text-center">
+                            <NavLink
+                                className="login-nav-link"
+                                to="/register">
+                                Forgot your password? Click here to reset it (feature not yet available)
+                            </NavLink>
 
-                        <NavLink 
-                            className="login-nav-link"
-                            to="/register">
-                            Don't have an account? Click here to register!
-                        </NavLink>
-                        
-                    </div>
+                            <NavLink 
+                                className="login-nav-link"
+                                to="/register">
+                                Don't have an account? Click here to register!
+                            </NavLink>
+                            
+                        </div>
 
                     </form>
                 </div>

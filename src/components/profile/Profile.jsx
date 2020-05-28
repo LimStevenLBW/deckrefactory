@@ -25,7 +25,9 @@ class Profile extends Component {
                    
                     <button 
                         className = "profile-button"
-                        onClick = {() => {console.log("called")}}
+                        onClick = {() => {
+                            this.props.history.push("/change-password"); 
+                        }}
                     >
                         Change Password
                     </button>

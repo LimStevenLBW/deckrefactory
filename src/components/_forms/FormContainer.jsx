@@ -29,7 +29,6 @@ class FormContainer extends Component {
             const { error } = Joi.validate(obj, schema)
             return error ? error.details[0].message : null; //Return error if it exists
         }
-      
     }
 
     /**
@@ -52,19 +51,6 @@ class FormContainer extends Component {
     }
 
     /**
-     * Handles submission of a form set, triggers validation one more time for all fields
-     */
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        const errors = this.validateAll(); //Get errors object from full validation
-        this.setState({ errors: errors || {} });
-        if (errors) return;
-
-        this.doSubmit();
-    }
-
-    /**
      * Used to switch control from the element to React
      * Repeated calls to evaluate a form on value change, updates data & error states
      */
@@ -82,10 +68,23 @@ class FormContainer extends Component {
     }
 
     /**
+     * Handles submission of a form set, triggers validation one more time for all fields
+     */
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        const errors = this.validateAll(); //Get errors object from full validation
+        this.setState({ errors: errors || {} });
+        if (errors) return;
+
+        this.doSubmit();
+    }
+
+    /**
      * Override to complete api calls and other functionality
      */
     doSubmit = () => {
-        console.log("sdas")
+        
     }
 
 }
