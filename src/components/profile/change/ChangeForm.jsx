@@ -8,8 +8,9 @@ import './ChangeForm.scss';
 class ChangeForm extends FormContainer {
     state = {
         data: {
-            oldPassword: "",
+            oldpassword: "",
             password: "",
+            confirmation: "",
         },
         errors: {
 
@@ -29,7 +30,7 @@ class ChangeForm extends FormContainer {
             .label("Password"),
         confirmation: Joi
             .any()
-            .valid(Joi.ref('newpassword'))
+            .valid(Joi.ref('password'))
             .required()
             .label("Confirmation")
     }
@@ -39,7 +40,7 @@ class ChangeForm extends FormContainer {
      */
     doSubmit = async () => { 
         try{
-
+            alert("hello")
         }
         catch(ex){
 
@@ -52,12 +53,13 @@ class ChangeForm extends FormContainer {
                 <form className = "container bg-container w-50" onSubmit = {this.handleSubmit}>
                     <h5>Please enter your old password before changing to a new one</h5>
                     <p>Use a password that cannot be easily guessed</p>
+
                     <FormInput 
-                        name = 'old'
+                        name = 'oldpassword'
                         type = 'password'
                         handler = {this.handleChange}
                         label = "Old Password"
-                        error = {this.state.errors['password']}
+                        error = {this.state.errors['oldpassword']}
                     />
 
                     <FormInput 
@@ -69,11 +71,11 @@ class ChangeForm extends FormContainer {
                     />
                     
                     <FormInput 
-                            name = 'confirmation'
-                            type = 'password'
-                            handler = {this.handleChange}
-                            label = "Confirm Password"
-                            error = {this.state.errors['confirmation']}
+                        name = 'confirmation'
+                        type = 'password'
+                        handler = {this.handleChange}
+                        label = "Confirm Password"
+                        error = {this.state.errors['confirmation']}
                     />
 
                     <FormButton 
