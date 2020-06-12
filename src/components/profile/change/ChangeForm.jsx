@@ -3,6 +3,7 @@ import Joi from 'joi';
 import FormContainer from '../../_forms/FormContainer';
 import FormInput from '../../_forms/FormInput';
 import FormButton from '../../_forms/FormButton';
+import accountService from '../../../services/account';
 import './ChangeForm.scss';
 
 class ChangeForm extends FormContainer {
@@ -39,8 +40,15 @@ class ChangeForm extends FormContainer {
      * @override Submit the change password form
      */
     doSubmit = async () => { 
+        const body = {
+            email: this.props.user,
+            oldpassword: this.state.data.oldpassword,
+            newpassword: this.state.data.password,
+        }
+        
         try{
-            alert("hello")
+            const res = await accountService.changePassword(body);
+            this.props.history.push('/profile')
         }
         catch(ex){
 

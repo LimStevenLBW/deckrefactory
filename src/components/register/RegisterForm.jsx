@@ -3,7 +3,7 @@ import FormContainer from '../_forms/FormContainer';
 import FormInput from '../_forms/FormInput';
 import Joi from 'joi';
 import FormButton from '../_forms/FormButton';
-import userService from '../../services/register';
+import accountService from '../../services/account';
 import auth from '../../services/auth';
 
 import bannerLeft from '../../images/banner-left.jpg';
@@ -59,7 +59,7 @@ class RegisterForm extends FormContainer {
         }
 
         try{
-            const res = await userService.register(body);
+            const res = await accountService.register(body);
             auth.storeTok(res.headers['x-auth-token']) //Retrieve token from custom header
             this.props.updateAuth();
             this.props.history.push('/builder')
