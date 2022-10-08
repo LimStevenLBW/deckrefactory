@@ -60,7 +60,7 @@ class MagicCard extends Card {
                     <img
                         className="cardArt"
                         src={data.imageUrl}
-                        alt="Could not find an image for this card"
+                        alt=""
                         onClick={this.onClick}
                         onMouseOver={this.onMouseOverHandler}
                         onMouseOut={this.onMouseOutHandler}
@@ -77,7 +77,7 @@ class MagicCard extends Card {
                     <img
                         className={this.state.classList}
                         src={imageUrl}
-                        alt="No Expanded Image Available"
+                        alt=""
                         onAnimationEnd={this.onAnimationEndHandler}
                     >
                     </img> : <React.Fragment></React.Fragment>

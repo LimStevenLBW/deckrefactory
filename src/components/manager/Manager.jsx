@@ -11,7 +11,7 @@ import newDeckObj from '../../models/deck';
 import { getDate } from '../../utils/date';
 
 import dataApi from '../../services/dataApi';
-import auth from '../../services/auth';
+//import auth from '../../services/auth';
 import './Manager.scss'
 
 /**
@@ -19,7 +19,7 @@ import './Manager.scss'
  * while also displaying a small gallery to view additional decks.
  */
 class Manager extends Component {
-    state = {  
+    state = {
         deck: newDeckObj(),
     }
 
@@ -29,7 +29,7 @@ class Manager extends Component {
         const deck = JSON.parse(data);
         //const user = auth.getCurrentUser();
 
-        if(deck) this.setState({ deck });
+        if (deck) this.setState({ deck });
     }
 
     onNameChange = (e) => {
@@ -46,7 +46,7 @@ class Manager extends Component {
         deck.info.format = e.currentTarget.value;
         this.setState({ deck })
     }
-    
+
     onPlayStyleChange = (e) => {
         e.preventDefault();
         const deck = this.state.deck;
@@ -79,51 +79,51 @@ class Manager extends Component {
         console.log(deck)
     }
 
-    render() { 
-        return (  
-        <div className = "container-fluid p-0">
-            <div className = "row no-gutters manager">
-                <div className = "col-6 white-overlay">
-                    <div className = "row justify-content-center mt-3 mb-1 pl-5 pr-5">
-                        <ManagerControls 
-                            history = {this.props.history}
-                            onSave = {this.onSaveHandler}
-                            onDelete = {this.onDeleteHandler}
-                        />
-                    </div>
-
-                    <div className = "row justify-content-center m-0">
-                        <NameEdit name = {this.state.deck.info.name} 
-                            onNameChange = {this.onNameChange}/>
-                    </div>
-
-                    <div className = "row ml-0 mr-0 mb-5">
-                        <SummaryCard 
-                            deckInfo = {this.state.deck.info}
-                            onFormatChange = {this.onFormatChange}
-                            onPlayStyleChange = {this.onPlayStyleChange}
+    render() {
+        return (
+            <div className="container-fluid p-0">
+                <div className="row no-gutters manager">
+                    <div className="col-6 white-overlay">
+                        <div className="row justify-content-center mt-3 mb-1 pl-5 pr-5">
+                            <ManagerControls
+                                history={this.props.history}
+                                onSave={this.onSaveHandler}
+                                onDelete={this.onDeleteHandler}
                             />
-                    </div>
-                </div>
+                        </div>
 
-                <div className = "col-6">
-                    <div className = "row manager-heading m-0 p-4">
-                        <HeaderText 
-                            user = { this.state.user }
-                        />
+                        <div className="row justify-content-center m-0">
+                            <NameEdit name={this.state.deck.info.name}
+                                onNameChange={this.onNameChange} />
+                        </div>
+
+                        <div className="row ml-0 mr-0 mb-5">
+                            <SummaryCard
+                                deckInfo={this.state.deck.info}
+                                onFormatChange={this.onFormatChange}
+                                onPlayStyleChange={this.onPlayStyleChange}
+                            />
+                        </div>
                     </div>
 
-                    <div className = "row ml-0 mr-0 mt-5 mb-2">
-                        <DeckGridSelector 
-                            user = { this.state.user }
-                            onDeckSelected = {this.onDeckSelectedHandler}
-                        />
+                    <div className="col-6">
+                        <div className="row manager-heading m-0 p-4">
+                            <HeaderText
+                                user={this.state.user}
+                            />
+                        </div>
+
+                        <div className="row ml-0 mr-0 mt-5 mb-2">
+                            <DeckGridSelector
+                                user={this.state.user}
+                                onDeckSelected={this.onDeckSelectedHandler}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         );
     }
 }
- 
+
 export default Manager;
