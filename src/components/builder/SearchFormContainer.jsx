@@ -7,7 +7,7 @@ import ButtonDropDown from '../_common/ButtonDropDown';
 import { search, buildEndpoint } from '../../services/mtgSearch';
 
 /**
- * Extends Form Container, renders forms for initiating an advanced search
+ * Extends Form Container, renders forms for initiating an advanced search.
  */
 class SearchFormContainer extends FormContainer {
     constructor(props) {
